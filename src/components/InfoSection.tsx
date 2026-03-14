@@ -6,13 +6,13 @@ const InfoSection = () => (
       <div className="grid md:grid-cols-2 gap-16 mb-16">
         {/* Left */}
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">We Understand Your Travel Needs</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">We understand your business needs</p>
           <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 leading-tight">
-            Travel Planning<br />Worldwide
+            Company Formation<br />in the World
           </h2>
           <div className="w-12 h-1 bg-orange mb-6" />
           <p className="text-muted-foreground text-sm mb-8 leading-relaxed">
-            GLOBESTAR is your ultimate partner in travel planning. Our streamlined and hassle-free process saves valuable time and effort for travelers worldwide.
+            Easy Inspire Ltd. is your ultimate partner in company registration. Aspiring entrepreneurs can take advantage of their streamlined and hassle-free process, saving valuable time and effort. With a team of experienced professionals.
           </p>
           <div className="space-y-6">
             <div className="flex gap-4 items-start">
@@ -20,8 +20,8 @@ const InfoSection = () => (
                 <Building2 size={22} className="text-navy" />
               </div>
               <div>
-                <h4 className="font-bold text-navy mb-1">Global Partnerships</h4>
-                <p className="text-muted-foreground text-sm">Travel partnerships available across Europe, Asia, Americas, and beyond.</p>
+                <h4 className="font-bold text-navy mb-1">Company Formation</h4>
+                <p className="text-muted-foreground text-sm">Company formation services are available for Lithuania, Albania, Belarus & the UK, etc.</p>
               </div>
             </div>
             <div className="flex gap-4 items-start">
@@ -29,8 +29,8 @@ const InfoSection = () => (
                 <Scale size={22} className="text-navy" />
               </div>
               <div>
-                <h4 className="font-bold text-navy mb-1">Full Support</h4>
-                <p className="text-muted-foreground text-sm">We provide virtual assistance, 24/7 support, and travel concierge services.</p>
+                <h4 className="font-bold text-navy mb-1">Legal Support</h4>
+                <p className="text-muted-foreground text-sm">We also provide the Virtual business address, phone number, web domain, and account services.</p>
               </div>
             </div>
           </div>
