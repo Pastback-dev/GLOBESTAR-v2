@@ -1,11 +1,16 @@
-import destMaldives from '@/assets/dest-maldives.jpg';
-import destSwitzerland from '@/assets/dest-switzerland.jpg';
-import destJapan from '@/assets/dest-japan.jpg';
-
 const destinations = [
-  { img: destMaldives, name: 'Maldives' },
-  { img: destSwitzerland, name: 'Switzerland' },
-  { img: destJapan, name: 'Japan' },
+  { 
+    img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80', 
+    name: 'United Kingdom' 
+  },
+  { 
+    img: 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=800&q=80', 
+    name: 'Ireland' 
+  },
+  { 
+    img: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=800&q=80', 
+    name: 'Germany' 
+  },
 ];
 
 const DestinationsSection = () => (
