@@ -1,4 +1,4 @@
-import { Plane, Heart, Users, Briefcase } from 'lucide-react';
+import { Plane, Heart, Users, Briefcase, MapPin, User } from 'lucide-react';
 
 const services = [
   { 
@@ -21,6 +21,16 @@ const services = [
     title: 'Family Invitation', 
     desc: 'A visa invitation letter is a written letter from the company for a Family visitor visa.' 
   },
+  { 
+    icon: MapPin, 
+    title: 'Tourist Invitation', 
+    desc: 'A visa invitation letter is a written letter from the tourist company for a tourist visa purpose.' 
+  },
+  { 
+    icon: User, 
+    title: 'Private Invitation', 
+    desc: 'A private invitation letter is a written document from an individual to obtain a tourist visa.' 
+  },
 ];
 
 const ServicesSection = () => (
@@ -34,7 +44,7 @@ const ServicesSection = () => (
       <p className="text-muted-foreground max-w-3xl mx-auto mb-12 text-sm leading-relaxed">
         A visa invitation letter is a written letter from a company or person who lives in the country you wish to visit. This letter serves as an invitation to stay with them, and by extension, guarantees that you will not overstay your visa. We offer company invitation letters for business, family, and visit visas for countries such as Lithuania, Albania Belarus, the UK, Russia, Serbia, Moldova, Kosovo, Ukraine, Spain, Sweden, Hungary, Luxembourg, Netherlands & Germany and more.
       </p>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map(s => (
           <div key={s.title} className="bg-background border rounded-lg p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-section-gray flex items-center justify-center">
