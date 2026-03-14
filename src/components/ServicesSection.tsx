@@ -1,10 +1,26 @@
 import { Plane, Heart, Users, Briefcase } from 'lucide-react';
 
 const services = [
-  { icon: Plane, title: 'Tourist Visa', desc: 'We assist with tourist visa applications for destinations worldwide, ensuring a smooth process.' },
-  { icon: Heart, title: 'Honeymoon Packages', desc: 'Romantic getaway packages tailored for couples seeking unforgettable experiences.' },
-  { icon: Users, title: 'Group Tours', desc: 'Organized group tours to popular destinations with expert guides and full support.' },
-  { icon: Briefcase, title: 'Corporate Travel', desc: 'Professional business travel solutions including flights, hotels, and conference planning.' },
+  { 
+    icon: Users, 
+    title: 'Group Invitation', 
+    desc: 'A group invitation is a written document from a company to obtain tourist group visas.' 
+  },
+  { 
+    icon: Plane, 
+    title: 'Visit Invitation', 
+    desc: 'A visa invitation letter is a written letter from the company for a visitor visa.' 
+  },
+  { 
+    icon: Briefcase, 
+    title: 'Business Invitation', 
+    desc: 'A visa invitation letter is a written letter from the company for a business visa purpose.' 
+  },
+  { 
+    icon: Heart, 
+    title: 'Family Invitation', 
+    desc: 'A visa invitation letter is a written letter from the company for a Family visitor visa.' 
+  },
 ];
 
 const ServicesSection = () => (
@@ -24,7 +40,7 @@ const ServicesSection = () => (
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-section-gray flex items-center justify-center">
               <s.icon size={28} className="text-navy" />
             </div>
-            <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Services</p>
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">VISA TYPES</p>
             <h3 className="text-navy font-bold mb-2">{s.title}</h3>
             <p className="text-muted-foreground text-sm">{s.desc}</p>
           </div>
