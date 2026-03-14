@@ -1,12 +1,29 @@
 import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { User, CheckCircle2 } from 'lucide-react';
+import { User } from 'lucide-react';
 
 const team = [
-  { name: 'John Doe', role: 'CEO & Founder', bio: '20+ years of experience in global travel consultancy.' },
-  { name: 'Jane Smith', role: 'Senior Visa Consultant', bio: 'Expert in European work permits and study visas.' },
-  { name: 'Michael Brown', role: 'Operations Manager', bio: 'Ensuring smooth processes for all our clients.' },
+  { 
+    name: 'MR. IrfanHussain', 
+    role: 'CEO - Founder', 
+    bio: 'Leading the vision of GLOBESTAR with over two decades of expertise in global mobility.' 
+  },
+  { 
+    name: 'Mr. THOMAS ALAN', 
+    role: 'Director & Marketing Manager', 
+    bio: 'Driving international growth and strategic partnerships across global markets.' 
+  },
+  { 
+    name: 'Mrs. Aldona', 
+    role: 'Immigration Expert', 
+    bio: 'Specializing in complex immigration cases and ensuring compliance with international regulations.' 
+  },
+  { 
+    name: 'Mr. Jonas', 
+    role: 'International Relations Officer', 
+    bio: 'Managing relationships with global institutions and facilitating seamless travel experiences.' 
+  },
 ];
 
 const OurTeam = () => (
@@ -42,15 +59,15 @@ const OurTeam = () => (
           <p className="text-muted-foreground text-sm">Dedicated experts committed to your success</p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {team.map((member) => (
             <div key={member.name} className="bg-background p-8 rounded-lg shadow-sm border hover:shadow-md transition-shadow group">
               <div className="w-20 h-20 bg-navy/5 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange/10 transition-colors">
                 <User size={40} className="text-navy group-hover:text-orange transition-colors" />
               </div>
-              <h3 className="text-xl font-bold text-navy mb-1">{member.name}</h3>
-              <p className="text-orange font-semibold text-xs mb-4 uppercase tracking-wider">{member.role}</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+              <h3 className="text-lg font-bold text-navy mb-1">{member.name}</h3>
+              <p className="text-orange font-semibold text-[10px] mb-4 uppercase tracking-wider">{member.role}</p>
+              <p className="text-muted-foreground text-xs leading-relaxed">{member.bio}</p>
             </div>
           ))}
         </div>
