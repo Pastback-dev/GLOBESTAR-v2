@@ -12,8 +12,23 @@ export default {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ['Poppins', 'sans-serif'],
+    },
     extend: {
       colors: {
+        navy: {
+          DEFAULT: "hsl(var(--navy))",
+          light: "hsl(var(--navy-light))",
+          foreground: "hsl(var(--navy-foreground))",
+        },
+        orange: {
+          DEFAULT: "hsl(var(--orange))",
+          hover: "hsl(var(--orange-hover))",
+          foreground: "hsl(var(--orange-foreground))",
+        },
+        "section-gray": "hsl(var(--section-gray))",
+        whatsapp: "hsl(var(--whatsapp))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
