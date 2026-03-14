@@ -38,13 +38,13 @@ const InfoSection = () => (
 
         {/* Right */}
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">How We Help Clients</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">HOW WE HELP CLIENTS</p>
           <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 leading-tight">
-            Global Travel News &<br />Updates
+            World Visas News &<br />Updates
           </h2>
           <div className="w-12 h-1 bg-orange mb-6" />
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Great news for travelers looking to explore new destinations. Many countries have announced relaxed visa requirements, making it easier for tourists to visit. New direct flight routes are opening up across continents, reducing travel times and costs significantly. Whether you're planning a beach getaway or a cultural expedition, there has never been a better time to travel the world.
+            Good news for bus drivers looking to immigrate to Lithuania: The Lithuanian authorities have announced that bus drivers are now eligible to apply for permanent residency through the Skilled Worker program. This program allows skilled workers from around the world to immigrate to Lithuania and contribute to the country's economy. The decision to include bus drivers was made in response to a high demand for bus drivers in Lithuania.
           </p>
         </div>
       </div>
