@@ -1,11 +1,16 @@
-import cardFlight from '@/assets/card-flight.jpg';
-import cardHotel from '@/assets/card-hotel.jpg';
-import cardVisa from '@/assets/card-visa.jpg';
-
 const cards = [
-  { img: cardFlight, title: 'Apply Work Permit' },
-  { img: cardHotel, title: 'Apply Visit Visa' },
-  { img: cardVisa, title: 'Apply Study Abroad' },
+  { 
+    img: 'https://easyinspire.eu/wp-content/uploads/2020/07/feature-1.jpg', 
+    title: 'Apply Work Permit' 
+  },
+  { 
+    img: 'https://easyinspire.eu/wp-content/uploads/2020/08/feature-3.jpg', 
+    title: 'Apply Visit Visa' 
+  },
+  { 
+    img: 'https://easyinspire.eu/wp-content/uploads/2020/08/feature-2.jpg', 
+    title: 'Apply Study Abroad' 
+  },
 ];
 
 const ThreeCardSection = () => (
