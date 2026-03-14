@@ -3,9 +3,9 @@ import cardHotel from '@/assets/card-hotel.jpg';
 import cardVisa from '@/assets/card-visa.jpg';
 
 const cards = [
-  { img: cardFlight, title: 'Book a Flight' },
-  { img: cardHotel, title: 'Reserve a Hotel' },
-  { img: cardVisa, title: 'Apply for Visa' },
+  { img: cardFlight, title: 'Apply Work Permit' },
+  { img: cardHotel, title: 'Apply Visit Visa' },
+  { img: cardVisa, title: 'Apply Study Abroad' },
 ];
 
 const ThreeCardSection = () => (
