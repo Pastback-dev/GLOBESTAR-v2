@@ -1,7 +1,7 @@
 import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { User } from 'lucide-react';
+import { User, ShieldCheck } from 'lucide-react';
 
 const team = [
   { 
@@ -59,7 +59,7 @@ const OurTeam = () => (
           <p className="text-muted-foreground text-sm">Dedicated experts committed to your success</p>
         </div>
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-20">
           {team.map((member) => (
             <div key={member.name} className="bg-background p-8 rounded-lg shadow-sm border hover:shadow-md transition-shadow group">
               <div className="w-20 h-20 bg-navy/5 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange/10 transition-colors">
@@ -70,6 +70,22 @@ const OurTeam = () => (
               <p className="text-muted-foreground text-xs leading-relaxed">{member.bio}</p>
             </div>
           ))}
+        </div>
+
+        {/* Registration Info */}
+        <div className="max-w-4xl mx-auto text-center pt-16 border-t">
+          <div className="flex justify-center mb-6">
+            <ShieldCheck size={48} className="text-orange opacity-20" />
+          </div>
+          <h2 className="text-2xl font-bold text-navy mb-4">Easy Inspire is Registered in Countries</h2>
+          <p className="text-muted-foreground leading-relaxed mb-12 max-w-2xl mx-auto">
+            Easy Inspire is legally registered in the leading countries, including Lithuania, Albania & Belarus. The four European incorporation certificates are posted here for clients’ satisfaction. Please note that these certificates are protected by copyright.
+          </p>
+          
+          <div className="mt-8">
+            <p className="text-navy font-bold text-xl tracking-wide">Director & CEO</p>
+            <div className="w-12 h-1 bg-orange mx-auto mt-3" />
+          </div>
         </div>
       </div>
     </section>
