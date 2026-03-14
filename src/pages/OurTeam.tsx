@@ -26,6 +26,12 @@ const team = [
   },
 ];
 
+const certificates = [
+  'https://easyinspire.eu/wp-content/uploads/2024/12/Just-for-View-1-600x759.jpg',
+  'https://easyinspire.eu/wp-content/uploads/2024/12/Just-for-View-2-600x759.jpg',
+  'https://easyinspire.eu/wp-content/uploads/2024/12/Just-for-View-4-600x759.jpg',
+];
+
 const OurTeam = () => (
   <div className="min-h-screen">
     <TopBar />
@@ -73,7 +79,7 @@ const OurTeam = () => (
         </div>
 
         {/* Registration Info */}
-        <div className="max-w-4xl mx-auto text-center pt-16 border-t">
+        <div className="max-w-5xl mx-auto text-center pt-16 border-t">
           <div className="flex justify-center mb-6">
             <ShieldCheck size={48} className="text-orange opacity-20" />
           </div>
@@ -81,6 +87,19 @@ const OurTeam = () => (
           <p className="text-muted-foreground leading-relaxed mb-12 max-w-2xl mx-auto">
             Easy Inspire is legally registered in the leading countries, including Lithuania, Albania & Belarus. The four European incorporation certificates are posted here for clients’ satisfaction. Please note that these certificates are protected by copyright.
           </p>
+          
+          {/* Certificate Images */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+            {certificates.map((url, index) => (
+              <div key={index} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img 
+                  src={url} 
+                  alt={`Registration Certificate ${index + 1}`} 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            ))}
+          </div>
           
           <div className="mt-8">
             <p className="text-navy font-bold text-xl tracking-wide">Director & CEO</p>
