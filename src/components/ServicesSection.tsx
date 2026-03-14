@@ -11,12 +11,12 @@ const ServicesSection = () => (
   <section className="py-20 bg-background">
     <div className="container mx-auto px-4 text-center">
       <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">
-        We Provide The Best Solutions
+        We Provide the Visa solutions
       </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Our Core Travel Services</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Visa Invitation Letters :-</h2>
       <div className="w-12 h-1 bg-orange mx-auto mb-6" />
-      <p className="text-muted-foreground max-w-2xl mx-auto mb-12 text-sm leading-relaxed">
-        GLOBESTAR is dedicated to delivering world-class travel services. We offer comprehensive solutions for leisure, business, and adventure travelers.
+      <p className="text-muted-foreground max-w-3xl mx-auto mb-12 text-sm leading-relaxed">
+        A visa invitation letter is a written letter from a company or person who lives in the country you wish to visit. This letter serves as an invitation to stay with them, and by extension, guarantees that you will not overstay your visa. We offer company invitation letters for business, family, and visit visas for countries such as Lithuania, Albania Belarus, the UK, Russia, Serbia, Moldova, Kosovo, Ukraine, Spain, Sweden, Hungary, Luxembourg, Netherlands & Germany and more.
       </p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map(s => (
