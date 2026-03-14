@@ -1,14 +1,30 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { TopBar, Navbar } from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
+import ThreeCardSection from '@/components/ThreeCardSection';
+import CTABanner from '@/components/CTABanner';
+import ServicesSection from '@/components/ServicesSection';
+import DestinationsSection from '@/components/DestinationsSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import InfoSection from '@/components/InfoSection';
+import FooterSection from '@/components/FooterSection';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
-const Index = () => {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
-  );
-};
+const Index = () => (
+  <div className="min-h-screen">
+    <TopBar />
+    <Navbar />
+    <HeroSection />
+    <AboutSection />
+    <ThreeCardSection />
+    <CTABanner />
+    <ServicesSection />
+    <DestinationsSection />
+    <TestimonialsSection />
+    <InfoSection />
+    <FooterSection />
+    <WhatsAppButton />
+  </div>
+);
 
 export default Index;
