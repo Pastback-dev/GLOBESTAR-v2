@@ -7,6 +7,9 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import OurTeam from "./pages/OurTeam.tsx";
 import BankAccount from "./pages/BankAccount.tsx";
+import TypesOfInvitation from "./pages/TypesOfInvitation.tsx";
+import DetailsAndCosts from "./pages/DetailsAndCosts.tsx";
+import ApplyInvitation from "./pages/ApplyInvitation.tsx";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +23,9 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/our-team" element={<OurTeam />} />
           <Route path="/bank-account" element={<BankAccount />} />
+          <Route path="/types-of-invitation" element={<TypesOfInvitation />} />
+          <Route path="/details-and-costs" element={<DetailsAndCosts />} />
+          <Route path="/apply-invitation" element={<ApplyInvitation />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
