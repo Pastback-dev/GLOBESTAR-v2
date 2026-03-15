@@ -96,9 +96,12 @@ const TypesOfInvitation = () => (
               <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-4">
                 {type.description}
               </p>
-              <button className="text-navy font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:text-orange transition-colors">
+              <Link 
+                to="/details-and-costs" 
+                className="text-navy font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:text-orange transition-colors"
+              >
                 Read More <ArrowRight size={14} />
-              </button>
+              </Link>
             </div>
           ))}
         </div>
