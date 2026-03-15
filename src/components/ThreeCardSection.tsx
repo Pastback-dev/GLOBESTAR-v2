@@ -3,40 +3,47 @@ import { Link } from 'react-router-dom';
 
 const cards = [
   {
-    icon: Briefcase,
-    title: 'Work Visas',
-    desc: 'We facilitate the acquisition of work permits for various countries including Czech Republic, Poland, Lithuania, UK, Malta, Romania, Estonia, Spain, Italy, Hungary, Slovakia, Bulgaria, Albania, Belarus & Serbia.',
+    title: 'Apply Work Permit',
+    img: 'https://images.unsplash.com/photo-1573496130141-209d200cebd8?auto=format&fit=crop&w=800&q=80',
     link: '/working-visa',
   },
   {
-    icon: Plane,
-    title: 'Visit Visas',
-    desc: 'Get your visit visa (E-visas) for Albania, Moldova, Georgia, Hong Kong & Turkey. Complete professional support for your travel documents and visa approval.',
+    title: 'Apply Visit Visa',
+    img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80',
     link: '/visiting-visa',
   },
   {
-    icon: GraduationCap,
-    title: 'Study Visas',
-    desc: 'For those aspiring to study abroad, we have options available in Ireland and the UK & German universities. Admissions for ESL, Foundation, and Degrees.',
+    title: 'Apply Study Abroad',
+    img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
     link: '/studying-visa',
   },
 ];
 
 const ThreeCardSection = () => (
-  <section className="py-16 bg-section-gray">
+  <section className="py-16 bg-white">
     <div className="container mx-auto px-4">
-      <div className="grid md:grid-cols-3 gap-6">
-        {cards.map(card => (
-          <div key={card.title} className="bg-background rounded-lg p-8 shadow-sm border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-orange/10 flex items-center justify-center">
-              <card.icon size={28} className="text-orange" />
+      <div className="grid md:grid-cols-3 gap-0 shadow-2xl rounded-xl overflow-hidden">
+        {cards.map((card, idx) => (
+          <Link 
+            key={idx} 
+            to={card.link}
+            className="group relative h-[350px] overflow-hidden flex flex-col"
+          >
+            <div className="h-2/3 overflow-hidden">
+              <img 
+                src={card.img} 
+                alt={card.title} 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+              />
             </div>
-            <h3 className="text-navy font-bold text-lg mb-3">{card.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-4">{card.desc}</p>
-            <Link to={card.link} className="text-orange text-sm font-semibold hover:underline">
-              Learn More →
-            </Link>
-          </div>
+            <div className="h-1/3 bg-white flex items-center justify-center border-r last:border-0 border-gray-100 group-hover:bg-[#f27024] transition-colors duration-300">
+              <span className="text-xl font-bold text-[#0e2a47] group-hover:text-white transition-colors duration-300">
+                {card.title}
+              </span>
+            </div>
+            {/* Visual separator/accent */}
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-[#f27024] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+          </Link>
         ))}
       </div>
     </div>
