@@ -3,11 +3,6 @@ import { Link } from 'react-router-dom';
 
 const cards = [
   {
-    title: 'Apply Work Permit',
-    img: 'https://images.unsplash.com/photo-1573496130141-209d200cebd8?auto=format&fit=crop&w=800&q=80',
-    link: '/working-visa',
-  },
-  {
     title: 'Apply Visit Visa',
     img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80',
     link: '/visiting-visa',
@@ -22,7 +17,7 @@ const cards = [
 const ThreeCardSection = () => (
   <section className="py-16 bg-white">
     <div className="container mx-auto px-4">
-      <div className="grid md:grid-cols-3 gap-0 shadow-2xl rounded-xl overflow-hidden">
+      <div className="grid md:grid-cols-2 gap-0 shadow-2xl rounded-xl overflow-hidden max-w-4xl mx-auto">
         {cards.map((card, idx) => (
           <Link 
             key={idx} 
