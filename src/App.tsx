@@ -10,6 +10,9 @@ import BankAccount from "./pages/BankAccount.tsx";
 import TypesOfInvitation from "./pages/TypesOfInvitation.tsx";
 import DetailsAndCosts from "./pages/DetailsAndCosts.tsx";
 import ApplyInvitation from "./pages/ApplyInvitation.tsx";
+import WorkingVisa from "./pages/WorkingVisa.tsx";
+import VisitingVisa from "./pages/VisitingVisa.tsx";
+import StudyingVisa from "./pages/StudyingVisa.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +29,9 @@ const App = () => (
           <Route path="/types-of-invitation" element={<TypesOfInvitation />} />
           <Route path="/details-and-costs" element={<DetailsAndCosts />} />
           <Route path="/apply-invitation" element={<ApplyInvitation />} />
+          <Route path="/working-visa" element={<WorkingVisa />} />
+          <Route path="/visiting-visa" element={<VisitingVisa />} />
+          <Route path="/studying-visa" element={<StudyingVisa />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
