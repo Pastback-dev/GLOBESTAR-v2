@@ -1,117 +1,85 @@
 import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { User, ShieldCheck } from 'lucide-react';
+import { User, ShieldCheck, Award, Briefcase } from 'lucide-react';
 
-const team = [
-  { 
-    name: 'MR. IrfanHussain', 
-    role: 'CEO - Founder', 
-    bio: 'Leading the vision of GLOBESTAR with over two decades of expertise in global mobility.' 
-  },
-  { 
-    name: 'Mr. THOMAS ALAN', 
-    role: 'Director & Marketing Manager', 
-    bio: 'Driving international growth and strategic partnerships across global markets.' 
-  },
-  { 
-    name: 'Mrs. Aldona', 
-    role: 'Immigration Expert', 
-    bio: 'Specializing in complex immigration cases and ensuring compliance with international regulations.' 
-  },
-  { 
-    name: 'Mr. Jonas', 
-    role: 'International Relations Officer', 
-    bio: 'Managing relationships with global institutions and facilitating seamless travel experiences.' 
-  },
+const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
+  <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
+    <div className="container mx-auto px-4">
+      <h1 className="text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tighter">{title}</h1>
+      <p className="text-orange text-sm uppercase tracking-widest font-medium">{breadcrumb}</p>
+    </div>
+  </div>
+);
+
+const teamMembers = [
+  { name: 'Director, EasyInspire Ltd', role: 'Management', icon: User },
+  { name: 'Dr. John Doe', role: 'Legal Services', icon: ShieldCheck },
+  { name: 'Senior Consultant', role: 'Immigration Expert', icon: Award },
 ];
 
-const certificates = [
-  'https://easyinspire.eu/wp-content/uploads/2024/12/Just-for-View-1-600x759.jpg',
-  'https://easyinspire.eu/wp-content/uploads/2024/12/Just-for-View-2-600x759.jpg',
-  'https://easyinspire.eu/wp-content/uploads/2024/12/Just-for-View-4-600x759.jpg',
-];
-
-const OurTeam = () => (
-  <div className="min-h-screen">
-    <TopBar />
-    <Navbar />
-    
-    {/* Company Info Section */}
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+const OurTeam = () => {
+  return (
+    <div className="min-h-screen bg-background">
+      <TopBar />
+      <Navbar />
+      <PageHero title="Our Team" breadcrumb="Home / About / Our Team" />
+      
+      <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <p className="text-orange font-bold uppercase tracking-widest mb-2">Easy Inspire</p>
-          <p className="text-navy font-semibold mb-8">Lithuania - Albania - Belarus</p>
-          
-          <div className="inline-block bg-section-gray px-4 py-1 rounded-full mb-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-bold">HOW WE HELP CLIENTS</p>
-          </div>
-          
-          <h1 className="text-3xl md:text-5xl font-bold text-navy mb-6 leading-tight">
-            Our Best Experts Ready To Help
-          </h1>
-          
-          <div className="w-16 h-1 bg-orange mx-auto mb-8" />
-          
-          <p className="text-muted-foreground leading-relaxed text-lg">
-            Easy Inspire MB is an approved Lithuanian company from the <span className="text-navy font-semibold">VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS</span> (State Enterprise Register), Lithuania. We push the boundaries of global mobility, powering positive outcomes in business and beyond. Our team partners closely with you, providing extensive expertise and seamless tech-enabled experiences—so you can contact our competent team and consultants to take the right direction for your future. Because we understand better your future.
+          <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">EXPERIENCED PROFESSIONALS</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase">Meet Our Experts</h2>
+          <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
+          <p className="text-gray-600 leading-relaxed italic max-w-2xl mx-auto">
+            EasyInspire is powered by a team of dedicated immigration consultants and legal experts committed to your success.
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="text-center mb-12">
-          <h2 className="text-2xl font-bold text-navy mb-2">Meet Our Professionals</h2>
-          <p className="text-muted-foreground text-sm">Dedicated experts committed to your success</p>
-        </div>
-        
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-20">
-          {team.map((member) => (
-            <div key={member.name} className="bg-background p-8 rounded-lg shadow-sm border hover:shadow-md transition-shadow group">
-              <div className="w-20 h-20 bg-navy/5 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange/10 transition-colors">
-                <User size={40} className="text-navy group-hover:text-orange transition-colors" />
+        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+          {teamMembers.map((member, idx) => (
+            <div key={idx} className="bg-white border rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all text-center group">
+              <div className="w-24 h-24 rounded-full bg-section-gray flex items-center justify-center mx-auto mb-6 group-hover:bg-[#0e2a47] group-hover:text-white transition-colors duration-300">
+                <member.icon size={40} className="text-[#0e2a47] group-hover:text-[#f27024]" />
               </div>
-              <h3 className="text-lg font-bold text-navy mb-1">{member.name}</h3>
-              <p className="text-orange font-semibold text-[10px] mb-4 uppercase tracking-wider">{member.role}</p>
-              <p className="text-muted-foreground text-xs leading-relaxed">{member.bio}</p>
+              <h3 className="text-xl font-bold text-[#0e2a47] mb-2 uppercase italic">{member.name}</h3>
+              <p className="text-[#f27024] text-xs font-bold uppercase tracking-widest mb-6">{member.role}</p>
+              <div className="w-8 h-0.5 bg-gray-100 mx-auto mb-6"></div>
+              <p className="text-gray-500 text-sm italic">
+                Professional expertise in legal and immigration processes.
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Registration Info */}
-        <div className="max-w-5xl mx-auto text-center pt-16 border-t">
-          <div className="flex justify-center mb-6">
-            <ShieldCheck size={48} className="text-orange opacity-20" />
-          </div>
-          <h2 className="text-2xl font-bold text-navy mb-4">Easy Inspire is Registered in Countries</h2>
-          <p className="text-muted-foreground leading-relaxed mb-12 max-w-2xl mx-auto">
-            Easy Inspire is legally registered in the leading countries, including Lithuania, Albania & Belarus. The four European incorporation certificates are posted here for clients’ satisfaction. Please note that these certificates are protected by copyright.
-          </p>
-          
-          {/* Certificate Images */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-            {certificates.map((url, index) => (
-              <div key={index} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <img 
-                  src={url} 
-                  alt={`Registration Certificate ${index + 1}`} 
-                  className="w-full h-auto object-cover"
-                />
+        <div className="mt-24 p-12 bg-[#0e2a47] rounded-3xl text-white text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#f27024]/10 rounded-full -mr-32 -mt-32"></div>
+          <div className="relative z-10">
+            <h3 className="text-2xl font-bold mb-4 uppercase italic">20 Years of Combined Experience</h3>
+            <p className="text-white/70 max-w-2xl mx-auto text-sm leading-relaxed mb-8">
+              Our team consists of specialists from across Lithuania and the EU to ensure your applications meet every single requirement.
+            </p>
+            <div className="flex justify-center gap-12 text-[#f27024]">
+              <div className="text-center">
+                <p className="text-3xl font-bold mb-1 italic">98%</p>
+                <p className="text-[10px] text-white uppercase tracking-widest">Visa Success Rate</p>
               </div>
-            ))}
-          </div>
-          
-          <div className="mt-8">
-            <p className="text-navy font-bold text-xl tracking-wide">Director & CEO</p>
-            <div className="w-12 h-1 bg-orange mx-auto mt-3" />
+              <div className="text-center">
+                <p className="text-3xl font-bold mb-1 italic">500+</p>
+                <p className="text-[10px] text-white uppercase tracking-widest">Happy Clients</p>
+              </div>
+              <div className="text-center">
+                <p className="text-3xl font-bold mb-1 italic">15+</p>
+                <p className="text-[10px] text-white uppercase tracking-widest">Destinations</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <FooterSection />
-    <WhatsAppButton />
-  </div>
-);
+      <FooterSection />
+      <WhatsAppButton />
+    </div>
+  );
+};
 
 export default OurTeam;

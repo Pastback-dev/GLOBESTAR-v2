@@ -1,34 +1,41 @@
+import { Briefcase, Plane, GraduationCap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 const cards = [
-  { 
-    img: 'https://easyinspire.eu/wp-content/uploads/2020/07/feature-1.jpg', 
-    title: 'Apply Work Permit' 
+  {
+    icon: Briefcase,
+    title: 'Work Visas',
+    desc: 'We facilitate the acquisition of work permits for various countries including Czech Republic, Poland, Lithuania, UK, Malta, Romania, Estonia, Spain, Italy, Hungary, Slovakia, Bulgaria, Albania, Belarus & Serbia.',
+    link: '/working-visa',
   },
-  { 
-    img: 'https://easyinspire.eu/wp-content/uploads/2020/08/feature-3.jpg', 
-    title: 'Apply Visit Visa' 
+  {
+    icon: Plane,
+    title: 'Visit Visas',
+    desc: 'Get your visit visa (E-visas) for Albania, Moldova, Georgia, Hong Kong & Turkey. Complete professional support for your travel documents and visa approval.',
+    link: '/visiting-visa',
   },
-  { 
-    img: 'https://easyinspire.eu/wp-content/uploads/2020/08/feature-2.jpg', 
-    title: 'Apply Study Abroad' 
+  {
+    icon: GraduationCap,
+    title: 'Study Visas',
+    desc: 'For those aspiring to study abroad, we have options available in Ireland and the UK & German universities. Admissions for ESL, Foundation, and Degrees.',
+    link: '/studying-visa',
   },
 ];
 
 const ThreeCardSection = () => (
   <section className="py-16 bg-section-gray">
     <div className="container mx-auto px-4">
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-3 gap-6">
         {cards.map(card => (
-          <div key={card.title} className="group cursor-pointer">
-            <div className="overflow-hidden rounded-t-lg">
-              <img
-                src={card.img}
-                alt={card.title}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+          <div key={card.title} className="bg-background rounded-lg p-8 shadow-sm border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-orange/10 flex items-center justify-center">
+              <card.icon size={28} className="text-orange" />
             </div>
-            <div className="bg-background text-center py-5 rounded-b-lg shadow-md">
-              <h3 className="text-navy font-semibold">{card.title}</h3>
-            </div>
+            <h3 className="text-navy font-bold text-lg mb-3">{card.title}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">{card.desc}</p>
+            <Link to={card.link} className="text-orange text-sm font-semibold hover:underline">
+              Learn More →
+            </Link>
           </div>
         ))}
       </div>

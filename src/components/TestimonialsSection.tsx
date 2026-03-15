@@ -2,16 +2,16 @@ import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Sarah Mitchell',
-    location: 'London, UK',
-    title: 'Amazing Experience',
-    review: 'GLOBESTAR Consultancy is definitely a HIGHLY recommended Travel Agency. Big applause and very grateful to the team for their efforts and assistance with our holiday booking. They are truly knowledgeable, and skilled and have empathy throughout the process. The recommendations of its clients speak for themselves. Please continue to guide, support and help other aspiring travelers like us. Thank you from the bottom of my heart.',
+    name: 'Tanya Benson',
+    location: 'Client',
+    title: 'Great Immigration Service',
+    review: 'EasyInspire Consultancy is definitely a HIGHLY recommended Immigration Agency. Big applause and very grateful to the team for their efforts and assistance with our Green Card process. They are truly knowledgeable, skilled and have empathy throughout the process. The recommendations of its clients speak for themselves. Thank you from the bottom of my heart.',
   },
   {
     name: 'James Thomas',
-    location: 'New York, USA',
-    title: 'Top-Notch Service',
-    review: 'Thank you GLOBESTAR for your excellent service. The team is so helpful and loyal in their service. They always answered all our questions and concerns at all hours without getting annoyed. They explained the whole process from booking to arrival and made it a stress-free process. I highly recommend GLOBESTAR to my friends and family who are looking for a great travel agent.',
+    location: 'Client',
+    title: 'Excellent Migration Support',
+    review: 'Thank you EasyInspire for your excellent service. The team is so helpful and loyal in their service. They helped us with Australian and Canadian migration paperwork seamlessly. They always answered all our questions at all hours without getting annoyed. I highly recommend EasyInspire to my friends and family.',
   },
 ];
 
@@ -20,7 +20,7 @@ const TestimonialsSection = () => (
     <div className="container mx-auto px-4 text-center">
       <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">Clients Testimonials</p>
       <h2 className="text-3xl md:text-4xl font-bold text-navy mb-2">
-        What Customers<br />Saying About GLOBESTAR
+        What Customers<br />Saying About EasyInspire
       </h2>
       <div className="w-12 h-1 bg-orange mx-auto mt-4 mb-12" />
 

@@ -10,9 +10,14 @@ import BankAccount from "./pages/BankAccount.tsx";
 import TypesOfInvitation from "./pages/TypesOfInvitation.tsx";
 import DetailsAndCosts from "./pages/DetailsAndCosts.tsx";
 import ApplyInvitation from "./pages/ApplyInvitation.tsx";
+import AvailableVisas from "./pages/AvailableVisas.tsx";
 import WorkingVisa from "./pages/WorkingVisa.tsx";
 import VisitingVisa from "./pages/VisitingVisa.tsx";
 import StudyingVisa from "./pages/StudyingVisa.tsx";
+import CompanyRegistration from "./pages/CompanyRegistration.tsx";
+import CompanyRegistrationForm from "./pages/CompanyRegistrationForm.tsx";
+import BusinessImmigration from "./pages/BusinessImmigration.tsx";
+import Contact from "./pages/Contact.tsx";
 
 const queryClient = new QueryClient();
 
@@ -23,15 +28,35 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Home */}
           <Route path="/" element={<Index />} />
+
+          {/* About */}
           <Route path="/our-team" element={<OurTeam />} />
           <Route path="/bank-account" element={<BankAccount />} />
+
+          {/* Invitations */}
           <Route path="/types-of-invitation" element={<TypesOfInvitation />} />
           <Route path="/details-and-costs" element={<DetailsAndCosts />} />
           <Route path="/apply-invitation" element={<ApplyInvitation />} />
+
+          {/* Visas */}
+          <Route path="/available-visas" element={<AvailableVisas />} />
           <Route path="/working-visa" element={<WorkingVisa />} />
           <Route path="/visiting-visa" element={<VisitingVisa />} />
           <Route path="/studying-visa" element={<StudyingVisa />} />
+
+          {/* Company Registration */}
+          <Route path="/company-registration" element={<CompanyRegistration />} />
+          <Route path="/company-registration-form" element={<CompanyRegistrationForm />} />
+
+          {/* Immigration */}
+          <Route path="/business-immigration" element={<BusinessImmigration />} />
+
+          {/* Contact */}
+          <Route path="/contact" element={<Contact />} />
+
+          {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

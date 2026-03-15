@@ -1,140 +1,105 @@
 import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { FileText, Users, Plane, Heart, MapPin, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Plane, Briefcase, Users, Heart, User, Globe } from 'lucide-react';
+
+const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
+  <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
+    <div className="container mx-auto px-4">
+      <h1 className="text-3xl md:text-5xl font-bold mb-4 uppercase">{title}</h1>
+      <p className="text-orange text-sm uppercase tracking-widest">{breadcrumb}</p>
+    </div>
+  </div>
+);
 
 const invitationTypes = [
   {
     icon: Plane,
-    category: "Visit",
-    title: "Visit Visa",
-    subtitle: "Invitation Letter",
-    description: "A visit invitation letter is essential for visa applications, inviting someone to a country for tourism. It includes detailed host information and specifies the purpose of the visit, like \"Canada tourist visa invitation letter sample,\" \"USA invitation letter for tourist visa,\" \"UK tourist visa invitation letter sample,\" \"Lithuania tourist visa invitation letter,\" \"Albania tourist visa invitation letter sample,\" and \"Belarus invitation letter for tourist visa.\""
+    title: 'Visit Invitation',
+    definition: 'A visa invitation letter is a written letter from the company for a visitor visa purpose as an invitation to stay with them.'
   },
   {
     icon: Briefcase,
-    category: "Business",
-    title: "Business Visa",
-    subtitle: "Invitation Letter",
-    description: "A business invitation letter is a formal document from a company or organization inviting a foreign national for business-related purposes. It provides essential visit details crucial for the visa application process, such as (\"USA business visa invitation letter template,\" \"Canada business visa invitation letter requirements,\" \"UK business visa invitation letter requirements,\" \"Lithuania business visa invitation letter template,\" \"Albania business visa invitation letter requirements,\" and \"Belarus business visa invitation letter template\")."
+    title: 'Business Invitation',
+    definition: 'A visa invitation letter is a written letter from the company for a business visa purpose, usually for attending meetings or conferences.'
   },
   {
     icon: Heart,
-    category: "Family",
-    title: "Family Visa",
-    subtitle: "Invitation Letter",
-    description: "A family invitation letter is a formal document issued by an individual or family member in one country, inviting a relative from another country to visit. It supports the visa application by demonstrating the purpose of the visit and the host's ties to the country. It plays a crucial role in the visa approval process and can be issued by either a company or an individual."
+    title: 'Family Invitation',
+    definition: 'A visa invitation letter is a written letter from the company for a Family visitor visa purpose if you intend to visit your family.'
   },
   {
-    icon: Globe,
-    category: "Tourist Invitation Letter",
-    title: "Tourist Visa",
-    subtitle: "Invitation Letter",
-    description: "A visit invitation letter is essential for visa applications, inviting someone to a country for tourism. It includes detailed host information and specifies the purpose of the visit, like \"Canada tourist visa invitation letter sample,\" \"USA invitation letter for a tourist visa,\" \"UK tourist visa invitation letter sample,\" \"Lithuania tourist visa invitation letter,\" \"Albania tourist visa invitation letter sample,\" and \"Belarus invitation letter for a tourist visa.\""
-  },
-  {
-    icon: User,
-    category: "Private Invitation",
-    title: "Private",
-    subtitle: "Invitation Letter",
-    description: "A private invitation letter is a formal document issued by an individual in one country, inviting someone from another country to visit. It supports the visa application by demonstrating the purpose of the visit and the host's ties to the country. It plays a crucial role in the visa approval process and can be issued by either a company or an individual."
+    icon: MapPin,
+    title: 'Tourist Invitation',
+    definition: 'A visa invitation letter is a written letter from the tourist company for a tourist visa purpose to explore the country.'
   },
   {
     icon: Users,
-    category: "Group Invitation",
-    title: "Group",
-    subtitle: "Invitation Letter",
-    description: "A group invitation letter is a formal document issued by an individual or organization in one country, inviting a group of people from another country to visit. It supports the visa application by demonstrating the purpose of the visit and the host's ties to the country. It plays a crucial role in the visa approval process and can be issued by either a company or an individual."
+    title: 'Group Invitation',
+    definition: 'A group invitation is a written document from a company to obtain tourist group visas for multiple people traveling together.'
+  },
+  {
+    icon: FileText,
+    title: 'Private Invitation',
+    definition: 'A private invitation letter is a written document from an individual in the host country to obtain a tourist visa.'
   }
 ];
 
-const tags = [
-  "Invitation Letters for Visas", "Visa Invitation Letter", "Visit Visa Invitation Letter", "Business Visa Invitation Letter", 
-  "Family Visa Invitation Letter", "Tourist Visa Invitation Letter", "Private Invitation Letter", "Group Invitation Letter", 
-  "Lithuania Invitation Letter", "Estonia Invitation Letter", "Albania Invitation Letter", "Belarus Invitation Letter", 
-  "United Kingdom Invitation Letter", "Russia Invitation Letter", "Serbia Invitation Letter", "Moldova Invitation Letter", 
-  "Kosovo Invitation Letter", "Spain Invitation Letter", "Sweden Invitation Letter", "Hungary Invitation Letter", 
-  "Luxembourg Invitation Letter", "Netherlands Invitation Letter", "Germany Invitation Letter", "Czech Republic Invitation Letter", 
-  "Denmark Invitation Letter", "Finland Invitation Letter", "France Invitation Letter", "Iceland Invitation Letter", 
-  "Norway Invitation Letter", "Poland Invitation Letter", "Portugal Invitation Letter", "Ireland Invitation Letter", 
-  "Canada Invitation Letter", "USA Invitation Letter", "UK Invitation Letter Sample", "Canada Tourist Visa Invitation Letter", 
-  "USA Business Visa Invitation Letter", "UK Family Visa Invitation Letter", "Lithuania Tourist Visa Invitation Letter", 
-  "Albania Visa Invitation Sample", "Belarus Business Invitation Letter", "Schengen Visa Invitation Letter", 
-  "Visa Support Services", "Travel Visa Help", "Work Visa Assistance", "Study Visa Assistance", "Visa Sponsorship Documents", 
-  "Europe Visa Help", "Visa Processing Help"
-];
+const TypesOfInvitation = () => {
+  return (
+    <div className="min-h-screen bg-background">
+      <TopBar />
+      <Navbar />
+      <PageHero title="Types of Invitation" breadcrumb="Home / Invitations / Types of Invitation" />
+      
+      <div className="container mx-auto px-4 py-20">
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">VISA DOCUMENTATION</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase italic">Types of Invitation Letters</h2>
+          <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
+          <p className="text-gray-600 leading-relaxed max-w-3xl mx-auto italic">
+            A visa invitation letter serves as a guarantee to the embassy that you have a specific purpose for your visit and that you will not overstay your visa.
+          </p>
+        </div>
 
-const TypesOfInvitation = () => (
-  <div className="min-h-screen">
-    <TopBar />
-    <Navbar />
-    
-    {/* Hero Section */}
-    <section className="py-16 bg-navy text-navy-foreground">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl md:text-5xl font-bold mb-6">Invitation Letters for Visas</h1>
-        <div className="w-20 h-1 bg-orange mb-8" />
-        <p className="max-w-4xl text-navy-foreground/80 leading-relaxed text-sm md:text-base">
-          Invitation letters are available for Lithuania, Estonia, Albania, Belarus, the United Kingdom, Russia, Serbia, Moldova, Kosovo, Spain, Sweden, Hungary, Luxembourg, the Netherlands, Germany, the Czech Republic, Denmark, Finland, France, Iceland, Norway, Poland, Portugal, and Ireland. An invitation letter for a visa application is a crucial document required when applying for a visitor visa to another country. It is a formal letter submitted by the applicant to the embassy or consulate of the country they wish to visit. This important document is typically written by the host, who may be a company or an individual extending the invitation, and it is directed either to the applicant or to the consular officer handling the visa application. The purpose of the invitation letter is to confirm that the host will provide accommodation and support to the applicant during their stay in the host country where the host is lawfully residing. Invitation letters come in various types, each designed to suit specific circumstances.
-        </p>
-      </div>
-    </section>
-
-    {/* Grid Section */}
-    <section className="py-20 bg-section-gray">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {invitationTypes.map((type, index) => (
-            <div key={index} className="bg-background p-8 rounded-lg shadow-sm border hover:shadow-md transition-all group">
-              <div className="w-14 h-14 bg-navy/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-orange/10 transition-colors">
-                <type.icon className="text-navy group-hover:text-orange transition-colors" size={28} />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          {invitationTypes.map((type, idx) => (
+            <div key={idx} className="bg-white border rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all group">
+              <div className="w-16 h-16 rounded-full bg-section-gray flex items-center justify-center mb-6 group-hover:bg-[#0e2a47] group-hover:text-[#f27024] transition-colors">
+                <type.icon size={32} className="text-[#0e2a47] group-hover:text-[#f27024]" />
               </div>
-              <p className="text-orange font-bold text-[10px] uppercase tracking-widest mb-2">{type.category}</p>
-              <h3 className="text-xl font-bold text-navy mb-1">{type.title}</h3>
-              <p className="text-navy/60 font-semibold text-xs uppercase tracking-wider mb-4">{type.subtitle}</p>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-4">
-                {type.description}
+              <h3 className="text-xl font-bold text-[#0e2a47] mb-4 uppercase italic">{type.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-6 italic">
+                {type.definition}
               </p>
-              <Link 
-                to="/details-and-costs" 
-                className="text-navy font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:text-orange transition-colors"
-              >
-                Read More <ArrowRight size={14} />
+              <div className="w-full h-0.5 bg-gray-50 mb-6"></div>
+              <Link to="/apply-invitation" className="text-[#f27024] font-bold text-xs uppercase tracking-widest hover:underline underline-offset-4 italic">
+                Request Invitation
               </Link>
             </div>
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-20 text-center">
-          <Link 
-            to="/apply-invitation" 
-            className="inline-flex items-center gap-3 bg-orange text-orange-foreground px-8 py-4 rounded-lg font-bold hover:bg-orange-hover transition-all shadow-lg hover:-translate-y-1"
-          >
-            Apply Invitation Letter Online or Manually Click Here <ArrowRight size={18} />
-          </Link>
+        <div className="max-w-4xl mx-auto bg-section-gray p-8 md:p-12 rounded-3xl border border-gray-100">
+          <h3 className="text-2xl font-bold text-[#0e2a47] mb-6 italic uppercase">Why do you need an Invitation Letter?</h3>
+          <p className="text-gray-600 text-sm leading-relaxed mb-6 italic">
+            This letter serves as an invitation to stay with them, and by extension, guarantees that you will not overstay your visa. Embassies require this as proof of accommodation and purpose of stay.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">Lithuania</span>
+            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">Albania</span>
+            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">United Kingdom</span>
+            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">Belarus</span>
+            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">Russia</span>
+          </div>
         </div>
       </div>
-    </section>
 
-    {/* Tags Section */}
-    <section className="py-12 bg-background border-t">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap gap-2 justify-center">
-          <span className="text-navy font-bold text-xs uppercase tracking-widest mr-2 self-center">Tags:</span>
-          {tags.map((tag, index) => (
-            <span key={index} className="text-[10px] text-muted-foreground bg-section-gray px-2 py-1 rounded hover:text-orange transition-colors cursor-default">
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <FooterSection />
-    <WhatsAppButton />
-  </div>
-);
+      <FooterSection />
+      <WhatsAppButton />
+    </div>
+  );
+};
 
 export default TypesOfInvitation;

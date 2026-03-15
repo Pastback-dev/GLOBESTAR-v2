@@ -1,72 +1,178 @@
-import { Star, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, Send } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const FooterSection = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
 
   return (
-    <section id="contact" className="bg-navy py-20">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-16">
-          {/* Left - Form */}
-          <div>
-            <p className="text-orange text-sm font-semibold mb-2">Get Free Assessment Today!</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-navy-foreground mb-8 leading-tight">
-              Feel Free To Enquire About<br />Any Questions You Got
-            </h2>
-            <form className="space-y-4" onSubmit={e => e.preventDefault()}>
-              <input
-                type="text"
-                placeholder="Full Name"
-                value={form.name}
-                onChange={e => setForm({ ...form, name: e.target.value })}
-                className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange"
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                value={form.email}
-                onChange={e => setForm({ ...form, email: e.target.value })}
-                className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange"
-              />
-              <textarea
-                placeholder="Your Message"
-                rows={4}
-                value={form.message}
-                onChange={e => setForm({ ...form, message: e.target.value })}
-                className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange resize-none"
-              />
-              <button type="submit" className="inline-flex items-center gap-2 bg-orange text-orange-foreground px-8 py-3 rounded text-sm font-semibold hover:bg-orange-hover transition-colors">
-                Submit <Send size={14} />
-              </button>
-            </form>
-          </div>
-
-          {/* Right - Ratings */}
-          <div className="flex flex-col justify-center">
-            <h3 className="text-xl font-bold text-navy-foreground mb-4">Customer Ratings</h3>
-            <div className="flex gap-1 mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={28} className="fill-yellow-400 text-yellow-400" />
-              ))}
+    <>
+      {/* Assessment Form + Info Section */}
+      <section id="contact-form" className="bg-navy py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-16">
+            {/* Left - Form */}
+            <div>
+              <p className="text-orange text-sm font-semibold mb-2">Get Free Assessment Today!</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-navy-foreground mb-8 leading-tight">
+                Feel Free To Enquire About<br />Any Questions You Got
+              </h2>
+              <form className="space-y-4" onSubmit={e => e.preventDefault()}>
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  value={form.name}
+                  onChange={e => setForm({ ...form, name: e.target.value })}
+                  className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  value={form.email}
+                  onChange={e => setForm({ ...form, email: e.target.value })}
+                  className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange"
+                />
+                <textarea
+                  placeholder="Your Message"
+                  rows={4}
+                  value={form.message}
+                  onChange={e => setForm({ ...form, message: e.target.value })}
+                  className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange resize-none"
+                />
+                <button type="submit" className="inline-flex items-center gap-2 bg-orange text-orange-foreground px-8 py-3 rounded text-sm font-semibold hover:bg-orange-hover transition-colors">
+                  Submit <Send size={14} />
+                </button>
+              </form>
             </div>
-            <p className="text-5xl font-bold text-navy-foreground mb-2">4.9 / 5.0</p>
-            <p className="text-navy-foreground/70 text-sm">By 2000+ Happy Travelers</p>
-          </div>
-        </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="container mx-auto px-4 mt-16 pt-8 border-t border-navy-light">
-        <div className="flex flex-col md:flex-row items-center justify-between text-navy-foreground/60 text-xs">
-          <p>&copy; 2026 GLOBESTAR. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-orange transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-orange transition-colors">Terms of Service</a>
+            {/* Right - Quick Info */}
+            <div className="flex flex-col justify-center gap-8">
+              <div>
+                <h3 className="text-xl font-bold text-navy-foreground mb-4">Contact Information</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 text-navy-foreground/80 text-sm">
+                    <MapPin size={16} className="text-orange mt-0.5 shrink-0" />
+                    <span>A. Gustaičio g. 23-255A, Vilnius 02188, Lithuania</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-navy-foreground/80 text-sm">
+                    <Phone size={16} className="text-orange shrink-0" />
+                    <div>
+                      <a href="tel:+37066022174" className="hover:text-orange transition-colors block">+370 660 22174</a>
+                      <a href="tel:+447492219937" className="hover:text-orange transition-colors block">+44 7492 219937</a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 text-navy-foreground/80 text-sm">
+                    <Mail size={16} className="text-orange shrink-0" />
+                    <div>
+                      <a href="mailto:info@easyinspire.eu" className="hover:text-orange transition-colors block">info@easyinspire.eu</a>
+                      <a href="mailto:easyinspire.lt@gmail.com" className="hover:text-orange transition-colors block">easyinspire.lt@gmail.com</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-navy-light flex items-center justify-center text-navy-foreground hover:bg-orange transition-colors">
+                  <Facebook size={18} />
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-navy-light flex items-center justify-center text-navy-foreground hover:bg-orange transition-colors">
+                  <Instagram size={18} />
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-navy-light flex items-center justify-center text-navy-foreground hover:bg-orange transition-colors">
+                  <Youtube size={18} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Full Footer */}
+      <footer className="bg-[#001122] py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-10 mb-12">
+            {/* Logo + About */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-xl font-bold">
+                  <span className="text-white">EasyInspire</span>
+                  <span className="text-[#f27024] text-xs font-normal">.eu</span>
+                </span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Easy Inspire MB is an approved Lithuanian company from the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS (State Enterprise Register), Lithuania. Registration number: 306016085. Our main focus is help our clients to move from their countries to EU.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Quick Links</h4>
+              <ul className="space-y-2">
+                {[
+                  { label: 'Home', to: '/' },
+                  { label: 'Our Team', to: '/our-team' },
+                  { label: 'Bank Accounts & Payments', to: '/bank-account' },
+                  { label: 'Contact Us', to: '/contact' },
+                  { label: 'Book Appointment', to: '/contact' },
+                ].map(l => (
+                  <li key={l.label}>
+                    <Link to={l.to} className="text-gray-400 text-sm hover:text-orange transition-colors">
+                      › {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Our Services</h4>
+              <ul className="space-y-2">
+                {[
+                  { label: 'Working Visas', to: '/working-visa' },
+                  { label: 'Visiting Visas', to: '/visiting-visa' },
+                  { label: 'Studying Visas', to: '/studying-visa' },
+                  { label: 'Invitation Letters', to: '/types-of-invitation' },
+                  { label: 'Company Registration', to: '/company-registration' },
+                  { label: 'Business Immigration', to: '/business-immigration' },
+                ].map(l => (
+                  <li key={l.label}>
+                    <Link to={l.to} className="text-gray-400 text-sm hover:text-orange transition-colors">
+                      › {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Contact Info</h4>
+              <div className="space-y-3">
+                <p className="text-gray-400 text-sm flex items-start gap-2">
+                  <MapPin size={14} className="text-orange mt-0.5 shrink-0" />
+                  A. Gustaičio g. 23-255A,<br />Vilnius 02188, Lithuania
+                </p>
+                <p className="text-gray-400 text-sm">
+                  <a href="tel:+37066022174" className="hover:text-orange transition-colors">+370 660 22174</a>
+                </p>
+                <p className="text-gray-400 text-sm">
+                  <a href="mailto:info@easyinspire.eu" className="hover:text-orange transition-colors">info@easyinspire.eu</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between text-gray-500 text-xs gap-4">
+            <p>&copy; {new Date().getFullYear()} EasyInspire. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-orange transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-orange transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 };
 

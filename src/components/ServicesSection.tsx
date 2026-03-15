@@ -1,35 +1,36 @@
-import { Plane, Heart, Users, Briefcase, MapPin, User } from 'lucide-react';
+import { Users, Plane, Briefcase, Heart, MapPin, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const services = [
-  { 
-    icon: Users, 
-    title: 'Group Invitation', 
-    desc: 'A group invitation is a written document from a company to obtain tourist group visas.' 
+  {
+    icon: Users,
+    title: 'Group Invitation',
+    desc: 'A group invitation is a written document from a company to obtain tourist group visas.',
   },
-  { 
-    icon: Plane, 
-    title: 'Visit Invitation', 
-    desc: 'A visa invitation letter is a written letter from the company for a visitor visa.' 
+  {
+    icon: Plane,
+    title: 'Visit Invitation',
+    desc: 'A visa invitation letter is a written letter from the company for a visitor visa.',
   },
-  { 
-    icon: Briefcase, 
-    title: 'Business Invitation', 
-    desc: 'A visa invitation letter is a written letter from the company for a business visa purpose.' 
+  {
+    icon: Briefcase,
+    title: 'Business Invitation',
+    desc: 'A visa invitation letter is a written letter from the company for a business visa purpose.',
   },
-  { 
-    icon: Heart, 
-    title: 'Family Invitation', 
-    desc: 'A visa invitation letter is a written letter from the company for a Family visitor visa.' 
+  {
+    icon: Heart,
+    title: 'Family Invitation',
+    desc: 'A visa invitation letter is a written letter from the company for a Family visitor visa.',
   },
-  { 
-    icon: MapPin, 
-    title: 'Tourist Invitation', 
-    desc: 'A visa invitation letter is a written letter from the tourist company for a tourist visa purpose.' 
+  {
+    icon: MapPin,
+    title: 'Tourist Invitation',
+    desc: 'A visa invitation letter is a written letter from the tourist company for a tourist visa purpose.',
   },
-  { 
-    icon: User, 
-    title: 'Private Invitation', 
-    desc: 'A private invitation letter is a written document from an individual to obtain a tourist visa.' 
+  {
+    icon: User,
+    title: 'Private Invitation',
+    desc: 'A private invitation letter is a written document from an individual to obtain a tourist visa.',
   },
 ];
 
@@ -42,7 +43,7 @@ const ServicesSection = () => (
       <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Visa Invitation Letters :-</h2>
       <div className="w-12 h-1 bg-orange mx-auto mb-6" />
       <p className="text-muted-foreground max-w-3xl mx-auto mb-12 text-sm leading-relaxed">
-        A visa invitation letter is a written letter from a company or person who lives in the country you wish to visit. This letter serves as an invitation to stay with them, and by extension, guarantees that you will not overstay your visa. We offer company invitation letters for business, family, and visit visas for countries such as Lithuania, Albania Belarus, the UK, Russia, Serbia, Moldova, Kosovo, Ukraine, Spain, Sweden, Hungary, Luxembourg, Netherlands & Germany and more.
+        A visa invitation letter is a written letter from a company or person who lives in the country you wish to visit. This letter serves as an invitation to stay with them, and by extension, guarantees that you will not overstay your visa. We offer company invitation letters for business, family, and visit visas for countries such as Lithuania, Albania, Belarus, the UK, Russia, Serbia, Moldova, Kosovo, Ukraine, Spain, Sweden, Hungary, Luxembourg, Netherlands & German and more.
       </p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map(s => (
@@ -55,6 +56,11 @@ const ServicesSection = () => (
             <p className="text-muted-foreground text-sm">{s.desc}</p>
           </div>
         ))}
+      </div>
+      <div className="mt-10">
+        <Link to="/types-of-invitation" className="inline-flex items-center gap-2 bg-orange text-orange-foreground px-8 py-3 rounded text-sm font-semibold hover:bg-orange-hover transition-colors">
+          View All Invitation Types →
+        </Link>
       </div>
     </div>
   </section>
