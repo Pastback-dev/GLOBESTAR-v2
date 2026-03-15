@@ -64,8 +64,8 @@ const FooterSection = () => {
                   <div className="flex items-center gap-3 text-navy-foreground/80 text-sm">
                     <Mail size={16} className="text-orange shrink-0" />
                     <div>
-                      <a href="mailto:info@easyinspire.eu" className="hover:text-orange transition-colors block">info@easyinspire.eu</a>
-                      <a href="mailto:easyinspire.lt@gmail.com" className="hover:text-orange transition-colors block">easyinspire.lt@gmail.com</a>
+                      <a href="mailto:info@globestar.eu" className="hover:text-orange transition-colors block">info@globestar.eu</a>
+                      <a href="mailto:info@globestar.eu" className="hover:text-orange transition-colors block">info@globestar.eu</a>
                     </div>
                   </div>
                 </div>
@@ -93,13 +93,10 @@ const FooterSection = () => {
             {/* Logo + About */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-xl font-bold">
-                  <span className="text-white">EasyInspire</span>
-                  <span className="text-[#f27024] text-xs font-normal">.eu</span>
-                </span>
+                <span className="text-xl font-bold text-white">GLOBESTAR</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Easy Inspire MB is an approved Lithuanian company from the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS (State Enterprise Register), Lithuania. Registration number: 306016085. Our main focus is help our clients to move from their countries to EU.
+                GLOBESTAR is an approved Lithuanian company from the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS (State Enterprise Register), Lithuania. Registration number: 306016085. Our main focus is help our clients to move from their countries to EU.
               </p>
             </div>
 
@@ -156,7 +153,7 @@ const FooterSection = () => {
                   <a href="tel:+37066022174" className="hover:text-orange transition-colors">+370 660 22174</a>
                 </p>
                 <p className="text-gray-400 text-sm">
-                  <a href="mailto:info@easyinspire.eu" className="hover:text-orange transition-colors">info@easyinspire.eu</a>
+                  <a href="mailto:info@globestar.eu" className="hover:text-orange transition-colors">info@globestar.eu</a>
                 </p>
               </div>
             </div>
@@ -164,7 +161,7 @@ const FooterSection = () => {
 
           {/* Bottom bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between text-gray-500 text-xs gap-4">
-            <p>&copy; {new Date().getFullYear()} EasyInspire. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} GLOBESTAR. All rights reserved.</p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-orange transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-orange transition-colors">Terms of Service</a>

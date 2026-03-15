@@ -28,11 +28,11 @@ const Contact = () => {
       <TopBar />
       <Navbar />
       <PageHero title="Contact" breadcrumb="Home / Contact" />
-      
+
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">GET IN TOUCH</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6">Contact EasyInspire</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6">Contact GLOBESTAR</h2>
           <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
           <p className="text-gray-600 leading-relaxed uppercase font-bold">
             Lets Start Conversation Today
@@ -74,8 +74,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lg mb-1">EMAIL</h4>
-                  <a href="mailto:info@easyinspire.eu" className="text-white/70 text-sm block hover:text-[#f27024] transition-colors text-wrap break-all">info@easyinspire.eu</a>
-                  <a href="mailto:easyinspire.lt@gmail.com" className="text-white/70 text-sm block hover:text-[#f27024] transition-colors text-wrap break-all">easyinspire.lt@gmail.com</a>
+                  <a href="mailto:info@globestar.eu" className="text-white/70 text-sm block hover:text-[#f27024] transition-colors text-wrap break-all">info@globestar.eu</a>
+                  <a href="mailto:info@globestar.eu" className="text-white/70 text-sm block hover:text-[#f27024] transition-colors text-wrap break-all">info@globestar.eu</a>
                 </div>
               </div>
 
@@ -93,9 +93,9 @@ const Contact = () => {
 
             <div className="mt-12 p-6 bg-white/5 rounded-xl border border-white/10">
               <p className="text-sm italic text-white/60 mb-4">
-                Easy Inspire MB is an approved Lithuanian company incorporated at the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS. Our registration number is 306016085
+                GLOBESTAR is an approved Lithuanian company incorporated at the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS. Our registration number is 306016085
               </p>
-              <p className="text-white font-bold text-sm">www.easyinspire.eu</p>
+              <p className="text-white font-bold text-sm">www.globestar.eu</p>
             </div>
           </div>
 
@@ -106,53 +106,53 @@ const Contact = () => {
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">FIRST NAME *</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="Your first name"
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none"
                     value={formData.firstName}
-                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">EMAIL ADDRESS *</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     placeholder="your@email.com"
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
               </div>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">PHONE NUMBER</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="+1 234 567 890"
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">YOUR COUNTRY</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="Your country of residence"
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none"
                     value={formData.country}
-                    onChange={(e) => setFormData({...formData, country: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                   />
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">SERVICE INTERESTED IN</label>
-                <select 
+                <select
                   className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none appearance-none"
                   value={formData.service}
-                  onChange={(e) => setFormData({...formData, service: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 >
                   <option value="">Select a Service</option>
                   <option value="work">Work Permit</option>
@@ -165,12 +165,12 @@ const Contact = () => {
               </div>
               <div>
                 <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">MESSAGE *</label>
-                <textarea 
-                  rows={4} 
+                <textarea
+                  rows={4}
                   placeholder="Tell us how we can help you..."
                   className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none resize-none"
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
               </div>
               <button className="w-full bg-[#f27024] text-white py-4 rounded-lg font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-lg shadow-orange-500/20">

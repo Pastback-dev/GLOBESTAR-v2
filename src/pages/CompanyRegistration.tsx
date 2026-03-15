@@ -72,7 +72,7 @@ const CompanyRegistration = () => {
 
         <div className="mt-20 p-8 border-t text-center opacity-70">
           <p className="text-sm text-gray-500">
-            Easy Inspire MB is an approved Lithuanian company incorporated at the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS. 
+            GLOBESTAR is an approved Lithuanian company incorporated at the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS. 
             Our registration number is 306016085
           </p>
         </div>

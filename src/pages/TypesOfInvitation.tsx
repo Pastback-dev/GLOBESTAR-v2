@@ -16,33 +16,33 @@ const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) 
 const invitationTypes = [
   {
     icon: Plane,
-    title: 'Visit Invitation',
-    definition: 'A visa invitation letter is a written letter from the company for a visitor visa purpose as an invitation to stay with them.'
+    title: 'Visit Visa Invitation',
+    definition: 'A document provided to individuals applying for visit visas, serving as a formal invitation from a host or sponsoring party in the destination country to stay with them.'
   },
   {
     icon: Briefcase,
-    title: 'Business Invitation',
-    definition: 'A visa invitation letter is a written letter from the company for a business visa purpose, usually for attending meetings or conferences.'
+    title: 'Business Visa Invitation',
+    definition: 'A formal invitation letter from a company for business visa purposes, usually for attending meetings, conferences, or professional engagements.'
   },
   {
     icon: Heart,
-    title: 'Family Invitation',
-    definition: 'A visa invitation letter is a written letter from the company for a Family visitor visa purpose if you intend to visit your family.'
+    title: 'Family Visa Invitation',
+    definition: 'A written letter from a host or company for family visitor visa purposes, required if you intend to visit your family members in the destination country.'
   },
   {
     icon: MapPin,
-    title: 'Tourist Invitation',
-    definition: 'A visa invitation letter is a written letter from the tourist company for a tourist visa purpose to explore the country.'
-  },
-  {
-    icon: Users,
-    title: 'Group Invitation',
-    definition: 'A group invitation is a written document from a company to obtain tourist group visas for multiple people traveling together.'
+    title: 'Tourist Visa Invitation',
+    definition: 'A written letter from a registered tourist company for tourist visa purposes, outlining the plan to explore and visit the country.'
   },
   {
     icon: FileText,
     title: 'Private Invitation',
-    definition: 'A private invitation letter is a written document from an individual in the host country to obtain a tourist visa.'
+    definition: 'A written document from an individual in the host country to facilitate a tourist or private visit visa for an applicant.'
+  },
+  {
+    icon: Users,
+    title: 'Group Invitation',
+    definition: 'A document issued by a company to facilitate tourist group visas for multiple individuals traveling together to the same destination.'
   }
 ];
 
@@ -52,14 +52,14 @@ const TypesOfInvitation = () => {
       <TopBar />
       <Navbar />
       <PageHero title="Types of Invitation" breadcrumb="Home / Invitations / Types of Invitation" />
-      
+
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">VISA DOCUMENTATION</p>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase italic">Types of Invitation Letters</h2>
           <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
           <p className="text-gray-600 leading-relaxed max-w-3xl mx-auto italic">
-            A visa invitation letter serves as a guarantee to the embassy that you have a specific purpose for your visit and that you will not overstay your visa.
+            Choosing GLOBESTAR ensures a professionally crafted invitation letter that aligns with the specific visa application requirements of each respective country.
           </p>
         </div>
 
@@ -69,13 +69,13 @@ const TypesOfInvitation = () => {
               <div className="w-16 h-16 rounded-full bg-section-gray flex items-center justify-center mb-6 group-hover:bg-[#0e2a47] group-hover:text-[#f27024] transition-colors">
                 <type.icon size={32} className="text-[#0e2a47] group-hover:text-[#f27024]" />
               </div>
-              <h3 className="text-xl font-bold text-[#0e2a47] mb-4 uppercase italic">{type.title}</h3>
+              <h3 className="text-xl font-bold text-[#0e2a47] mb-4 uppercase italic leading-tight">{type.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-6 italic">
                 {type.definition}
               </p>
               <div className="w-full h-0.5 bg-gray-50 mb-6"></div>
-              <Link to="/apply-invitation" className="text-[#f27024] font-bold text-xs uppercase tracking-widest hover:underline underline-offset-4 italic">
-                Request Invitation
+              <Link to="/details-and-costs" className="text-[#f27024] font-bold text-xs uppercase tracking-widest hover:underline underline-offset-4 italic">
+                View Pricing & Apply
               </Link>
             </div>
           ))}
@@ -83,15 +83,16 @@ const TypesOfInvitation = () => {
 
         <div className="max-w-4xl mx-auto bg-section-gray p-8 md:p-12 rounded-3xl border border-gray-100">
           <h3 className="text-2xl font-bold text-[#0e2a47] mb-6 italic uppercase">Why do you need an Invitation Letter?</h3>
-          <p className="text-gray-600 text-sm leading-relaxed mb-6 italic">
-            This letter serves as an invitation to stay with them, and by extension, guarantees that you will not overstay your visa. Embassies require this as proof of accommodation and purpose of stay.
+          <p className="text-gray-600 text-sm leading-relaxed mb-8 italic">
+            Visa officers consider the invitation letter as a supporting document to assess the genuineness of the visit and the applicant’s intention to return to their home country. Trust in our expertise to facilitate your journey and enhance your chances of a successful visa application.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">Lithuania</span>
-            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">Albania</span>
-            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">United Kingdom</span>
-            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">Belarus</span>
-            <span className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">Russia</span>
+          <div className="flex flex-wrap gap-3">
+            {[
+              'Lithuania', 'Albania', 'United Kingdom', 'Belarus', 'Russia',
+              'Ukraine', 'Spain', 'Sweden', 'Hungary', 'Slovakia', 'Poland'
+            ].map((country, i) => (
+              <span key={i} className="bg-white px-4 py-2 rounded-full text-[10px] font-bold text-[#0e2a47] border border-gray-100 uppercase tracking-widest italic">{country}</span>
+            ))}
           </div>
         </div>
       </div>

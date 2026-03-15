@@ -53,41 +53,41 @@ const BankAccount = () => {
       <TopBar />
       <Navbar />
       <PageHero title="Bank Accounts" breadcrumb="Home / About / Bank Accounts" />
-      
+
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">PAYMENT METHODS</p>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase italic">Our Official Bank Accounts</h2>
           <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
           <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto italic">
-            Please use only our official accounts for any payments. Always verify the account name is <span className="font-bold text-[#0e2a47]">Easy Inspire MB</span>.
+            Please use only our official accounts for any payments. Always verify the account name is <span className="font-bold text-[#0e2a47]">GLOBESTAR</span>.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          <PaymentCard 
-            title="PAYSERA ACCOUNT" 
+          <PaymentCard
+            title="PAYSERA ACCOUNT"
             color="bg-blue-500"
             icon={Landmark}
             details={[
               { label: 'Bank Name', value: 'Paysera (LT)' },
-              { label: 'Beneficiary', value: 'Easy Inspire MB' },
+              { label: 'Beneficiary', value: 'GLOBESTAR' },
               { label: 'IBAN', value: 'LT123456789012345678' },
               { label: 'Swift Code', value: 'PSRLT22' },
             ]}
           />
-          <PaymentCard 
-            title="PAYPAL" 
+          <PaymentCard
+            title="PAYPAL"
             color="bg-indigo-600"
             icon={CreditCard}
             details={[
-              { label: 'Account Name', value: 'Easy Inspire MB' },
-              { label: 'PayPal Email', value: 'easyinspire.lt@gmail.com' },
+              { label: 'Account Name', value: 'GLOBESTAR' },
+              { label: 'PayPal Email', value: 'info@globestar.eu' },
               { label: 'Status', value: 'Verified Business' },
             ]}
           />
-          <PaymentCard 
-            title="BINANCE (USDT)" 
+          <PaymentCard
+            title="BINANCE (USDT)"
             color="bg-yellow-500"
             icon={Wallet}
             details={[
@@ -116,7 +116,7 @@ const BankAccount = () => {
             </div>
             <div className="bg-white/5 p-6 rounded-xl border border-white/10">
               <p className="text-sm text-white/60 leading-relaxed italic">
-                After making a payment, please send a screenshot of the transaction receipt to our official WhatsApp +370 660 22174 or email us at info@easyinspire.eu for faster processing.
+                After making a payment, please send a screenshot of the transaction receipt to our official WhatsApp +370 660 22174 or email us at info@globestar.eu for faster processing.
               </p>
             </div>
           </div>

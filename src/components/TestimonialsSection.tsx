@@ -5,13 +5,13 @@ const testimonials = [
     name: 'Tanya Benson',
     location: 'Client',
     title: 'Great Immigration Service',
-    review: 'EasyInspire Consultancy is definitely a HIGHLY recommended Immigration Agency. Big applause and very grateful to the team for their efforts and assistance with our Green Card process. They are truly knowledgeable, skilled and have empathy throughout the process. The recommendations of its clients speak for themselves. Thank you from the bottom of my heart.',
+    review: 'GLOBESTAR is definitely a HIGHLY recommended Immigration Agency. Big applause and very grateful to the team for their efforts and assistance with our Green Card process. They are truly knowledgeable, skilled and have empathy throughout the process. The recommendations of its clients speak for themselves. Thank you from the bottom of my heart.',
   },
   {
     name: 'James Thomas',
     location: 'Client',
     title: 'Excellent Migration Support',
-    review: 'Thank you EasyInspire for your excellent service. The team is so helpful and loyal in their service. They helped us with Australian and Canadian migration paperwork seamlessly. They always answered all our questions at all hours without getting annoyed. I highly recommend EasyInspire to my friends and family.',
+    review: 'Thank you GLOBESTAR for your excellent service. The team is so helpful and loyal in their service. They helped us with Australian and Canadian migration paperwork seamlessly. They always answered all our questions at all hours without getting annoyed. I highly recommend GLOBESTAR to my friends and family.',
   },
 ];
 
@@ -20,7 +20,7 @@ const TestimonialsSection = () => (
     <div className="container mx-auto px-4 text-center">
       <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">Clients Testimonials</p>
       <h2 className="text-3xl md:text-4xl font-bold text-navy mb-2">
-        What Customers<br />Saying About EasyInspire
+        What Customers<br />Saying About GLOBESTAR
       </h2>
       <div className="w-12 h-1 bg-orange mx-auto mt-4 mb-12" />
 

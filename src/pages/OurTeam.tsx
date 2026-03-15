@@ -1,7 +1,7 @@
 import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { User, ShieldCheck, Award, Briefcase } from 'lucide-react';
+import { User, ShieldCheck, Award, Briefcase, Globe, CheckCircle2 } from 'lucide-react';
 
 const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
   <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
@@ -13,9 +13,9 @@ const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) 
 );
 
 const teamMembers = [
-  { name: 'Director, EasyInspire Ltd', role: 'Management', icon: User },
-  { name: 'Dr. John Doe', role: 'Legal Services', icon: ShieldCheck },
-  { name: 'Senior Consultant', role: 'Immigration Expert', icon: Award },
+  { name: 'Director, GLOBESTAR', role: 'Management & Operations', icon: User },
+  { name: 'Legal Consultant', role: 'Visa & Immigration Law', icon: ShieldCheck },
+  { name: 'Senior Consultant', role: 'Business Immigration Expert', icon: Award },
 ];
 
 const OurTeam = () => {
@@ -30,12 +30,12 @@ const OurTeam = () => {
           <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">EXPERIENCED PROFESSIONALS</p>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase">Meet Our Experts</h2>
           <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
-          <p className="text-gray-600 leading-relaxed italic max-w-2xl mx-auto">
-            EasyInspire is powered by a team of dedicated immigration consultants and legal experts committed to your success.
+          <p className="text-gray-600 leading-relaxed italic max-w-3xl mx-auto">
+            GLOBESTAR is a reputable and well-established company specializing in providing and arranging invitations for individuals seeking to visit European countries and the UK. Our team is dedicated to professional excellence.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-20">
           {teamMembers.map((member, idx) => (
             <div key={idx} className="bg-white border rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all text-center group">
               <div className="w-24 h-24 rounded-full bg-section-gray flex items-center justify-center mx-auto mb-6 group-hover:bg-[#0e2a47] group-hover:text-white transition-colors duration-300">
@@ -45,32 +45,48 @@ const OurTeam = () => {
               <p className="text-[#f27024] text-xs font-bold uppercase tracking-widest mb-6">{member.role}</p>
               <div className="w-8 h-0.5 bg-gray-100 mx-auto mb-6"></div>
               <p className="text-gray-500 text-sm italic">
-                Professional expertise in legal and immigration processes.
+                Deep expertise in facilitating invitations for Lithuania, Albania, Belarus, and the UK.
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-24 p-12 bg-[#0e2a47] rounded-3xl text-white text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#f27024]/10 rounded-full -mr-32 -mt-32"></div>
-          <div className="relative z-10">
-            <h3 className="text-2xl font-bold mb-4 uppercase italic">20 Years of Combined Experience</h3>
-            <p className="text-white/70 max-w-2xl mx-auto text-sm leading-relaxed mb-8">
-              Our team consists of specialists from across Lithuania and the EU to ensure your applications meet every single requirement.
+        <div className="grid lg:grid-cols-2 gap-12 items-center bg-section-gray p-8 md:p-16 rounded-3xl mb-20">
+          <div>
+            <h3 className="text-2xl font-bold text-[#0e2a47] mb-6 uppercase italic">20 Years of Combined Experience</h3>
+            <p className="text-gray-600 text-sm leading-relaxed mb-8 italic">
+              GLOBESTAR is a Lithuanian company with multiple offices in Lithuania, Albania, Belarus, Canada, the USA, and the UK. Trust in our expertise to facilitate your journey and enhance your chances of a successful visa application.
             </p>
-            <div className="flex justify-center gap-12 text-[#f27024]">
-              <div className="text-center">
-                <p className="text-3xl font-bold mb-1 italic">98%</p>
-                <p className="text-[10px] text-white uppercase tracking-widest">Visa Success Rate</p>
-              </div>
-              <div className="text-center">
-                <p className="text-3xl font-bold mb-1 italic">500+</p>
-                <p className="text-[10px] text-white uppercase tracking-widest">Happy Clients</p>
-              </div>
-              <div className="text-center">
-                <p className="text-3xl font-bold mb-1 italic">15+</p>
-                <p className="text-[10px] text-white uppercase tracking-widest">Destinations</p>
-              </div>
+            <div className="space-y-4">
+              {[
+                'Reputable and well-established company',
+                'Professionally crafted invitation letters',
+                'Align with specific visa application requirements',
+                'Dedicated support team'
+              ].map((text, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <CheckCircle2 className="text-[#f27024]" size={18} />
+                  <span className="text-sm text-[#0e2a47] font-medium italic">{text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
+              <p className="text-4xl font-bold text-[#f27024] mb-2 italic">98%</p>
+              <p className="text-[10px] text-[#0e2a47] font-bold uppercase tracking-widest">Visa Success Rate</p>
+            </div>
+            <div className="bg-[#0e2a47] p-8 rounded-2xl shadow-sm text-center text-white">
+              <p className="text-4xl font-bold text-white mb-2 italic">500+</p>
+              <p className="text-[10px] text-white/70 font-bold uppercase tracking-widest">Happy Clients</p>
+            </div>
+            <div className="bg-[#0e2a47] p-8 rounded-2xl shadow-sm text-center text-white">
+              <p className="text-4xl font-bold text-white mb-2 italic">15+</p>
+              <p className="text-[10px] text-white/70 font-bold uppercase tracking-widest">Destinations</p>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
+              <p className="text-4xl font-bold text-[#f27024] mb-2 italic">24/7</p>
+              <p className="text-[10px] text-[#0e2a47] font-bold uppercase tracking-widest">Client Support</p>
             </div>
           </div>
         </div>

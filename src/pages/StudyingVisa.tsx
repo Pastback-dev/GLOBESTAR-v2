@@ -26,7 +26,7 @@ const StudyingVisa = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6">Study Abroad Opportunities</h2>
           <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
           <p className="text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            Easy Inspire Ltd provides admission services for studying in the United Kingdom & Ireland. We collaborate with a wide range of universities offering programs including ESL, ESOL, Foundation, Undergraduate, and Postgraduate courses across various fields.
+            GLOBESTAR provides admission services for studying in the United Kingdom & Ireland. We collaborate with a wide range of universities offering programs including ESL, ESOL, Foundation, Undergraduate, and Postgraduate courses across various fields.
           </p>
         </div>
 

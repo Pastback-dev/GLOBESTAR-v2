@@ -29,7 +29,7 @@ const immigrationServices = [
   {
     country: 'Albania',
     price: '10500',
-    desc: 'Easy Inspire Ltd provides a complete range of immigration services to foreign individuals and entrepreneurs, who wish to visit, live and work in Albania.',
+    desc: 'GLOBESTAR provides a complete range of immigration services to foreign individuals and entrepreneurs, who wish to visit, live and work in Albania.',
     img: 'https://images.unsplash.com/photo-1596489393301-6a0d24c02905?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -94,7 +94,7 @@ const BusinessImmigration = () => {
         <div className="bg-[#0e2a47] p-8 md:p-12 rounded-2xl text-white text-center">
           <h3 className="text-2xl font-bold mb-6">Trusted Professional Assistance</h3>
           <p className="max-w-3xl mx-auto text-white/70 mb-10 text-sm leading-relaxed">
-            Easy Inspire MB is an approved Lithuanian company incorporated at the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS. Our registration number is 306016085. We provide legal support and expertise for your global expansion.
+            GLOBESTAR is an approved Lithuanian company incorporated at the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS. Our registration number is 306016085. We provide legal support and expertise for your global expansion.
           </p>
           <div className="flex flex-wrap justify-center gap-8">
             <div className="flex items-center gap-3">
