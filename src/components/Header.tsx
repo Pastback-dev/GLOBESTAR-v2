@@ -69,6 +69,7 @@ const Navbar = () => {
             )}
           </div>
 
+          <Link to="/invitations" className="text-navy text-xs font-semibold uppercase tracking-wider hover:text-orange transition-colors">Invitations</Link>
           <a href="#destinations" className="text-navy text-xs font-semibold uppercase tracking-wider hover:text-orange transition-colors">Destinations</a>
           <a href="#visas" className="text-navy text-xs font-semibold uppercase tracking-wider hover:text-orange transition-colors">Visas</a>
           <a href="#tours" className="text-navy text-xs font-semibold uppercase tracking-wider hover:text-orange transition-colors">Tours</a>
@@ -93,6 +94,7 @@ const Navbar = () => {
             <Link to="/our-team" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Our Team</Link>
             <Link to="/bank-account" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Bank Account</Link>
           </div>
+          <Link to="/invitations" onClick={() => setOpen(false)} className="block py-2 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Invitations</Link>
           <a href="#destinations" onClick={() => setOpen(false)} className="block py-2 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Destinations</a>
           <a href="#contact" onClick={() => setOpen(false)} className="block py-2 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Contact</a>
           <a href="#contact" className="mt-2 inline-flex items-center gap-2 bg-orange text-orange-foreground px-6 py-2.5 rounded text-sm font-semibold">
