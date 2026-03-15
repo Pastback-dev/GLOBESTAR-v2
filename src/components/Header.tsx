@@ -28,6 +28,7 @@ const TopBar = () => (
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [invitationsOpen, setInvitationsOpen] = useState(false);
 
   return (
     <nav className="bg-background shadow-sm sticky top-0 z-50">
@@ -69,6 +70,33 @@ const Navbar = () => {
             )}
           </div>
 
+          {/* Invitations Dropdown */}
+          <div 
+            className="relative group"
+            onMouseEnter={() => setInvitationsOpen(true)}
+            onMouseLeave={() => setInvitationsOpen(false)}
+          >
+            <button className="flex items-center gap-1 text-navy text-xs font-semibold uppercase tracking-wider hover:text-orange transition-colors">
+              Invitations <ChevronDown size={12} />
+            </button>
+            
+            {invitationsOpen && (
+              <div className="absolute top-full left-0 pt-4 w-56 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="bg-background border shadow-lg rounded-md overflow-hidden">
+                  <Link to="/invitations" className="block px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-navy hover:bg-orange hover:text-orange-foreground transition-colors">
+                    Invitations
+                  </Link>
+                  <Link to="/invitation-types" className="block px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-navy hover:bg-orange hover:text-orange-foreground transition-colors">
+                    Types of Invitation
+                  </Link>
+                  <Link to="/invitation-details" className="block px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-navy hover:bg-orange hover:text-orange-foreground transition-colors">
+                    Details & Costs
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
           <a href="#destinations" className="text-navy text-xs font-semibold uppercase tracking-wider hover:text-orange transition-colors">Destinations</a>
           <a href="#visas" className="text-navy text-xs font-semibold uppercase tracking-wider hover:text-orange transition-colors">Visas</a>
           <a href="#tours" className="text-navy text-xs font-semibold uppercase tracking-wider hover:text-orange transition-colors">Tours</a>
@@ -88,11 +116,20 @@ const Navbar = () => {
       {open && (
         <div className="lg:hidden bg-background border-t px-4 pb-4">
           <Link to="/" onClick={() => setOpen(false)} className="block py-2 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Home</Link>
+          
           <div className="py-2">
             <p className="text-navy text-xs font-bold uppercase tracking-widest mb-2 opacity-50">About</p>
             <Link to="/our-team" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Our Team</Link>
             <Link to="/bank-account" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Bank Account</Link>
           </div>
+
+          <div className="py-2">
+            <p className="text-navy text-xs font-bold uppercase tracking-widest mb-2 opacity-50">Invitations</p>
+            <Link to="/invitations" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Invitations</Link>
+            <Link to="/invitation-types" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Types of Invitation</Link>
+            <Link to="/invitation-details" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Details & Costs</Link>
+          </div>
+
           <a href="#destinations" onClick={() => setOpen(false)} className="block py-2 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Destinations</a>
           <a href="#contact" onClick={() => setOpen(false)} className="block py-2 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Contact</a>
           <a href="#contact" className="mt-2 inline-flex items-center gap-2 bg-orange text-orange-foreground px-6 py-2.5 rounded text-sm font-semibold">
