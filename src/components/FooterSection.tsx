@@ -52,12 +52,12 @@ const FooterSection = () => {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3 text-navy-foreground/80 text-sm">
                     <MapPin size={16} className="text-orange mt-0.5 shrink-0" />
-                    <span>A. Gustaičio g. 23-255A, Vilnius 02188, Lithuania</span>
+                    <span>N, 3 Ave Zerktouni, Khénifra 54000, Morocco</span>
                   </div>
                   <div className="flex items-center gap-3 text-navy-foreground/80 text-sm">
                     <Phone size={16} className="text-orange shrink-0" />
                     <div>
-                      <a href="tel:+37066022174" className="hover:text-orange transition-colors block">+370 660 22174</a>
+                      <a href="tel:+34624132171" className="hover:text-orange transition-colors block">+34 624 13 21 71</a>
                       <a href="tel:+447492219937" className="hover:text-orange transition-colors block">+44 7492 219937</a>
                     </div>
                   </div>
@@ -147,10 +147,10 @@ const FooterSection = () => {
               <div className="space-y-3">
                 <p className="text-gray-400 text-sm flex items-start gap-2">
                   <MapPin size={14} className="text-orange mt-0.5 shrink-0" />
-                  A. Gustaičio g. 23-255A,<br />Vilnius 02188, Lithuania
+                  N, 3 Ave Zerktouni,<br />Khénifra 54000, Morocco
                 </p>
                 <p className="text-gray-400 text-sm">
-                  <a href="tel:+37066022174" className="hover:text-orange transition-colors">+370 660 22174</a>
+                  <a href="tel:+34624132171" className="hover:text-orange transition-colors">+34 624 13 21 71</a>
                 </p>
                 <p className="text-gray-400 text-sm">
                   <a href="mailto:info@globestar.eu" className="hover:text-orange transition-colors">info@globestar.eu</a>

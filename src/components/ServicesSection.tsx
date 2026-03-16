@@ -1,4 +1,4 @@
-import { Users, Plane, Briefcase, Heart, MapPin, User } from 'lucide-react';
+import { Users, Plane, Briefcase, Heart, MapPin, User, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const services = [
@@ -6,31 +6,37 @@ const services = [
     icon: Users,
     title: 'Group Invitation',
     desc: 'A group invitation is a written document from a company to obtain tourist group visas.',
+    link: '/details-and-costs'
   },
   {
     icon: Plane,
     title: 'Visit Invitation',
     desc: 'A visa invitation letter is a written letter from the company for a visitor visa.',
+    link: '/details-and-costs'
   },
   {
     icon: Briefcase,
     title: 'Business Invitation',
     desc: 'A visa invitation letter is a written letter from the company for a business visa purpose.',
+    link: '/details-and-costs'
   },
   {
     icon: Heart,
     title: 'Family Invitation',
     desc: 'A visa invitation letter is a written letter from the company for a Family visitor visa.',
+    link: '/details-and-costs'
   },
   {
     icon: MapPin,
     title: 'Tourist Invitation',
     desc: 'A visa invitation letter is a written letter from the tourist company for a tourist visa purpose.',
+    link: '/details-and-costs'
   },
   {
     icon: User,
     title: 'Private Invitation',
     desc: 'A private invitation letter is a written document from an individual to obtain a tourist visa.',
+    link: '/details-and-costs'
   },
 ];
 
@@ -47,13 +53,21 @@ const ServicesSection = () => (
       </p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map(s => (
-          <div key={s.title} className="bg-background border rounded-lg p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-section-gray flex items-center justify-center">
-              <s.icon size={28} className="text-navy" />
+          <div key={s.title} className="bg-background border rounded-lg p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+            <div className="flex-grow">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-section-gray flex items-center justify-center">
+                <s.icon size={28} className="text-navy" />
+              </div>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">VISA TYPES</p>
+              <h3 className="text-navy font-bold mb-2">{s.title}</h3>
+              <p className="text-muted-foreground text-sm mb-6">{s.desc}</p>
             </div>
-            <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">VISA TYPES</p>
-            <h3 className="text-navy font-bold mb-2">{s.title}</h3>
-            <p className="text-muted-foreground text-sm">{s.desc}</p>
+            <Link 
+              to={s.link}
+              className="mt-auto inline-flex items-center justify-center gap-2 bg-[#0e2a47] text-white px-6 py-2.5 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-[#f27024] transition-colors"
+            >
+              Apply / View Details <ArrowRight size={12} />
+            </Link>
           </div>
         ))}
       </div>

@@ -107,7 +107,7 @@ const Sidebar = () => (
           </div>
           <div>
             <p className="text-[10px] text-white/50 uppercase tracking-widest mb-1">Call / WhatsApp</p>
-            <p className="font-bold text-sm">+370 660 22174</p>
+            <p className="font-bold text-sm">+34 624 13 21 71</p>
           </div>
         </div>
         <div className="flex gap-4">
