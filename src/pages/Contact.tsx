@@ -90,12 +90,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="mt-12 p-6 bg-white/5 rounded-xl border border-white/10">
-              <p className="text-sm italic text-white/60 mb-4">
-                GLOBESTAR is an approved Lithuanian company incorporated at the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS. Our registration number is 306016085
-              </p>
-              <p className="text-white font-bold text-sm">www.globestar.eu</p>
-            </div>
+
           </div>
 
           {/* Right - Contact Form */}

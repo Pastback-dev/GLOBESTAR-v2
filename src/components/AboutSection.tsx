@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import globestarExperience from '../assets/globestar-experience.jpg';
 
 const AboutSection = () => (
   <section id="about" className="py-20 bg-background">
@@ -8,15 +9,15 @@ const AboutSection = () => (
         {/* Left - Image with floating card */}
         <div className="relative">
           <img
-            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"
-            alt="Professional business immigration consultant"
+            src={globestarExperience}
+            alt="GLOBESTAR - Leading Immigration & Visa Services with 10 Years of Experience"
             className="rounded-lg w-full max-w-md mx-auto object-cover h-80"
           />
           <div className="absolute -bottom-6 -right-2 md:right-4 bg-background border-4 border-navy p-6 shadow-xl w-52 text-center">
             <p className="text-xs uppercase tracking-widest text-navy font-semibold mb-1">
               Canada’s Leading<br />Visa & Immigration firm with
             </p>
-            <p className="text-5xl font-bold text-orange">20</p>
+            <p className="text-5xl font-bold text-orange">10</p>
             <p className="text-sm text-navy font-medium uppercase tracking-wider">Years Of Experience</p>
           </div>
         </div>

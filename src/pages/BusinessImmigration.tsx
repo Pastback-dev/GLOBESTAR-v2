@@ -18,25 +18,26 @@ const immigrationServices = [
     country: 'Lithuania',
     price: '10500',
     desc: 'Our company deals exclusively with business immigration to Lithuania and has and reliable option to obtain a yearly multiple-entry business visa.',
-    img: 'https://images.unsplash.com/photo-1590272453882-59111ccad1b2?auto=format&fit=crop&w=800&q=80'
+    img: '/assets/business-lithuania.jpg'
   },
   {
     country: 'Estonia',
     price: '12500',
     desc: 'Our company deals exclusively with business immigration to Estonia and has and reliable option to obtain a yearly multiple-entry business visa.',
-    img: 'https://images.unsplash.com/photo-1589991130023-c4ee1c674eb9?auto=format&fit=crop&w=800&q=80'
+    img: '/assets/business-estonia.jpg'
   },
   {
     country: 'Albania',
     price: '10500',
     desc: 'GLOBESTAR provides a complete range of immigration services to foreign individuals and entrepreneurs, who wish to visit, live and work in Albania.',
-    img: 'https://images.unsplash.com/photo-1596489393301-6a0d24c02905?auto=format&fit=crop&w=800&q=80'
+    img: '/assets/business-albania.jpg'
   },
   {
     country: 'Belarus',
     price: '9000',
     desc: 'A Belarus Temporary Residence Permit is a document, issued to non-citizens who wish to have the opportunity to immigrate, live and work in Belarus.',
-    img: 'https://images.unsplash.com/photo-1588632230414-b49d71c6628c?auto=format&fit=crop&w=800&q=80'
+    img: '/assets/business-belarus.jpg',
+    externalLink: 'https://mfa.gov.by/en/visa/registration/temporary_residence/'
   },
   {
     country: 'United Kingdom',
@@ -58,7 +59,7 @@ const BusinessImmigration = () => {
       <TopBar />
       <Navbar />
       <PageHero title="Business Immigration" breadcrumb="Home / Immigration / Business Immigration" />
-      
+
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">ENTREPRENEUR SERVICES</p>
@@ -80,12 +81,23 @@ const BusinessImmigration = () => {
                 <p className="text-gray-600 text-sm leading-relaxed mb-6">
                   {service.desc}
                 </p>
-                <Link 
-                  to="/contact" 
-                  className="inline-flex items-center gap-2 text-[#f27024] font-bold text-sm hover:gap-3 transition-all"
-                >
-                  Read More <ArrowRight size={14} />
-                </Link>
+                {service.externalLink ? (
+                  <a
+                    href={service.externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[#f27024] font-bold text-sm hover:gap-3 transition-all"
+                  >
+                    Read More <ArrowRight size={14} />
+                  </a>
+                ) : (
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 text-[#f27024] font-bold text-sm hover:gap-3 transition-all"
+                  >
+                    Read More <ArrowRight size={14} />
+                  </Link>
+                )}
               </div>
             </div>
           ))}

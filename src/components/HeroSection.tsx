@@ -1,13 +1,10 @@
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import globestarExperience from '../assets/globestar-experience.jpg';
 
 const slides = [
-  {
-    tag: 'SUCCESS IN VISA SERVICES',
-    title: 'Visa Services for\nWork, Visit, and Study with Success',
-    bg: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=1920&q=80',
-    link: '/available-visas',
-  },
+  
+  
   {
     tag: 'BUSINESS IMMIGRATION',
     title: 'Our Effective Approach\nto Business Immigration',
@@ -20,6 +17,7 @@ const slides = [
     bg: 'https://images.unsplash.com/photo-1436491865332-7a61a109c05?auto=format&fit=crop&w=1920&q=80',
     link: '/types-of-invitation',
   },
+  
 ];
 
 const HeroSection = () => {
