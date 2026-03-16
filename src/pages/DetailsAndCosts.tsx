@@ -110,15 +110,7 @@ const Sidebar = () => (
             <p className="font-bold text-sm">+34 624 13 21 71</p>
           </div>
         </div>
-        <div className="flex gap-4">
-          <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-            <Phone size={18} className="text-[#f27024]" />
-          </div>
-          <div>
-            <p className="text-[10px] text-white/50 uppercase tracking-widest mb-1">UK WhatsApp Only</p>
-            <p className="font-bold text-sm">+44 7492 219937</p>
-          </div>
-        </div>
+
         <div className="flex gap-4">
           <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
             <Mail size={18} className="text-[#f27024]" />

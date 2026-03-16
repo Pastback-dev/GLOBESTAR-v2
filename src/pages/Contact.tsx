@@ -64,7 +64,6 @@ const Contact = () => {
                 <div>
                   <h4 className="font-bold text-lg mb-1">PHONE</h4>
                   <a href="tel:+34624132171" className="text-white/70 text-sm block hover:text-[#f27024] transition-colors">+34 624 13 21 71</a>
-                  <a href="tel:+447492219937" className="text-white/70 text-sm block hover:text-[#f27024] transition-colors">+44 7492 219937</a>
                 </div>
               </div>
 
