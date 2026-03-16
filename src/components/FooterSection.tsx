@@ -95,7 +95,7 @@ const FooterSection = () => {
                 <span className="text-xl font-bold text-white">GLOBESTAR</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                GLOBESTAR is an approved Lithuanian company from the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS (State Enterprise Register), Lithuania. Registration number: 306016085. Our main focus is help our clients to move from their countries to EU.
+                Our main focus is helping our clients move from their countries to EU with expert guidance and support.
               </p>
             </div>
 
