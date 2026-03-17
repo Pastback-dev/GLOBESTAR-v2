@@ -17,6 +17,7 @@ import CompanyRegistration from "./pages/CompanyRegistration.tsx";
 import CompanyRegistrationForm from "./pages/CompanyRegistrationForm.tsx";
 import BusinessImmigration from "./pages/BusinessImmigration.tsx";
 import Contact from "./pages/Contact.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {/* Home */}
           <Route path="/" element={<Index />} />
