@@ -3,21 +3,18 @@ import { useState, useEffect } from 'react';
 import globestarExperience from '../assets/globestar-experience.jpg';
 
 const slides = [
-  
-  
+  {
+    tag: '10 YEARS OF EXPERIENCE',
+    title: 'GLOBESTAR - Your Gateway\nto European Union',
+    bg: globestarExperience,
+    link: '/our-team',
+  },
   {
     tag: 'BUSINESS IMMIGRATION',
     title: 'Our Effective Approach\nto Business Immigration',
     bg: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80',
     link: '/business-immigration',
   },
-  {
-    tag: 'VISA INVITATION LETTERS',
-    title: 'Invitation Letters for\nBusiness, Family, and Visitor Visas',
-    bg: 'https://images.unsplash.com/photo-1436491865332-7a61a109c05?auto=format&fit=crop&w=1920&q=80',
-    link: '/types-of-invitation',
-  },
-  
 ];
 
 const HeroSection = () => {
