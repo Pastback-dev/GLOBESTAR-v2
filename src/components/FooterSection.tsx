@@ -63,8 +63,8 @@ const FooterSection = () => {
                   <div className="flex items-center gap-3 text-navy-foreground/80 text-sm">
                     <Mail size={16} className="text-orange shrink-0" />
                     <div>
-                      <a href="mailto:iglobestarvisa@gmail.com" className="hover:text-orange transition-colors block">iglobestarvisa@gmail.com</a>
-                      <a href="mailto:iglobestarvisa@gmail.com" className="hover:text-orange transition-colors block">iglobestarvisa@gmail.com</a>
+                      <a href="mailto:globestarvisa@gmail.com" className="hover:text-orange transition-colors block">globestarvisa@gmail.com</a>
+                      <a href="mailto:globestarvisa@gmail.com" className="hover:text-orange transition-colors block">globestarvisa@gmail.com</a>
                     </div>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ const FooterSection = () => {
                   <a href="tel:+34624132171" className="hover:text-orange transition-colors">+34 624 13 21 71</a>
                 </p>
                 <p className="text-gray-400 text-sm">
-                  <a href="mailto:iglobestarvisa@gmail.com" className="hover:text-orange transition-colors">iglobestarvisa@gmail.com</a>
+                  <a href="mailto:globestarvisa@gmail.com" className="hover:text-orange transition-colors">globestarvisa@gmail.com</a>
                 </p>
               </div>
             </div>
