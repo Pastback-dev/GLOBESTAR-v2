@@ -195,7 +195,7 @@ const DetailsAndCosts = () => {
             <div className="bg-section-gray p-8 rounded-2xl mb-16">
               <h3 className="text-2xl font-bold text-[#0e2a47] mb-6">Types of Invitation Letter</h3>
               <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                GLOBESTAR is a Lithuanian company with multiple offices in Lithuania, Albania, Belarus, Canada, the USA, the UK. It offers the following types of invitation letters:
+                GLOBESTAR is a  company  that offers the following types of invitation letters:
               </p>
               <ul className="grid md:grid-cols-2 gap-x-8 gap-y-2">
                 {[

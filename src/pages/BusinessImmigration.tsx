@@ -106,8 +106,7 @@ const BusinessImmigration = () => {
         <div className="bg-[#0e2a47] p-8 md:p-12 rounded-2xl text-white text-center">
           <h3 className="text-2xl font-bold mb-6">Trusted Professional Assistance</h3>
           <p className="max-w-3xl mx-auto text-white/70 mb-10 text-sm leading-relaxed">
-            GLOBESTAR is an approved Lithuanian company incorporated at the VALSTYBĖS ĮMONIŲ REGISTRŲ CENTRAS. Our registration number is 306016085. We provide legal support and expertise for your global expansion.
-          </p>
+            </p>
           <div className="flex flex-wrap justify-center gap-8">
             <div className="flex items-center gap-3">
               <Building2 className="text-[#f27024]" />
