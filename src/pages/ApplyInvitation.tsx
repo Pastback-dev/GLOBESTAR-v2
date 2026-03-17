@@ -56,11 +56,7 @@ const ApplyInvitation = () => {
 
   const handlePaymentMethodChange = (method: string) => {
     setFormData({ ...formData, paymentMethod: method });
-    if (method === 'paypal') {
-      setPaymentFee(7); // 7% fee
-    } else {
-      setPaymentFee(0);
-    }
+    setPaymentFee(0);
   };
 
   return (
@@ -75,7 +71,7 @@ const ApplyInvitation = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase italic leading-tight">Apply for an Invitation Letter</h2>
           <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
           <p className="text-gray-600 leading-relaxed uppercase font-bold italic text-sm max-w-2xl mx-auto">
-            Most Important Instructions: Please complete the application form with accurate information that matches your travel documents. Incomplete forms will not be accepted. Upload the required documents in PDF format and proceed to make the payment using one of the following methods: Visa/MasterCard, Bank Account, PayPal, or Bybit (Crypto). There are no additional charges for payments made via Visa/MasterCard, Bank Account, or Bybit. However, a 7% transaction fee will be added to the total amount for PayPal payments.
+            Most Important Instructions: Please complete the application form with accurate information that matches your travel documents. Incomplete forms will not be accepted. Upload the required documents in PDF format and proceed to make the payment using Bank Account transfer.
           </p>
         </div>
 
@@ -478,12 +474,9 @@ const ApplyInvitation = () => {
                 {/* Payment Section */}
                 <div className="space-y-6 bg-section-gray p-8 rounded-2xl border border-gray-100">
                   <h3 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-6 italic">7. Payment Method</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 gap-4">
                     {[
-                      { id: 'card', label: 'Visa/MasterCard' },
-                      { id: 'bank', label: 'Bank Account' },
-                      { id: 'paypal', label: 'PayPal' },
-                      { id: 'bybit', label: 'Bybit (Crypto)' }
+                      { id: 'bank', label: 'Bank Account' }
                     ].map(method => (
                       <button
                         key={method.id}
@@ -499,15 +492,6 @@ const ApplyInvitation = () => {
                       </button>
                     ))}
                   </div>
-
-                  {formData.paymentMethod === 'paypal' && (
-                    <div className="flex items-center gap-3 p-4 bg-orange/5 rounded-lg border border-orange/10 mt-4">
-                      <AlertCircle size={16} className="text-[#f27024] shrink-0" />
-                      <p className="text-[10px] text-[#f27024] font-bold italic">
-                        Note: A 7% transaction fee will be added for PayPal payments.
-                      </p>
-                    </div>
-                  )}
                 </div>
 
                 <div className="flex items-start gap-3 p-4 bg-orange/5 rounded-lg border border-orange/10">
@@ -521,7 +505,6 @@ const ApplyInvitation = () => {
 
                 <button className="w-full bg-[#f27024] text-white py-5 rounded-lg font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-xl shadow-orange-500/20 flex items-center justify-center gap-3">
                   Proceed Your Payment
-                  {paymentFee > 0 && <span className="bg-white/20 px-2 py-0.5 rounded text-[10px]">+ {paymentFee}% Fee</span>}
                 </button>
               </form>
             </div>
