@@ -66,14 +66,14 @@ const BankAccount = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           <PaymentCard
-            title="PAYSERA ACCOUNT"
-            color="bg-blue-500"
+            title="CIH BANK (MOROCCO)"
+            color="bg-green-600"
             icon={Landmark}
             details={[
-              { label: 'Bank Name', value: 'Paysera (LT)' },
-              { label: 'Beneficiary', value: 'GLOBESTAR' },
-              { label: 'IBAN', value: 'LT123456789012345678' },
-              { label: 'Swift Code', value: 'PSRLT22' },
+              { label: 'Account Holder', value: 'M. Karim Haddouchane' },
+              { label: 'RIB', value: '230 380 5605342214023500 73' },
+              { label: 'IBAN', value: 'MA64 2303 8056 0534 2214 0235 0073' },
+              { label: 'SWIFT Code', value: 'CIHMMAMC' },
             ]}
           />
           <PaymentCard
