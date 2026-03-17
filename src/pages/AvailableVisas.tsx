@@ -14,12 +14,7 @@ const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) 
 );
 
 const visaCategories = [
-  {
-    title: 'Working Visas',
-    icon: Briefcase,
-    to: '/working-visa',
-    desc: 'Authorized permits to work and live in foreign countries with various job sectors like Construction, Factory, and IT.'
-  },
+  
   {
     title: 'Visiting Visas',
     icon: Plane,

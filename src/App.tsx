@@ -11,7 +11,6 @@ import TypesOfInvitation from "./pages/TypesOfInvitation.tsx";
 import DetailsAndCosts from "./pages/DetailsAndCosts.tsx";
 import ApplyInvitation from "./pages/ApplyInvitation.tsx";
 import AvailableVisas from "./pages/AvailableVisas.tsx";
-import WorkingVisa from "./pages/WorkingVisa.tsx";
 import VisitingVisa from "./pages/VisitingVisa.tsx";
 import StudyingVisa from "./pages/StudyingVisa.tsx";
 import CompanyRegistration from "./pages/CompanyRegistration.tsx";
@@ -42,7 +41,6 @@ const App = () => (
 
           {/* Visas */}
           <Route path="/available-visas" element={<AvailableVisas />} />
-          <Route path="/working-visa" element={<WorkingVisa />} />
           <Route path="/visiting-visa" element={<VisitingVisa />} />
           <Route path="/studying-visa" element={<StudyingVisa />} />
 

@@ -124,7 +124,6 @@ const FooterSection = () => {
               <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Our Services</h4>
               <ul className="space-y-2">
                 {[
-                  { label: 'Working Visas', to: '/working-visa' },
                   { label: 'Visiting Visas', to: '/visiting-visa' },
                   { label: 'Studying Visas', to: '/studying-visa' },
                   { label: 'Invitation Letters', to: '/types-of-invitation' },

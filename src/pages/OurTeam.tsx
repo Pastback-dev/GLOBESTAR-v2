@@ -55,7 +55,7 @@ const OurTeam = () => {
           <div>
             <h3 className="text-2xl font-bold text-[#0e2a47] mb-6 uppercase italic">20 Years of Combined Experience</h3>
             <p className="text-gray-600 text-sm leading-relaxed mb-8 italic">
-              GLOBESTAR is a Lithuanian company with multiple offices in Lithuania, Albania, Belarus, Canada, the USA, and the UK. Trust in our expertise to facilitate your journey and enhance your chances of a successful visa application.
+              Trust in our expertise to facilitate your journey and enhance your chances of a successful visa application.
             </p>
             <div className="space-y-4">
               {[

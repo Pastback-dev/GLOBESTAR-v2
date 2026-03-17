@@ -129,7 +129,6 @@ const Navbar = () => {
               <div className={dropdownClass}>
                 <div className={dropdownInner}>
                   <Link to="/available-visas" className={dropdownLink}>Available Visas</Link>
-                  <Link to="/working-visa" className={dropdownLink}>Working Visas</Link>
                   <Link to="/visiting-visa" className={dropdownLink}>Visiting Visas</Link>
                   <Link to="/studying-visa" className={dropdownLink}>Studying Visas</Link>
                 </div>
@@ -196,7 +195,6 @@ const Navbar = () => {
           <div className="py-2">
             <p className="text-navy text-xs font-bold uppercase tracking-widest mb-2 opacity-50">Visas</p>
             <Link to="/available-visas" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Available Visas</Link>
-            <Link to="/working-visa" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Working Visas</Link>
             <Link to="/visiting-visa" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Visiting Visas</Link>
             <Link to="/studying-visa" onClick={() => setOpen(false)} className="block py-2 pl-4 text-navy text-sm font-semibold uppercase hover:text-orange transition-colors">Studying Visas</Link>
           </div>

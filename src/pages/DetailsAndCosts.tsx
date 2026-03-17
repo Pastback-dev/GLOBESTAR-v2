@@ -77,7 +77,7 @@ const Sidebar = () => (
       </h3>
       <ul className="space-y-4">
         {[
-          { name: 'Working Visas', to: '/working-visa' },
+          
           { name: 'Visiting Visas', to: '/visiting-visa' },
           { name: 'Studying Visas', to: '/studying-visa' },
           { name: 'Visit Visa Invitation', to: '/details-and-costs' },
