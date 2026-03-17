@@ -33,9 +33,9 @@ const TopBar = () => (
           <Phone size={14} className="text-[#f27024]" />
           <span className="hidden sm:inline">+34 624 13 21 71</span>
         </a>
-        <a href="mailto:info@globestar.eu" className="flex items-center gap-2 hover:text-orange transition-colors">
+        <a href="mailto:iglobestarvisa@gmail.com" className="flex items-center gap-2 hover:text-orange transition-colors">
           <Mail size={14} className="text-[#f27024]" />
-          <span className="hidden sm:inline">info@globestar.eu</span>
+          <span className="hidden sm:inline">iglobestarvisa@gmail.com</span>
         </a>
       </div>
       <div className="flex items-center gap-4">

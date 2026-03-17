@@ -82,7 +82,7 @@ const BankAccount = () => {
             icon={CreditCard}
             details={[
               { label: 'Account Name', value: 'GLOBESTAR' },
-              { label: 'PayPal Email', value: 'info@globestar.eu' },
+              { label: 'PayPal Email', value: 'iglobestarvisa@gmail.com' },
               { label: 'Status', value: 'Verified Business' },
             ]}
           />
@@ -116,7 +116,7 @@ const BankAccount = () => {
             </div>
             <div className="bg-white/5 p-6 rounded-xl border border-white/10">
               <p className="text-sm text-white/60 leading-relaxed italic">
-                After making a payment, please send a screenshot of the transaction receipt to our official WhatsApp +34 624 13 21 71 or email us at info@globestar.eu for faster processing.
+                After making a payment, please send a screenshot of the transaction receipt to our official WhatsApp +34 624 13 21 71 or email us at iglobestarvisa@gmail.com for faster processing.
               </p>
             </div>
           </div>

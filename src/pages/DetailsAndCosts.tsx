@@ -117,7 +117,7 @@ const Sidebar = () => (
           </div>
           <div>
             <p className="text-[10px] text-white/50 uppercase tracking-widest mb-1">Email Us</p>
-            <p className="font-bold text-sm break-all">info@globestar.eu</p>
+            <p className="font-bold text-sm break-all">iglobestarvisa@gmail.com</p>
           </div>
         </div>
       </div>
