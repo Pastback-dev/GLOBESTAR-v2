@@ -6,20 +6,13 @@ const AboutSection = () => (
   <section id="about" className="py-20 bg-background">
     <div className="container mx-auto px-4">
       <div className="grid md:grid-cols-2 gap-12 items-center">
-        {/* Left - Image with floating card */}
+        {/* Left - Image */}
         <div className="relative">
           <img
             src={globestarExperience}
             alt="GLOBESTAR - Leading Immigration & Visa Services with 10 Years of Experience"
             className="rounded-lg w-full max-w-md mx-auto object-cover h-80"
           />
-          <div className="absolute -bottom-6 -right-2 md:right-4 bg-background border-4 border-navy p-6 shadow-xl w-52 text-center">
-            <p className="text-xs uppercase tracking-widest text-navy font-semibold mb-1">
-              Canada’s Leading<br />Visa & Immigration firm with
-            </p>
-            <p className="text-5xl font-bold text-orange">10</p>
-            <p className="text-sm text-navy font-medium uppercase tracking-wider">Years Of Experience</p>
-          </div>
         </div>
 
         {/* Right - Text */}
