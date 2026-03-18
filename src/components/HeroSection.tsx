@@ -1,29 +1,31 @@
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import globestarExperience from '../assets/globestar-experience.jpg';
-
-const slides = [
-  {
-    tag: '10 YEARS OF EXPERIENCE',
-    title: 'GLOBESTAR - Your Gateway\nto European Union',
-    bg: globestarExperience,
-    link: '/our-team',
-  },
-  {
-    tag: 'BUSINESS IMMIGRATION',
-    title: 'Our Effective Approach\nto Business Immigration',
-    bg: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80',
-    link: '/business-immigration',
-  },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection = () => {
+  const { t, isRTL } = useLanguage();
   const [current, setCurrent] = useState(0);
+
+  const slides = [
+    {
+      tag: t('hero.tag1'),
+      title: t('hero.title1'),
+      bg: globestarExperience,
+      link: '/our-team',
+    },
+    {
+      tag: t('hero.tag2'),
+      title: t('hero.title2'),
+      bg: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80',
+      link: '/business-immigration',
+    },
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => setCurrent(c => (c + 1) % slides.length), 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const slide = slides[current];
 
@@ -39,20 +41,20 @@ const HeroSection = () => {
         </div>
       ))}
 
-      <div className="relative container mx-auto px-4 z-10">
-        <p className="text-orange text-sm md:text-base tracking-widest uppercase mb-4 underline underline-offset-2">
+      <div className={`relative container mx-auto px-4 z-10 ${isRTL ? 'text-right' : 'text-left'}`}>
+        <p className={`text-orange text-sm md:text-base tracking-widest uppercase mb-4 underline underline-offset-2 ${isRTL ? 'pl-4' : 'pr-4'}`}>
           {slide.tag}
         </p>
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-2xl whitespace-pre-line lowercase first-letter:uppercase">
           {slide.title}
         </h1>
-        <div className="w-12 h-0.5 bg-orange mt-4 mb-2" />
-        <div className="w-2 h-0.5 bg-orange mb-6 ml-14" />
+        <div className={`w-12 h-0.5 bg-orange mt-4 mb-2 ${isRTL ? 'mr-0 ml-auto' : ''}`} />
+        <div className={`w-2 h-0.5 bg-orange mb-6 ${isRTL ? 'mr-14' : 'ml-14'}`} />
         <a
           href={slide.link}
-          className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded text-sm font-semibold hover:bg-orange hover:border-orange transition-all uppercase tracking-widest"
+          className={`inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded text-sm font-semibold hover:bg-orange hover:border-orange transition-all uppercase tracking-widest ${isRTL ? 'flex-row-reverse' : ''}`}
         >
-          <ArrowRight size={16} /> Learn More
+          {isRTL ? <ArrowRight size={16} className="rotate-180" /> : <ArrowRight size={16} />} {t('about.learnMore')}
         </a>
       </div>
 
