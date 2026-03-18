@@ -4,6 +4,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import { User, Phone, Mail, Globe, Calendar, FileText, Upload, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
   <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
@@ -15,6 +16,7 @@ const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) 
 );
 
 const ApplyInvitation = () => {
+  const { t, isRTL } = useLanguage();
   const [formData, setFormData] = useState({
     country: '',
     invitationType: '',
@@ -87,7 +89,7 @@ const ApplyInvitation = () => {
       });
 
       if (response.ok) {
-        toast.success("Application submitted successfully! We will process it within 3 business days.");
+        toast.success(t('apply.success'));
         // Reset form
         setFormData({
           country: '',
@@ -123,29 +125,29 @@ const ApplyInvitation = () => {
         if (data.errors) {
           toast.error(data.errors.map((error: { message: string }) => error.message).join(", "));
         } else {
-          toast.error("Oops! There was a problem submitting your application.");
+          toast.error(t('apply.error'));
         }
       }
     } catch (error) {
-      toast.error("Oops! There was a problem submitting your application.");
+      toast.error(t('apply.error'));
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen bg-background ${isRTL ? 'text-right' : 'text-left'}`}>
       <TopBar />
       <Navbar />
-      <PageHero title="Apply Invitation Letter" breadcrumb="Home / Invitations / Apply Invitation" />
+      <PageHero title={t('apply.heroTitle')} breadcrumb={t('apply.heroBreadcrumb')} />
       
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">INVITATION APPLICATION</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase italic leading-tight">Apply for an Invitation Letter</h2>
+          <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">{t('apply.invitationApp')}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase italic leading-tight">{t('apply.applyHeading')}</h2>
           <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
           <p className="text-gray-600 leading-relaxed uppercase font-bold italic text-sm max-w-2xl mx-auto">
-            Most Important Instructions: Please complete the application form with accurate information that matches your travel documents. Incomplete forms will not be accepted. Upload the required documents in PDF format and proceed to make the payment using Bank Account transfer.
+            {t('apply.instructions')}
           </p>
         </div>
 

@@ -18,49 +18,52 @@ import CompanyRegistrationForm from "./pages/CompanyRegistrationForm.tsx";
 import BusinessImmigration from "./pages/BusinessImmigration.tsx";
 import Contact from "./pages/Contact.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import { LanguageProvider } from "./contexts/LanguageContext.tsx";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          {/* Home */}
-          <Route path="/" element={<Index />} />
+    <LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            {/* Home */}
+            <Route path="/" element={<Index />} />
 
-          {/* About */}
-          <Route path="/our-team" element={<OurTeam />} />
-          <Route path="/bank-account" element={<BankAccount />} />
+            {/* About */}
+            <Route path="/our-team" element={<OurTeam />} />
+            <Route path="/bank-account" element={<BankAccount />} />
 
-          {/* Invitations */}
-          <Route path="/types-of-invitation" element={<TypesOfInvitation />} />
-          <Route path="/details-and-costs" element={<DetailsAndCosts />} />
-          <Route path="/apply-invitation" element={<ApplyInvitation />} />
+            {/* Invitations */}
+            <Route path="/types-of-invitation" element={<TypesOfInvitation />} />
+            <Route path="/details-and-costs" element={<DetailsAndCosts />} />
+            <Route path="/apply-invitation" element={<ApplyInvitation />} />
 
-          {/* Visas */}
-          <Route path="/available-visas" element={<AvailableVisas />} />
-          <Route path="/visiting-visa" element={<VisitingVisa />} />
-          <Route path="/studying-visa" element={<StudyingVisa />} />
+            {/* Visas */}
+            <Route path="/available-visas" element={<AvailableVisas />} />
+            <Route path="/visiting-visa" element={<VisitingVisa />} />
+            <Route path="/studying-visa" element={<StudyingVisa />} />
 
-          {/* Company Registration */}
-          <Route path="/company-registration" element={<CompanyRegistration />} />
-          <Route path="/company-registration-form" element={<CompanyRegistrationForm />} />
+            {/* Company Registration */}
+            <Route path="/company-registration" element={<CompanyRegistration />} />
+            <Route path="/company-registration-form" element={<CompanyRegistrationForm />} />
 
-          {/* Immigration */}
-          <Route path="/business-immigration" element={<BusinessImmigration />} />
+            {/* Immigration */}
+            <Route path="/business-immigration" element={<BusinessImmigration />} />
 
-          {/* Contact */}
-          <Route path="/contact" element={<Contact />} />
+            {/* Contact */}
+            <Route path="/contact" element={<Contact />} />
 
-          {/* 404 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+            {/* 404 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

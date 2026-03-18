@@ -2,8 +2,10 @@ import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, Send } from 'lucide-
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const FooterSection = () => {
+  const { t, isRTL } = useLanguage();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -22,18 +24,18 @@ const FooterSection = () => {
       });
 
       if (response.ok) {
-        toast.success("Assessment request sent successfully!");
+        toast.success(t('footer.successMessage') || "Assessment request sent successfully!");
         setForm({ name: '', email: '', message: '' });
       } else {
         const data = await response.json();
         if (data.errors) {
           toast.error(data.errors.map((error: { message: string }) => error.message).join(", "));
         } else {
-          toast.error("Oops! There was a problem submitting your request.");
+          toast.error(t('footer.errorMessage') || "Oops! There was a problem submitting your request.");
         }
       }
     } catch (error) {
-      toast.error("Oops! There was a problem submitting your request.");
+      toast.error(t('footer.errorMessage') || "Oops! There was a problem submitting your request.");
     } finally {
       setIsSubmitting(false);
     }
@@ -46,17 +48,17 @@ const FooterSection = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-16">
             {/* Left - Form */}
-            <div>
-              <p className="text-orange text-sm font-semibold mb-2">Get Free Assessment Today!</p>
+            <div className="text-start">
+              <p className="text-orange text-sm font-semibold mb-2">{t('footer.getFreeAssessment')}</p>
               <h2 className="text-2xl md:text-3xl font-bold text-navy-foreground mb-8 leading-tight">
-                Feel Free To Enquire About<br />Any Questions You Got
+                {t('footer.feelFreeToEnquire')}
               </h2>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="name"
                   required
-                  placeholder="Full Name"
+                  placeholder={t('footer.fullName')}
                   value={form.name}
                   onChange={e => setForm({ ...form, name: e.target.value })}
                   className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange"
@@ -65,7 +67,7 @@ const FooterSection = () => {
                   type="email"
                   name="email"
                   required
-                  placeholder="Email Address"
+                  placeholder={t('footer.emailAddress')}
                   value={form.email}
                   onChange={e => setForm({ ...form, email: e.target.value })}
                   className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange"
@@ -73,7 +75,7 @@ const FooterSection = () => {
                 <textarea
                   name="message"
                   required
-                  placeholder="Your Message"
+                  placeholder={t('footer.yourMessage')}
                   rows={4}
                   value={form.message}
                   onChange={e => setForm({ ...form, message: e.target.value })}
@@ -84,15 +86,15 @@ const FooterSection = () => {
                   disabled={isSubmitting}
                   className="inline-flex items-center gap-2 bg-orange text-orange-foreground px-8 py-3 rounded text-sm font-semibold hover:bg-orange-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'} <Send size={14} />
+                  {isSubmitting ? t('footer.submitting') : t('footer.submit')} <Send size={14} className={isRTL ? 'rotate-180' : ''} />
                 </button>
               </form>
             </div>
 
             {/* Right - Quick Info */}
-            <div className="flex flex-col justify-center gap-8">
+            <div className={`flex flex-col justify-center gap-8 ${isRTL ? 'text-right' : 'text-left'}`}>
               <div>
-                <h3 className="text-xl font-bold text-navy-foreground mb-4">Contact Information</h3>
+                <h3 className="text-xl font-bold text-navy-foreground mb-4">{t('footer.contactInformation')}</h3>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3 text-navy-foreground/80 text-sm">
                     <MapPin size={16} className="text-orange mt-0.5 shrink-0" />
@@ -107,7 +109,6 @@ const FooterSection = () => {
                   <div className="flex items-center gap-3 text-navy-foreground/80 text-sm">
                     <Mail size={16} className="text-orange shrink-0" />
                     <div>
-                      <a href="mailto:globestarvisa@gmail.com" className="hover:text-orange transition-colors block">globestarvisa@gmail.com</a>
                       <a href="mailto:globestarvisa@gmail.com" className="hover:text-orange transition-colors block">globestarvisa@gmail.com</a>
                     </div>
                   </div>
@@ -132,31 +133,31 @@ const FooterSection = () => {
       {/* Full Footer */}
       <footer className="bg-[#001122] py-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-10 mb-12">
+          <div className="grid md:grid-cols-4 gap-10 mb-12 text-start">
             {/* Logo + About */}
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-xl font-bold text-white">GLOBESTAR</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Our main focus is helping our clients move from their countries to EU with expert guidance and support.
+                {t('footer.aboutText')}
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Quick Links</h4>
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">{t('footer.quickLinks')}</h4>
               <ul className="space-y-2">
                 {[
-                  { label: 'Home', to: '/' },
-                  { label: 'Our Team', to: '/our-team' },
-                  { label: 'Bank Accounts & Payments', to: '/bank-account' },
-                  { label: 'Contact Us', to: '/contact' },
-                  { label: 'Book Appointment', to: '/contact' },
+                  { label: t('nav.home'), to: '/' },
+                  { label: t('nav.ourTeam'), to: '/our-team' },
+                  { label: t('nav.bankAccounts'), to: '/bank-account' },
+                  { label: t('nav.contact'), to: '/contact' },
+                  { label: t('nav.bookAppointment'), to: '/contact' },
                 ].map(l => (
-                  <li key={l.label}>
+                  <li key={l.to + l.label}>
                     <Link to={l.to} className="text-gray-400 text-sm hover:text-orange transition-colors">
-                      › {l.label}
+                      {isRTL ? '‹' : '›'} {l.label}
                     </Link>
                   </li>
                 ))}
@@ -165,18 +166,18 @@ const FooterSection = () => {
 
             {/* Services */}
             <div>
-              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Our Services</h4>
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">{t('footer.ourServices')}</h4>
               <ul className="space-y-2">
                 {[
-                  { label: 'Visiting Visas', to: '/visiting-visa' },
-                  { label: 'Studying Visas', to: '/studying-visa' },
-                  { label: 'Invitation Letters', to: '/types-of-invitation' },
-                  { label: 'Company Registration', to: '/company-registration' },
-                  { label: 'Business Immigration', to: '/business-immigration' },
+                  { label: t('nav.visitingVisas'), to: '/visiting-visa' },
+                  { label: t('nav.studyingVisas'), to: '/studying-visa' },
+                  { label: t('nav.invitations'), to: '/types-of-invitation' },
+                  { label: t('nav.companyReg'), to: '/company-registration' },
+                  { label: t('nav.businessImmigration'), to: '/business-immigration' },
                 ].map(l => (
-                  <li key={l.label}>
+                  <li key={l.to + l.label}>
                     <Link to={l.to} className="text-gray-400 text-sm hover:text-orange transition-colors">
-                      › {l.label}
+                      {isRTL ? '‹' : '›'} {l.label}
                     </Link>
                   </li>
                 ))}
@@ -185,7 +186,7 @@ const FooterSection = () => {
 
             {/* Contact */}
             <div>
-              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">Contact Info</h4>
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-5">{t('footer.contactInfo')}</h4>
               <div className="space-y-3">
                 <p className="text-gray-400 text-sm flex items-start gap-2">
                   <MapPin size={14} className="text-orange mt-0.5 shrink-0" />
@@ -203,10 +204,10 @@ const FooterSection = () => {
 
           {/* Bottom bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between text-gray-500 text-xs gap-4">
-            <p>&copy; {new Date().getFullYear()} GLOBESTAR. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} GLOBESTAR. {t('footer.allRightsReserved')}</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-orange transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-orange transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-orange transition-colors">{t('footer.privacyPolicy')}</a>
+              <a href="#" className="hover:text-orange transition-colors">{t('footer.termsOfService')}</a>
             </div>
           </div>
         </div>

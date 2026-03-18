@@ -3,6 +3,7 @@ import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { CreditCard, Wallet, Landmark, CheckCircle2, Copy } from 'lucide-react';
 import { toast } from 'sonner';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
   <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
@@ -14,9 +15,10 @@ const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) 
 );
 
 const PaymentCard = ({ title, details, icon: Icon, color }: any) => {
+  const { t } = useLanguage();
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
-    toast.success('Copied to clipboard');
+    toast.success(t('bank.copySuccess'));
   };
 
   return (
@@ -48,19 +50,20 @@ const PaymentCard = ({ title, details, icon: Icon, color }: any) => {
 };
 
 const BankAccount = () => {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
       <TopBar />
       <Navbar />
-      <PageHero title="Bank Accounts" breadcrumb="Home / About / Bank Accounts" />
+      <PageHero title={t('bank.heroTitle')} breadcrumb={t('bank.heroBreadcrumb')} />
 
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">PAYMENT METHODS</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase italic">Our Official Bank Accounts</h2>
+          <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">{t('bank.paymentMethods')}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-6 uppercase italic">{t('bank.officialAccounts')}</h2>
           <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
           <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto italic">
-            Please use only our official accounts for any payments. Always verify the account name is <span className="font-bold text-[#0e2a47]">GLOBESTAR</span>.
+            {t('bank.verifyAccount')}
           </p>
         </div>
 
@@ -70,10 +73,10 @@ const BankAccount = () => {
             color="bg-green-600"
             icon={Landmark}
             details={[
-              { label: 'Account Holder', value: 'M. Karim Haddouchane' },
-              { label: 'RIB', value: '230 380 5605342214023500 73' },
-              { label: 'IBAN', value: 'MA64 2303 8056 0534 2214 0235 0073' },
-              { label: 'SWIFT Code', value: 'CIHMMAMC' },
+              { label: t('bank.accountHolder'), value: 'M. Karim Haddouchane' },
+              { label: t('bank.rib'), value: '230 380 5605342214023500 73' },
+              { label: t('bank.iban'), value: 'MA64 2303 8056 0534 2214 0235 0073' },
+              { label: t('bank.swiftCode'), value: 'CIHMMAMC' },
             ]}
           />
           <PaymentCard
@@ -81,9 +84,9 @@ const BankAccount = () => {
             color="bg-indigo-600"
             icon={CreditCard}
             details={[
-              { label: 'Account Name', value: 'GLOBESTAR' },
-              { label: 'PayPal Email', value: 'globestarvisa@gmail.com' },
-              { label: 'Status', value: 'Verified Business' },
+              { label: t('bank.accountName'), value: 'GLOBESTAR' },
+              { label: t('bank.paypalEmail'), value: 'globestarvisa@gmail.com' },
+              { label: t('bank.status'), value: t('bank.verifiedBusiness') },
             ]}
           />
           <PaymentCard
@@ -91,22 +94,22 @@ const BankAccount = () => {
             color="bg-yellow-500"
             icon={Wallet}
             details={[
-              { label: 'Network', value: 'TRC20 (Tron)' },
-              { label: 'Asset', value: 'USDT' },
-              { label: 'Address', value: 'Txxxxxxxxxxxxxxxxxxxxxxxxx' },
+              { label: t('bank.network'), value: 'TRC20 (Tron)' },
+              { label: t('bank.asset'), value: 'USDT' },
+              { label: t('bank.address'), value: 'Txxxxxxxxxxxxxxxxxxxxxxxxx' },
             ]}
           />
         </div>
 
         <div className="max-w-4xl mx-auto bg-[#0e2a47] p-8 md:p-12 rounded-3xl text-white">
-          <h3 className="text-2xl font-bold mb-8 italic text-center uppercase">Secure Payment Policy</h3>
+          <h3 className="text-2xl font-bold mb-8 italic text-center uppercase">{t('bank.securePolicy')}</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               {[
-                'Online payments are quick and secure.',
-                'Immediate payment confirmation.',
-                '0% Transaction fees for bank transfers.',
-                'WhatsApp support for payment assistance.',
+                t('bank.quickSecure'),
+                t('bank.immediateConfirmation'),
+                t('bank.zeroFees'),
+                t('bank.whatsappSupport'),
               ].map((text, idx) => (
                 <div key={idx} className="flex items-center gap-3">
                   <CheckCircle2 className="text-[#f27024] shrink-0" size={18} />
@@ -114,9 +117,9 @@ const BankAccount = () => {
                 </div>
               ))}
             </div>
-            <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 text-start">
               <p className="text-sm text-white/60 leading-relaxed italic">
-                After making a payment, please send a screenshot of the transaction receipt to our official WhatsApp +34 624 13 21 71 or email us at globestarvisa@gmail.com for faster processing.
+                {t('bank.afterPayment')}
               </p>
             </div>
           </div>

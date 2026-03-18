@@ -217,7 +217,7 @@ const Contact = () => {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
               </div>
-              <button 
+              <button
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full bg-[#f27024] text-white py-4 rounded-lg font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-lg shadow-orange-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
