@@ -21,7 +21,7 @@ const AboutSection = () => (
             We understand the people 's needs
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-navy leading-tight mb-4">
-            Work, Visit & Study Visas
+            Visit & Study Visas
           </h2>
           <div className="w-12 h-1 bg-orange mb-6" />
           <p className="text-foreground font-medium mb-4">
