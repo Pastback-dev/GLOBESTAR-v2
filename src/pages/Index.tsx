@@ -3,7 +3,6 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ThreeCardSection from '@/components/ThreeCardSection';
 import CTABanner from '@/components/CTABanner';
-import ServicesSection from '@/components/ServicesSection';
 import VisaSolutionsSection from '@/components/VisaSolutionsSection';
 import DestinationsSection from '@/components/DestinationsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -20,7 +19,6 @@ const Index = () => (
     <AboutSection />
     <ThreeCardSection />
     <CTABanner />
-    <ServicesSection />
     <DestinationsSection />
     <TestimonialsSection />
     <InfoSection />

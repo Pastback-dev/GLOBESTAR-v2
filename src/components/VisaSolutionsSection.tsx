@@ -46,7 +46,7 @@ const VisaSolutionsSection = () => (
       {/* Header */}
       <div className="text-center mb-16">
         <p className="text-[#f27024] text-sm font-bold uppercase tracking-widest mb-3">We Provide the Visa solutions</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-8 uppercase italic">Visa Invitation Letters</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-[#0e2a47] mb-8 uppercase italic">Visa Invitation Letters :-</h2>
         <div className="w-16 h-1 bg-[#f27024] mx-auto mb-8"></div>
         <p className="text-gray-600 leading-relaxed max-w-4xl mx-auto">
           A visa invitation letter is a written letter from a company or person who lives in the country you wish to visit. This letter serves as an invitation to stay with them, and by extension, guarantees that you will not overstay your visa. We offer company invitation letters for business, family, and visit visas for countries such as Lithuania, Albania, Belarus, the UK, Russia, Serbia, Moldova, Kosovo, Ukraine, Spain, Sweden, Hungary, Luxembourg, Netherlands & German and more.
