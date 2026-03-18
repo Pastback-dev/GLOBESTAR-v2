@@ -3,6 +3,7 @@ import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { CheckCircle2, Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
   <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
@@ -22,6 +23,46 @@ const Contact = () => {
     service: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mreyovzz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast.success("Message sent successfully! We'll get back to you soon.");
+        setFormData({
+          firstName: '',
+          email: '',
+          phone: '',
+          country: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          toast.error(data.errors.map((error: { message: string }) => error.message).join(", "));
+        } else {
+          toast.error("Oops! There was a problem submitting your form");
+        }
+      }
+    } catch (error) {
+      toast.error("Oops! There was a problem submitting your form");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -96,12 +137,14 @@ const Contact = () => {
           {/* Right - Contact Form */}
           <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100">
             <h3 className="text-2xl font-bold text-[#0e2a47] mb-8">Send Us a Message</h3>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">FIRST NAME *</label>
                   <input
+                    name="firstName"
                     type="text"
+                    required
                     placeholder="Your first name"
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none"
                     value={formData.firstName}
@@ -111,7 +154,9 @@ const Contact = () => {
                 <div>
                   <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">EMAIL ADDRESS *</label>
                   <input
+                    name="email"
                     type="email"
+                    required
                     placeholder="your@email.com"
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none"
                     value={formData.email}
@@ -123,6 +168,7 @@ const Contact = () => {
                 <div>
                   <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">PHONE NUMBER</label>
                   <input
+                    name="phone"
                     type="text"
                     placeholder="+1 234 567 890"
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none"
@@ -133,6 +179,7 @@ const Contact = () => {
                 <div>
                   <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">YOUR COUNTRY</label>
                   <input
+                    name="country"
                     type="text"
                     placeholder="Your country of residence"
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none"
@@ -144,6 +191,7 @@ const Contact = () => {
               <div>
                 <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">SERVICE INTERESTED IN</label>
                 <select
+                  name="service"
                   className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none appearance-none"
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
@@ -160,15 +208,21 @@ const Contact = () => {
               <div>
                 <label className="block text-xs font-bold text-[#0e2a47] uppercase tracking-wider mb-2">MESSAGE *</label>
                 <textarea
+                  name="message"
                   rows={4}
+                  required
                   placeholder="Tell us how we can help you..."
                   className="w-full bg-section-gray border-0 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#f27024] outline-none resize-none"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
               </div>
-              <button className="w-full bg-[#f27024] text-white py-4 rounded-lg font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-lg shadow-orange-500/20">
-                Send Message
+              <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-[#f27024] text-white py-4 rounded-lg font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-lg shadow-orange-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>

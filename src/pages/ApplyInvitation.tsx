@@ -3,6 +3,7 @@ import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { User, Phone, Mail, Globe, Calendar, FileText, Upload, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
   <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
@@ -38,6 +39,7 @@ const ApplyInvitation = () => {
     otherDetails: '',
     paymentMethod: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [files, setFiles] = useState<{
     passport: File | null;
@@ -57,6 +59,78 @@ const ApplyInvitation = () => {
   const handlePaymentMethodChange = (method: string) => {
     setFormData({ ...formData, paymentMethod: method });
     setPaymentFee(0);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const submissionData = new FormData();
+    
+    // Append all form data
+    Object.entries(formData).forEach(([key, value]) => {
+      submissionData.append(key, value);
+    });
+
+    // Append files
+    if (files.passport) submissionData.append('passport', files.passport);
+    if (files.wifePassport) submissionData.append('wifePassport', files.wifePassport);
+    if (files.otherPassports) submissionData.append('otherPassports', files.otherPassports);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xwvrwzdg", {
+        method: "POST",
+        body: submissionData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        toast.success("Application submitted successfully! We will process it within 3 business days.");
+        // Reset form
+        setFormData({
+          country: '',
+          invitationType: '',
+          travelerCount: '',
+          embassy: '',
+          startDate: '',
+          finishDate: '',
+          title: '',
+          fullName: '',
+          dob: '',
+          passportNumber: '',
+          issuingCountry: '',
+          expiryDate: '',
+          phone: '',
+          email: '',
+          address: '',
+          profession: '',
+          designation: '',
+          annualIncome: '',
+          employerName: '',
+          employerAddress: '',
+          otherDetails: '',
+          paymentMethod: ''
+        });
+        setFiles({
+          passport: null,
+          wifePassport: null,
+          otherPassports: null
+        });
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          toast.error(data.errors.map((error: { message: string }) => error.message).join(", "));
+        } else {
+          toast.error("Oops! There was a problem submitting your application.");
+        }
+      }
+    } catch (error) {
+      toast.error("Oops! There was a problem submitting your application.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -79,7 +153,7 @@ const ApplyInvitation = () => {
           {/* Form */}
           <div className="lg:col-span-2 order-2 lg:order-1">
             <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100">
-              <form className="space-y-8">
+              <form className="space-y-8" onSubmit={handleSubmit}>
                 {/* Trip Details */}
                 <div className="space-y-6">
                   <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">1. Trip Details</h3>
@@ -89,6 +163,7 @@ const ApplyInvitation = () => {
                         <Globe size={12} className="text-[#f27024]" /> Choose Country *
                       </label>
                       <select 
+                        name="country"
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         value={formData.country}
                         onChange={(e) => setFormData({...formData, country: e.target.value})}
@@ -103,6 +178,7 @@ const ApplyInvitation = () => {
                         <FileText size={12} className="text-[#f27024]" /> Choose Invitation Type *
                       </label>
                       <select 
+                        name="invitationType"
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         value={formData.invitationType}
                         onChange={(e) => setFormData({...formData, invitationType: e.target.value})}
@@ -123,6 +199,7 @@ const ApplyInvitation = () => {
                         <User size={12} className="text-[#f27024]" /> Select the Number of Traveler
                       </label>
                       <select 
+                        name="travelerCount"
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         value={formData.travelerCount}
                         onChange={(e) => setFormData({...formData, travelerCount: e.target.value})}
@@ -136,6 +213,7 @@ const ApplyInvitation = () => {
                         <Globe size={12} className="text-[#f27024]" /> Embassy, where you will apply the visa
                       </label>
                       <input 
+                        name="embassy"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="E.g. 42 Wallaby Way"
@@ -151,6 +229,7 @@ const ApplyInvitation = () => {
                         <Calendar size={12} className="text-[#f27024]" /> Travel Start Date *
                       </label>
                       <input 
+                        name="startDate"
                         type="date" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         value={formData.startDate}
@@ -163,6 +242,7 @@ const ApplyInvitation = () => {
                         <Calendar size={12} className="text-[#f27024]" /> Travel Finish Date *
                       </label>
                       <input 
+                        name="finishDate"
                         type="date" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         value={formData.finishDate}
@@ -202,6 +282,7 @@ const ApplyInvitation = () => {
                         Full Name *
                       </label>
                       <input 
+                        name="fullName"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="Full Name"
@@ -218,6 +299,7 @@ const ApplyInvitation = () => {
                         Date of Birth *
                       </label>
                       <input 
+                        name="dob"
                         type="date" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         value={formData.dob}
@@ -230,6 +312,7 @@ const ApplyInvitation = () => {
                         Passport Number *
                       </label>
                       <input 
+                        name="passportNumber"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="Passport Number"
@@ -246,6 +329,7 @@ const ApplyInvitation = () => {
                         Issuing Country
                       </label>
                       <input 
+                        name="issuingCountry"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="Issuing Country"
@@ -258,6 +342,7 @@ const ApplyInvitation = () => {
                         Date of Expire
                       </label>
                       <input 
+                        name="expiryDate"
                         type="date" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         value={formData.expiryDate}
@@ -276,6 +361,7 @@ const ApplyInvitation = () => {
                         <Phone size={12} className="text-[#f27024]" /> Phone *
                       </label>
                       <input 
+                        name="phone"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="E.g., +1 300 400 5000"
@@ -289,6 +375,7 @@ const ApplyInvitation = () => {
                         <Mail size={12} className="text-[#f27024]" /> Email Address *
                       </label>
                       <input 
+                        name="email"
                         type="email" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="Email Address"
@@ -303,6 +390,7 @@ const ApplyInvitation = () => {
                       Home Address
                     </label>
                     <input 
+                      name="address"
                       type="text" 
                       className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                       placeholder="E.g., 42 Wallaby Way"
@@ -341,6 +429,7 @@ const ApplyInvitation = () => {
                         Your Designation
                       </label>
                       <input 
+                        name="designation"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="Your Designation"
@@ -356,6 +445,7 @@ const ApplyInvitation = () => {
                         Your Annual Income in Euro
                       </label>
                       <input 
+                        name="annualIncome"
                         type="number" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="Your Annual Income in Euro"
@@ -368,6 +458,7 @@ const ApplyInvitation = () => {
                         Employer Name
                       </label>
                       <input 
+                        name="employerName"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                         placeholder="Employer Name"
@@ -381,6 +472,7 @@ const ApplyInvitation = () => {
                       Employer Address
                     </label>
                     <input 
+                      name="employerAddress"
                       type="text" 
                       className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
                       placeholder="E.g., 42 Wallaby Way"
@@ -400,6 +492,7 @@ const ApplyInvitation = () => {
                         Passport (main applicant) *
                       </label>
                       <input 
+                        name="passport"
                         type="file" 
                         accept=".pdf"
                         className="hidden" 
@@ -421,6 +514,7 @@ const ApplyInvitation = () => {
                         Wife Passport
                       </label>
                       <input 
+                        name="wifePassport"
                         type="file" 
                         accept=".pdf"
                         className="hidden" 
@@ -442,6 +536,7 @@ const ApplyInvitation = () => {
                         Other all Passports
                       </label>
                       <input 
+                        name="otherPassports"
                         type="file" 
                         accept=".pdf"
                         className="hidden" 
@@ -464,6 +559,7 @@ const ApplyInvitation = () => {
                 <div className="space-y-6">
                   <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">6. Other Details</h3>
                   <textarea 
+                    name="otherDetails" 
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic min-h-[120px]"
                     placeholder="E.g., type your other details if you want."
                     value={formData.otherDetails}
@@ -492,6 +588,32 @@ const ApplyInvitation = () => {
                       </button>
                     ))}
                   </div>
+
+                  {/* Bank Account Details */}
+                  <div className="mt-6 p-6 bg-white rounded-xl border border-gray-200">
+                    <h4 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-4 italic">Bank Account Details</h4>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Account Holder:</span>
+                        <span className="font-semibold text-[#0e2a47]">M. Karim Haddouchane</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">RIB:</span>
+                        <span className="font-semibold text-[#0e2a47]">230 380 5605342214023500 73</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">IBAN:</span>
+                        <span className="font-semibold text-[#0e2a47] break-all">MA64 2303 8056 0534 2214 0235 0073</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">SWIFT Code:</span>
+                        <span className="font-semibold text-[#0e2a47]">CIHMMAMC</span>
+                      </div>
+                    </div>
+                    <p className="mt-4 text-xs text-gray-500 italic">
+                      Please include your full name and application reference in the payment description.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex items-start gap-3 p-4 bg-orange/5 rounded-lg border border-orange/10">
@@ -503,8 +625,12 @@ const ApplyInvitation = () => {
                   </p>
                 </div>
 
-                <button className="w-full bg-[#f27024] text-white py-5 rounded-lg font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-xl shadow-orange-500/20 flex items-center justify-center gap-3">
-                  Proceed Your Payment
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#f27024] text-white py-5 rounded-lg font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-xl shadow-orange-500/20 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Processing...' : 'Proceed Your Payment'}
                 </button>
               </form>
             </div>

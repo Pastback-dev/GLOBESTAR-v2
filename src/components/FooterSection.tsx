@@ -1,9 +1,43 @@
 import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const FooterSection = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xdawpjvz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (response.ok) {
+        toast.success("Assessment request sent successfully!");
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          toast.error(data.errors.map((error: { message: string }) => error.message).join(", "));
+        } else {
+          toast.error("Oops! There was a problem submitting your request.");
+        }
+      }
+    } catch (error) {
+      toast.error("Oops! There was a problem submitting your request.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -17,9 +51,11 @@ const FooterSection = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-navy-foreground mb-8 leading-tight">
                 Feel Free To Enquire About<br />Any Questions You Got
               </h2>
-              <form className="space-y-4" onSubmit={e => e.preventDefault()}>
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <input
                   type="text"
+                  name="name"
+                  required
                   placeholder="Full Name"
                   value={form.name}
                   onChange={e => setForm({ ...form, name: e.target.value })}
@@ -27,20 +63,28 @@ const FooterSection = () => {
                 />
                 <input
                   type="email"
+                  name="email"
+                  required
                   placeholder="Email Address"
                   value={form.email}
                   onChange={e => setForm({ ...form, email: e.target.value })}
                   className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange"
                 />
                 <textarea
+                  name="message"
+                  required
                   placeholder="Your Message"
                   rows={4}
                   value={form.message}
                   onChange={e => setForm({ ...form, message: e.target.value })}
                   className="w-full bg-navy-light text-navy-foreground placeholder:text-navy-foreground/50 border-0 rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange resize-none"
                 />
-                <button type="submit" className="inline-flex items-center gap-2 bg-orange text-orange-foreground px-8 py-3 rounded text-sm font-semibold hover:bg-orange-hover transition-colors">
-                  Submit <Send size={14} />
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="inline-flex items-center gap-2 bg-orange text-orange-foreground px-8 py-3 rounded text-sm font-semibold hover:bg-orange-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit'} <Send size={14} />
                 </button>
               </form>
             </div>
