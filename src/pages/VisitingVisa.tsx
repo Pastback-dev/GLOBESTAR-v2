@@ -18,11 +18,11 @@ const VisitingVisa = () => {
   const { t } = useLanguage();
 
   const evisas = [
-    { country: `${t('country.albania')} E-visa`, price: '550' },
-    { country: `Moldova E-visa`, price: '1000' },
-    { country: `Georgia E-visa`, price: '450' },
-    { country: `Hong Kong E-visa`, price: '250' },
-    { country: `Turkey E-visa`, price: '150' },
+    { country: `${t('country.albania')} E-visa`, price: '600 ($660 / 6600 MAD)' },
+    { country: `Moldova E-visa`, price: '1050 ($1155 / 11550 MAD)' },
+    { country: `Georgia E-visa`, price: '500 ($550 / 5500 MAD)' },
+    { country: `Hong Kong E-visa`, price: '300 ($330 / 3300 MAD)' },
+    { country: `Turkey E-visa`, price: '200 ($220 / 2200 MAD)' },
   ];
 
   return (

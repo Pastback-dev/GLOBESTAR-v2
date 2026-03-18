@@ -254,9 +254,9 @@ const translations = {
     'compReg.submitting': 'Submitting...',
     'compReg.success': 'Application submitted successfully! Our team will contact you within 24-48 hours.',
     'compReg.error': 'Oops! There was a problem submitting your application.',
-    'compReg.packageBasic': 'Basic – From €1,200',
-    'compReg.packageAdvance': 'Advance – From €1,800',
-    'compReg.packagePremier': 'Premier – From €2,500',
+    'compReg.packageBasic': 'Basic – From €1,250 ($1,375 / 13,750 MAD)',
+    'compReg.packageAdvance': 'Advance – From €1,850 ($2,035 / 20,350 MAD)',
+    'compReg.packagePremier': 'Premier – From €2,550 ($2,805 / 28,050 MAD)',
 
     // Types of Invitation
     'invitation.heroTitle': 'Types of Invitation',
@@ -329,7 +329,7 @@ const translations = {
     'costs.faq2A': 'We provide visa support documentation (invitations) but the final application must be submitted by the applicant at the embassy or visa center.',
     'costs.faq3Q': 'How can we verify the authenticity and legality of the invitation?',
     'costs.faq3A': 'All our invitations are issued by legally registered companies and can be verified through the respective government migration portals where applicable.',
-    'costs.noteMediation': 'The Letter of Mediation approved by Migration costs € 750.',
+    'costs.noteMediation': 'The Letter of Mediation approved by Migration costs € 800 ($880 / 8,800 MAD).',
     'costs.notePerPerson': 'The cost of the Family Invitation letter is per person.',
     'costs.notePolice': 'The b. invitation letter is approved by the police/magistrate',
     'costs.noteTouristType': 'The family invitation letter will be of tourist type.',
@@ -702,9 +702,9 @@ const translations = {
     'compReg.submitting': 'جاري التقديم...',
     'compReg.success': 'تم تقديم الطلب بنجاح! سيتصل بك فريقنا في غضون 24-48 ساعة.',
     'compReg.error': 'عذراً! حدثت مشكلة أثناء تقديم طلبك.',
-    'compReg.packageBasic': 'أساسي – من 1,200 €',
-    'compReg.packageAdvance': 'متقدم – من 1,800 €',
-    'compReg.packagePremier': 'مميز – من 2,500 €',
+    'compReg.packageBasic': 'أساسي – من 1,250 € (1,375 دولاراً / 13,750 درهماً)',
+    'compReg.packageAdvance': 'متقدم – من 1,850 € (2,035 دولاراً / 20,350 درهماً)',
+    'compReg.packagePremier': 'مميز – من 2,550 € (2,805 دولاراً / 28,050 درهماً)',
 
     // Types of Invitation
     'invitation.heroTitle': 'أنواع الدعوات',
@@ -777,7 +777,7 @@ const translations = {
     'costs.faq2A': 'نحن نقدم وثائق دعم التأشيرة (الدعوات) ولكن يجب تقديم الطلب النهائي من قبل مقدم الطلب في السفارة أو مركز التأشيرات.',
     'costs.faq3Q': 'كيف يمكننا التحقق من أصالة وقانونية الدعوة؟',
     'costs.faq3A': 'جميع دعواتنا صادرة عن شركات مسجلة قانونياً ويمكن التحقق منها من خلال بوابات الهجرة الحكومية المعنية عند الاقتضاء.',
-    'costs.noteMediation': 'خطاب الوساطة المعتمد من الهجرة يكلف 750 يورو.',
+    'costs.noteMediation': 'خطاب الوساطة المعتمد من الهجرة يكلف 800 يورو (880 دولاراً / 8,800 درهماً).',
     'costs.notePerPerson': 'تكلفة خطاب الدعوة العائلي هي للشخص الواحد.',
     'costs.notePolice': 'خطاب دعوة العمل معتمد من الشرطة/القاضي',
     'costs.noteTouristType': 'سيكون خطاب الدعوة العائلي من النوع السياحي.',

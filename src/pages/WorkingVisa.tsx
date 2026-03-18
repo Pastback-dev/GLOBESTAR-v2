@@ -82,78 +82,78 @@ const WorkingVisa = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           <VisaCard 
-            country="Czech Republic" price="1700" prepayment="750" readyPay="950" 
-            duration="3 Month work permit" job="Warehouse worker" salary="800 €" 
+            country="Czech Republic" price="1750 ($1925 / 19250 MAD)" prepayment="800 ($880 / 8800 MAD)" readyPay="950 ($1045 / 10450 MAD)" 
+            duration="3 Month work permit" job="Warehouse worker" salary="850 € ($935 / 9350 MAD)" 
             facility="Accommodation" time="45 days"
           />
           <VisaCard 
-            country="Poland" price="1700" prepayment="750" readyPay="950" 
-            duration="12 Month work permit" job="Fitter worker" salary="1000 €" 
+            country="Poland" price="1750 ($1925 / 19250 MAD)" prepayment="800 ($880 / 8800 MAD)" readyPay="950 ($1045 / 10450 MAD)" 
+            duration="12 Month work permit" job="Fitter worker" salary="1050 € ($1155 / 11550 MAD)" 
             facility="Accommodation" time="60 days"
           />
           <VisaCard 
-            country="Lithuania" price="1700" prepayment="750" readyPay="950" 
+            country="Lithuania" price="1750 ($1925 / 19250 MAD)" prepayment="800 ($880 / 8800 MAD)" readyPay="950 ($1045 / 10450 MAD)" 
             duration="One Year" job="Electricians, Plumber, Fitter, Con." salary="15 € Per Hour" 
             facility="Transport & Medical" time="40 days"
           />
           <VisaCard 
-            country="Malta" price="2400" prepayment="1250" readyPay="1150" 
-            duration="One Year" job="Factory worker" salary="1050 €" 
+            country="Malta" price="2450 ($2695 / 26950 MAD)" prepayment="1300 ($1430 / 14300 MAD)" readyPay="1150 ($1265 / 12650 MAD)" 
+            duration="One Year" job="Factory worker" salary="1100 € ($1210 / 12100 MAD)" 
             facility="Accommodation" time="65 days"
           />
           <VisaCard 
-            country="Romania" price="2300" prepayment="1050" readyPay="1250" 
-            duration="One Year" job="Fitter worker" salary="1000 €" 
+            country="Romania" price="2350 ($2585 / 25850 MAD)" prepayment="1100 ($1210 / 12100 MAD)" readyPay="1250 ($1375 / 13750 MAD)" 
+            duration="One Year" job="Fitter worker" salary="1050 € ($1155 / 11550 MAD)" 
             facility="Accommodation" time="90 days"
           />
           <VisaCard 
-            country="Estonia" price="2200" prepayment="950" readyPay="1250" 
-            duration="One Year" job="General workers" salary="1200 €" 
+            country="Estonia" price="2250 ($2475 / 24750 MAD)" prepayment="1000 ($1100 / 11000 MAD)" readyPay="1250 ($1375 / 13750 MAD)" 
+            duration="One Year" job="General workers" salary="1250 € ($1375 / 13750 MAD)" 
             facility="Transport & Medical" time="60 days"
           />
           <VisaCard 
-            country="United Kingdom" price="2350" prepayment="965" readyPay="1385" 
+            country="United Kingdom" price="2400 ($2640 / 26400 MAD)" prepayment="1015 ($1117 / 11165 MAD)" readyPay="1385 ($1524 / 15235 MAD)" 
             duration="12 Month work permit" job="Pickers, Warehouse workers" salary="11 £ Hourly" 
             facility="Accommodation" time="60 days"
           />
           <VisaCard 
-            country="Spain" price="3400" prepayment="1400" readyPay="2000" 
-            duration="12 Month work permit" job="Saleman, Supervisor & Marketing" salary="1600€ - 2000€" 
+            country="Spain" price="3450 ($3795 / 37950 MAD)" prepayment="1450 ($1595 / 15950 MAD)" readyPay="2000 ($2200 / 22000 MAD)" 
+            duration="12 Month work permit" job="Saleman, Supervisor & Marketing" salary="1650€ - 2050€ ($1815-2255 / 18150-22550 MAD)" 
             facility="Accommodation" time="60 days"
           />
           <VisaCard 
-            country="Italy" price="1800" prepayment="850" readyPay="950" 
-            duration="One Year" job="General Farm, Warehouse" salary="1100 €" 
+            country="Italy" price="1850 ($2035 / 20350 MAD)" prepayment="900 ($990 / 9900 MAD)" readyPay="950 ($1045 / 10450 MAD)" 
+            duration="One Year" job="General Farm, Warehouse" salary="1150 € ($1265 / 12650 MAD)" 
             facility="Transport & Medical" time="60 days"
           />
           <VisaCard 
-            country="Hungary" price="1800" prepayment="750" readyPay="1050" 
+            country="Hungary" price="1850 ($2035 / 20350 MAD)" prepayment="800 ($880 / 8800 MAD)" readyPay="1050 ($1155 / 11550 MAD)" 
             duration="12 Month work permit" job="Factory Workers" salary="12 € Per Hour" 
             facility="Accommodation" time="35 days"
           />
           <VisaCard 
-            country="Slovakia" price="2000" prepayment="960" readyPay="1040" 
+            country="Slovakia" price="2050 ($2255 / 22550 MAD)" prepayment="1010 ($1111 / 11110 MAD)" readyPay="1040 ($1144 / 11440 MAD)" 
             duration="12 Month work permit" job="General workers" salary="800 $" 
             facility="Assist: To get Accommodation" time="50 days"
           />
           <VisaCard 
-            country="Bulgaria" price="2100" prepayment="950" readyPay="1150" 
-            duration="12 Month work permit" job="Worker in GH/Cleaner/Driver/Builder" salary="550-600 €" 
+            country="Bulgaria" price="2150 ($2365 / 23650 MAD)" prepayment="1000 ($1100 / 11000 MAD)" readyPay="1150 ($1265 / 12650 MAD)" 
+            duration="12 Month work permit" job="Worker in GH/Cleaner/Driver/Builder" salary="600-650 € ($660-715 / 6600-7150 MAD)" 
             facility="Free Accommodation & Transport" time="50 days"
           />
           <VisaCard 
-            country="Albania" price="1700" prepayment="750" readyPay="950" 
+            country="Albania" price="1750 ($1925 / 19250 MAD)" prepayment="800 ($880 / 8800 MAD)" readyPay="950 ($1045 / 10450 MAD)" 
             duration="12 Months" job="Warehouse" salary="117600 ALL" 
             facility="Medical: Including" time="2 Weeks"
           />
           <VisaCard 
-            country="Belarus" price="3500" prepayment="1500" readyPay="2000" 
-            duration="Open Work Permit" job="General Worker" salary="1000 €" 
+            country="Belarus" price="3550 ($3905 / 39050 MAD)" prepayment="1550 ($1705 / 17050 MAD)" readyPay="2000 ($2200 / 22000 MAD)" 
+            duration="Open Work Permit" job="General Worker" salary="1050 € ($1155 / 11550 MAD)" 
             facility="Accommodation" time="16 Weeks"
           />
           <VisaCard 
-            country="Serbia" price="1700" prepayment="750" readyPay="950" 
-            duration="6 Month work permit" job="Factory Worker" salary="750 €" 
+            country="Serbia" price="1750 ($1925 / 19250 MAD)" prepayment="800 ($880 / 8800 MAD)" readyPay="950 ($1045 / 10450 MAD)" 
+            duration="6 Month work permit" job="Factory Worker" salary="800 € ($880 / 8800 MAD)" 
             facility="Medical: Included" time="2 Weeks"
           />
         </div>

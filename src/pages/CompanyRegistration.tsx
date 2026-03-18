@@ -18,12 +18,12 @@ const CompanyRegistration = () => {
   const { t } = useLanguage();
 
   const registrationServices = [
-    { country: t('country.lithuania'), price: '1500', icon: Building },
-    { country: t('country.estonia'), price: '1500', icon: Building },
-    { country: t('country.albania'), price: '1200', icon: Landmark },
-    { country: t('country.belarus'), price: '1200', icon: Building },
-    { country: t('country.uk'), price: '650', icon: Scale },
-    { country: t('country.ireland'), price: '1050', icon: Landmark },
+    { country: t('country.lithuania'), price: '1550 ($1705 / 17050 MAD)', icon: Building },
+    { country: t('country.estonia'), price: '1550 ($1705 / 17050 MAD)', icon: Building },
+    { country: t('country.albania'), price: '1250 ($1375 / 13750 MAD)', icon: Landmark },
+    { country: t('country.belarus'), price: '1250 ($1375 / 13750 MAD)', icon: Building },
+    { country: t('country.uk'), price: '700 ($770 / 7700 MAD)', icon: Scale },
+    { country: t('country.ireland'), price: '1100 ($1210 / 12100 MAD)', icon: Landmark },
   ];
 
   return (

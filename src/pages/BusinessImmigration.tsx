@@ -20,38 +20,38 @@ const BusinessImmigration = () => {
   const immigrationServices = [
     {
       country: t('country.lithuania'),
-      price: '10500',
+      price: '10550 ($11605 / 116050 MAD)',
       desc: t('immigration.lithuaniaDesc'),
       img: '/assets/business-lithuania.jpg'
     },
     {
       country: t('country.estonia'),
-      price: '12500',
+      price: '12550 ($13805 / 138050 MAD)',
       desc: t('immigration.estoniaDesc'),
       img: '/assets/business-estonia.jpg'
     },
     {
       country: t('country.albania'),
-      price: '10500',
+      price: '10550 ($11605 / 116050 MAD)',
       desc: t('immigration.albaniaDesc'),
       img: '/assets/business-albania.jpg'
     },
     {
       country: t('country.belarus'),
-      price: '9000',
+      price: '9050 ($9955 / 99550 MAD)',
       desc: t('immigration.belarusDesc'),
       img: '/assets/business-belarus.jpg',
       externalLink: 'https://mfa.gov.by/en/visa/registration/temporary_residence/'
     },
     {
       country: t('country.uk'),
-      price: '12500',
+      price: '12550 ($13805 / 138050 MAD)',
       desc: t('immigration.ukDesc'),
       img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80'
     },
     {
       country: t('country.ireland'),
-      price: '10500',
+      price: '10550 ($11605 / 116050 MAD)',
       desc: t('immigration.irelandDesc'),
       img: 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=800&q=80'
     }
