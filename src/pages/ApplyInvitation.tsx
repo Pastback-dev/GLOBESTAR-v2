@@ -78,7 +78,7 @@ const ApplyInvitation = () => {
     if (files.otherPassports) submissionData.append('otherPassports', files.otherPassports);
 
     try {
-      const response = await fetch("https://formspree.io/f/xwvrwzdg", {
+      const response = await fetch("https://usebasin.com/f/f9e46ce0d9c7", {
         method: "POST",
         body: submissionData,
         headers: {

@@ -12,7 +12,7 @@ const FooterSection = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/xdawpjvz", {
+      const response = await fetch("https://usebasin.com/f/0b163e0b68d3", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
