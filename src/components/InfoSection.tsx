@@ -8,12 +8,7 @@ const news = [
     excerpt: 'Lithuania has opened new immigration pathways for experienced bus drivers with valid licenses, offering work permits and residency options.',
     category: 'Immigration News',
   },
-  {
-    date: 'February 2025',
-    title: 'New working visa opportunities in Malta for 2025',
-    excerpt: 'Malta has expanded its working visa program with new sectors including hospitality, healthcare and IT, with fast-track processing available.',
-    category: 'Visa Updates',
-  },
+
   {
     date: 'January 2025',
     title: 'Albania e-visa: Complete guide for 2025 applicants',

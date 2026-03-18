@@ -6,37 +6,37 @@ const invitationTypes = [
     icon: Users,
     title: 'Group Invitation',
     description: 'A group invitation is a written document from a company to obtain tourist group visas.',
-    link: '/apply-invitation',
+    link: '/details-and-costs',
   },
   {
     icon: Plane,
     title: 'Visit Invitation',
     description: 'A visa invitation letter is a written letter from the company for a visitor visa.',
-    link: '/apply-invitation',
+    link: '/details-and-costs',
   },
   {
     icon: Briefcase,
     title: 'Business Invitation',
     description: 'A visa invitation letter is a written letter from the company for a business visa purpose.',
-    link: '/apply-invitation',
+    link: '/details-and-costs',
   },
   {
     icon: Heart,
     title: 'Family Invitation',
     description: 'A visa invitation letter is a written letter from the company for a Family visitor visa.',
-    link: '/apply-invitation',
+    link: '/details-and-costs',
   },
   {
     icon: MapPin,
     title: 'Tourist Invitation',
     description: 'A visa invitation letter is a written letter from the tourist company for a tourist visa purpose.',
-    link: '/apply-invitation',
+    link: '/details-and-costs',
   },
   {
     icon: User,
     title: 'Private Invitation',
     description: 'A private invitation letter is a written document from an individual to obtain a tourist visa.',
-    link: '/apply-invitation',
+    link: '/details-and-costs',
   },
 ];
 
