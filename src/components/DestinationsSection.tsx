@@ -21,17 +21,6 @@ const DestinationsSection = () => {
   return (
     <section id="destinations" className="py-20 bg-section-gray">
       <div className="container mx-auto px-4">
-        {/* Video placeholder */}
-        <div className="text-center mb-16">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">{t('destinations.watchStory')}</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">{t('destinations.vlogTitle')}</h2>
-          <div className="max-w-3xl mx-auto aspect-video bg-navy rounded-lg flex items-center justify-center cursor-pointer group relative overflow-hidden">
-            <div className="w-16 h-16 rounded-full bg-orange flex items-center justify-center group-hover:scale-110 transition-transform">
-              <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-orange-foreground border-b-8 border-b-transparent ml-1" style={{ borderLeftWidth: '14px' }} />
-            </div>
-          </div>
-        </div>
-
         {/* Destinations */}
         <div className="text-center mb-10">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">{t('destinations.exploreWorld')}</p>
