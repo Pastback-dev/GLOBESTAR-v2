@@ -1,7 +1,7 @@
 import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { User, Phone, Mail, Globe, Calendar, FileText, Upload, AlertCircle } from 'lucide-react';
+import { User, Phone, Mail, Calendar, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -18,12 +18,6 @@ const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) 
 const ApplyInvitation = () => {
   const { t, isRTL } = useLanguage();
   const [formData, setFormData] = useState({
-    country: '',
-    invitationType: '',
-    travelerCount: '',
-    embassy: '',
-    startDate: '',
-    finishDate: '',
     title: '',
     fullName: '',
     dob: '',
@@ -43,20 +37,7 @@ const ApplyInvitation = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [files, setFiles] = useState<{
-    passport: File | null;
-    wifePassport: File | null;
-    otherPassports: File | null;
-  }>({
-    passport: null,
-    wifePassport: null,
-    otherPassports: null
-  });
-
   const [paymentFee, setPaymentFee] = useState(0);
-
-  const countries = ["USA", "UK", "Canada", "Australia", "Germany", "France", "UAE", "Saudi Arabia", "Turkey", "Other"];
-  const travelerOptions = ["1", "2", "3", "4", "5", "6+"];
 
   const handlePaymentMethodChange = (method: string) => {
     setFormData({ ...formData, paymentMethod: method });
@@ -74,11 +55,6 @@ const ApplyInvitation = () => {
       submissionData.append(key, value);
     });
 
-    // Append files
-    if (files.passport) submissionData.append('passport', files.passport);
-    if (files.wifePassport) submissionData.append('wifePassport', files.wifePassport);
-    if (files.otherPassports) submissionData.append('otherPassports', files.otherPassports);
-
     try {
       const response = await fetch("https://usebasin.com/f/f9e46ce0d9c7", {
         method: "POST",
@@ -92,12 +68,6 @@ const ApplyInvitation = () => {
         toast.success(t('apply.success'));
         // Reset form
         setFormData({
-          country: '',
-          invitationType: '',
-          travelerCount: '',
-          embassy: '',
-          startDate: '',
-          finishDate: '',
           title: '',
           fullName: '',
           dob: '',
@@ -114,11 +84,6 @@ const ApplyInvitation = () => {
           employerAddress: '',
           otherDetails: '',
           paymentMethod: ''
-        });
-        setFiles({
-          passport: null,
-          wifePassport: null,
-          otherPassports: null
         });
       } else {
         const data = await response.json();
@@ -156,108 +121,9 @@ const ApplyInvitation = () => {
           <div className="lg:col-span-2 order-2 lg:order-1">
             <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100">
               <form className="space-y-8" onSubmit={handleSubmit}>
-                {/* Trip Details */}
-                <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">1. Trip Details</h3>
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <Globe size={12} className="text-[#f27024]" /> Choose Country *
-                      </label>
-                      <select 
-                        name="country"
-                        className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        value={formData.country}
-                        onChange={(e) => setFormData({...formData, country: e.target.value})}
-                        required
-                      >
-                        <option value="">Select Country</option>
-                        {countries.map(c => <option key={c} value={c}>{c}</option>)}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <FileText size={12} className="text-[#f27024]" /> Choose Invitation Type *
-                      </label>
-                      <select 
-                        name="invitationType"
-                        className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        value={formData.invitationType}
-                        onChange={(e) => setFormData({...formData, invitationType: e.target.value})}
-                        required
-                      >
-                        <option value="">Select Invitation Type</option>
-                        <option value="visit">Visit Letter</option>
-                        <option value="family">Family Letter</option>
-                        <option value="business">Business Letter</option>
-                        <option value="mediation">Mediation Letter</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <User size={12} className="text-[#f27024]" /> Select the Number of Traveler
-                      </label>
-                      <select 
-                        name="travelerCount"
-                        className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        value={formData.travelerCount}
-                        onChange={(e) => setFormData({...formData, travelerCount: e.target.value})}
-                      >
-                        <option value="">Select Number</option>
-                        {travelerOptions.map(o => <option key={o} value={o}>{o}</option>)}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <Globe size={12} className="text-[#f27024]" /> Embassy, where you will apply the visa
-                      </label>
-                      <input 
-                        name="embassy"
-                        type="text" 
-                        className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="E.g. 42 Wallaby Way"
-                        value={formData.embassy}
-                        onChange={(e) => setFormData({...formData, embassy: e.target.value})}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <Calendar size={12} className="text-[#f27024]" /> Travel Start Date *
-                      </label>
-                      <input 
-                        name="startDate"
-                        type="date" 
-                        className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        value={formData.startDate}
-                        onChange={(e) => setFormData({...formData, startDate: e.target.value})}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <Calendar size={12} className="text-[#f27024]" /> Travel Finish Date *
-                      </label>
-                      <input 
-                        name="finishDate"
-                        type="date" 
-                        className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        value={formData.finishDate}
-                        onChange={(e) => setFormData({...formData, finishDate: e.target.value})}
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-
                 {/* Personal Information */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">2. Personal Information</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">1. Personal Information</h3>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
@@ -356,7 +222,7 @@ const ApplyInvitation = () => {
 
                 {/* Contact Information */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">3. Contact Information</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">2. Contact Information</h3>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
@@ -404,7 +270,7 @@ const ApplyInvitation = () => {
 
                 {/* Professional Information */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">4. Professional Information</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">3. Professional Information</h3>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
@@ -484,82 +350,9 @@ const ApplyInvitation = () => {
                   </div>
                 </div>
 
-                {/* Document Uploads */}
-                <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">5. Documents Upload (PDF Only)</h3>
-                  
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="bg-section-gray p-6 rounded-xl border-2 border-dashed border-gray-200 text-center">
-                      <label className="block text-[9px] font-bold text-[#0e2a47] uppercase tracking-wider mb-4 italic">
-                        Passport (main applicant) *
-                      </label>
-                      <input 
-                        name="passport"
-                        type="file" 
-                        accept=".pdf"
-                        className="hidden" 
-                        id="passport-upload"
-                        onChange={(e) => setFiles({...files, passport: e.target.files?.[0] || null})}
-                      />
-                      <label htmlFor="passport-upload" className="cursor-pointer group">
-                        <div className="w-12 h-12 rounded-full bg-white mx-auto flex items-center justify-center text-gray-400 group-hover:bg-[#0e2a47] group-hover:text-[#f27024] transition-colors shadow-sm mb-3">
-                          <Upload size={18} />
-                        </div>
-                        <p className="text-[10px] text-gray-500 italic">
-                          {files.passport ? files.passport.name : "Choose File"}
-                        </p>
-                      </label>
-                    </div>
-
-                    <div className="bg-section-gray p-6 rounded-xl border-2 border-dashed border-gray-200 text-center">
-                      <label className="block text-[9px] font-bold text-[#0e2a47] uppercase tracking-wider mb-4 italic">
-                        Wife Passport
-                      </label>
-                      <input 
-                        name="wifePassport"
-                        type="file" 
-                        accept=".pdf"
-                        className="hidden" 
-                        id="wife-passport-upload"
-                        onChange={(e) => setFiles({...files, wifePassport: e.target.files?.[0] || null})}
-                      />
-                      <label htmlFor="wife-passport-upload" className="cursor-pointer group">
-                        <div className="w-12 h-12 rounded-full bg-white mx-auto flex items-center justify-center text-gray-400 group-hover:bg-[#0e2a47] group-hover:text-[#f27024] transition-colors shadow-sm mb-3">
-                          <Upload size={18} />
-                        </div>
-                        <p className="text-[10px] text-gray-500 italic">
-                          {files.wifePassport ? files.wifePassport.name : "Choose File"}
-                        </p>
-                      </label>
-                    </div>
-
-                    <div className="bg-section-gray p-6 rounded-xl border-2 border-dashed border-gray-200 text-center">
-                      <label className="block text-[9px] font-bold text-[#0e2a47] uppercase tracking-wider mb-4 italic">
-                        Other all Passports
-                      </label>
-                      <input 
-                        name="otherPassports"
-                        type="file" 
-                        accept=".pdf"
-                        className="hidden" 
-                        id="other-passports-upload"
-                        onChange={(e) => setFiles({...files, otherPassports: e.target.files?.[0] || null})}
-                      />
-                      <label htmlFor="other-passports-upload" className="cursor-pointer group">
-                        <div className="w-12 h-12 rounded-full bg-white mx-auto flex items-center justify-center text-gray-400 group-hover:bg-[#0e2a47] group-hover:text-[#f27024] transition-colors shadow-sm mb-3">
-                          <Upload size={18} />
-                        </div>
-                        <p className="text-[10px] text-gray-500 italic">
-                          {files.otherPassports ? files.otherPassports.name : "Choose File"}
-                        </p>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
                 {/* Additional Details */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">6. Other Details</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">4. Other Details</h3>
                   <textarea 
                     name="otherDetails" 
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic min-h-[120px]"
@@ -571,7 +364,7 @@ const ApplyInvitation = () => {
 
                 {/* Payment Section */}
                 <div className="space-y-6 bg-section-gray p-8 rounded-2xl border border-gray-100">
-                  <h3 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-6 italic">7. Payment Method</h3>
+                  <h3 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-6 italic">5. Payment Method</h3>
                   <div className="grid grid-cols-1 gap-4">
                     {[
                       { id: 'bank', label: 'Bank Account' }
@@ -661,7 +454,7 @@ const ApplyInvitation = () => {
               <div className="space-y-6">
                 {[
                   { step: '1', text: 'Fill In The Invitation Form' },
-                  { step: '2', text: 'Attach Passport & Proceed Payment' },
+                  { step: '2', text: 'Proceed Payment' },
                   { step: '3', text: 'Receive your Invitation within 3 Days' }
                 ].map((s, i) => (
                   <div key={i} className="flex gap-4 items-center">
