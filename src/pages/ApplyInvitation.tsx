@@ -2,9 +2,11 @@ import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { User, Phone, Mail, Calendar, AlertCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { toast } from 'sonner';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSearchParams } from 'react-router-dom';
+import { getCountryPaymentOptions, startCheckout, type PriceOption, COUNTRIES } from '@/lib/stripe';
 
 const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
   <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
@@ -17,6 +19,17 @@ const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) 
 
 const ApplyInvitation = () => {
   const { t, isRTL } = useLanguage();
+  const [searchParams] = useSearchParams();
+  const paramCountry = searchParams.get('country') || 'Lithuania';
+
+  const [selectedCountry, setSelectedCountry] = useState(paramCountry);
+  const options = useMemo(() => getCountryPaymentOptions(selectedCountry), [selectedCountry]);
+  const [selectedOption, setSelectedOption] = useState<PriceOption>(options[0]);
+
+  useEffect(() => {
+    setSelectedOption(options[0]);
+  }, [options]);
+
   const [formData, setFormData] = useState({
     title: '',
     fullName: '',
@@ -33,7 +46,7 @@ const ApplyInvitation = () => {
     employerName: '',
     employerAddress: '',
     otherDetails: '',
-    paymentMethod: ''
+    paymentMethod: 'stripe'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -55,6 +68,11 @@ const ApplyInvitation = () => {
       submissionData.append(key, value);
     });
 
+    // Append country and package
+    submissionData.append('DestinationCountry', selectedCountry);
+    submissionData.append('InvitationPackage', selectedOption.label);
+    submissionData.append('AmountToPay', String(selectedOption.amount));
+
     try {
       const response = await fetch("https://usebasin.com/f/f9e46ce0d9c7", {
         method: "POST",
@@ -66,6 +84,10 @@ const ApplyInvitation = () => {
 
       if (response.ok) {
         toast.success(t('apply.success'));
+        if (formData.paymentMethod === 'stripe') {
+          await startCheckout(selectedCountry, selectedOption);
+          return; // Stop execution to prevent form reset before redirecting
+        }
         // Reset form
         setFormData({
           title: '',
@@ -121,6 +143,48 @@ const ApplyInvitation = () => {
           <div className="lg:col-span-2 order-2 lg:order-1">
             <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100">
               <form className="space-y-8" onSubmit={handleSubmit}>
+                {/* Package Selection */}
+                <div className="space-y-6">
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">0. Invitation Package</h3>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
+                        Destination Country *
+                      </label>
+                      <select
+                        value={selectedCountry}
+                        onChange={(e) => setSelectedCountry(e.target.value)}
+                        className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic text-[#0e2a47]"
+                        required
+                      >
+                        {COUNTRIES.map(c => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
+                        Select Package *
+                      </label>
+                      <select
+                        value={selectedOption.type}
+                        onChange={(e) => {
+                          const opt = options.find(o => o.type === e.target.value);
+                          if (opt) setSelectedOption(opt);
+                        }}
+                        className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic font-bold text-[#0e2a47]"
+                        required
+                      >
+                        {options.map(o => (
+                          <option key={o.type} value={o.type}>
+                            {o.label} — €{o.amount}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Personal Information */}
                 <div className="space-y-6">
                   <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">1. Personal Information</h3>
@@ -364,10 +428,18 @@ const ApplyInvitation = () => {
 
                 {/* Payment Section */}
                 <div className="space-y-6 bg-section-gray p-8 rounded-2xl border border-gray-100">
-                  <h3 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-6 italic">5. Payment Method</h3>
-                  <div className="grid grid-cols-1 gap-4">
+                  <h3 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-6 italic">5. Payment Method & Summary</h3>
+                  
+                  {/* Summary */}
+                  <div className="bg-white p-4 rounded-xl border border-gray-100 mb-6 flex justify-between items-center shadow-sm">
+                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Total to Pay</span>
+                    <span className="text-2xl font-extrabold text-[#0e2a47]">€{selectedOption.amount}</span>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
                     {[
-                      { id: 'bank', label: 'Bank Account' }
+                      { id: 'stripe', label: 'Credit Card (Pay Now)' },
+                      { id: 'bank', label: 'Bank Transfer' }
                     ].map(method => (
                       <button
                         key={method.id}
@@ -385,30 +457,32 @@ const ApplyInvitation = () => {
                   </div>
 
                   {/* Bank Account Details */}
-                  <div className="mt-6 p-6 bg-white rounded-xl border border-gray-200">
-                    <h4 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-4 italic">Bank Account Details</h4>
-                    <div className="space-y-3 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-500">Account Holder:</span>
-                        <span className="font-semibold text-[#0e2a47]">M. Karim Haddouchane</span>
+                  {formData.paymentMethod === 'bank' && (
+                    <div className="mt-6 p-6 bg-white rounded-xl border border-gray-200 animate-fade-in">
+                      <h4 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-4 italic">Bank Account Details</h4>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-gray-500">Account Holder:</span>
+                          <span className="font-semibold text-[#0e2a47]">M. Karim Haddouchane</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-500">RIB:</span>
+                          <span className="font-semibold text-[#0e2a47]">230 380 5605342214023500 73</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-500">IBAN:</span>
+                          <span className="font-semibold text-[#0e2a47] break-all">MA64 2303 8056 0534 2214 0235 0073</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-500">SWIFT Code:</span>
+                          <span className="font-semibold text-[#0e2a47]">CIHMMAMC</span>
+                        </div>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-500">RIB:</span>
-                        <span className="font-semibold text-[#0e2a47]">230 380 5605342214023500 73</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-500">IBAN:</span>
-                        <span className="font-semibold text-[#0e2a47] break-all">MA64 2303 8056 0534 2214 0235 0073</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-500">SWIFT Code:</span>
-                        <span className="font-semibold text-[#0e2a47]">CIHMMAMC</span>
-                      </div>
+                      <p className="mt-4 text-xs text-gray-500 italic">
+                        Please include your full name and application reference in the payment description.
+                      </p>
                     </div>
-                    <p className="mt-4 text-xs text-gray-500 italic">
-                      Please include your full name and application reference in the payment description.
-                    </p>
-                  </div>
+                  )}
                 </div>
 
                 <div className="flex items-start gap-3 p-4 bg-orange/5 rounded-lg border border-orange/10">

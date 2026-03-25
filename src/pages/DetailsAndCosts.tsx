@@ -1,11 +1,144 @@
 import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { Search, Phone, Mail, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Search, Phone, Mail, CheckCircle2, ChevronDown, ChevronUp, X, CreditCard, Loader2, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getCountryPaymentOptions, startCheckout, type PriceOption } from '@/lib/stripe';
 
+// ─── Payment Modal ────────────────────────────────────────────────────────────
+interface PaymentModalProps {
+  country: string;
+  options: PriceOption[];
+  onClose: () => void;
+}
+
+const PaymentModal = ({ country, options, onClose }: PaymentModalProps) => {
+  const [selected, setSelected] = useState<PriceOption | null>(options[0] ?? null);
+  const [loading, setLoading] = useState(false);
+
+  const handlePay = async () => {
+    if (!selected) return;
+    setLoading(true);
+    try {
+      await startCheckout(country, selected);
+    } catch (err: any) {
+      alert('Payment error: ' + (err.message || 'Please try again.'));
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      aria-modal="true"
+      role="dialog"
+    >
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Modal panel */}
+      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-fade-in">
+        {/* Header */}
+        <div className="bg-[#0e2a47] px-6 py-5 flex items-center justify-between">
+          <div>
+            <p className="text-[10px] font-bold text-[#f27024] uppercase tracking-widest mb-0.5">Secure Payment</p>
+            <h2 className="text-white font-bold text-lg">{country} Invitation</h2>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            aria-label="Close"
+          >
+            <X size={16} className="text-white" />
+          </button>
+        </div>
+
+        <div className="p-6 space-y-5">
+          {/* Invitation type selector */}
+          <div>
+            <p className="text-[10px] font-bold text-[#0e2a47] uppercase tracking-widest mb-3">
+              Select Invitation Type
+            </p>
+            <div className="space-y-2">
+              {options.map((opt) => (
+                <button
+                  key={opt.type}
+                  onClick={() => setSelected(opt)}
+                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl border-2 transition-all text-left ${
+                    selected?.type === opt.type
+                      ? 'border-[#f27024] bg-orange-50 shadow-sm'
+                      : 'border-gray-100 bg-gray-50 hover:border-gray-200'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                        selected?.type === opt.type
+                          ? 'border-[#f27024] bg-[#f27024]'
+                          : 'border-gray-300'
+                      }`}
+                    >
+                      {selected?.type === opt.type && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                      )}
+                    </div>
+                    <span className="text-sm font-semibold text-[#0e2a47]">{opt.label}</span>
+                  </div>
+                  <span className="text-base font-extrabold text-[#f27024]">€{opt.amount}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Total */}
+          {selected && (
+            <div className="flex items-center justify-between px-4 py-3 bg-section-gray rounded-xl">
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Total</span>
+              <span className="text-2xl font-extrabold text-[#0e2a47]">€{selected.amount}</span>
+            </div>
+          )}
+
+          {/* Trust badges */}
+          <div className="flex items-center gap-2 text-xs text-gray-400">
+            <ShieldCheck size={14} className="text-green-500 shrink-0" />
+            <span>Secure payment powered by Stripe. Your data is encrypted.</span>
+          </div>
+
+          {/* CTA */}
+          <button
+            onClick={handlePay}
+            disabled={!selected || loading}
+            className="w-full bg-[#f27024] text-white py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-opacity-90 transition-all shadow-lg shadow-orange-500/20 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                Redirecting to Stripe…
+              </>
+            ) : (
+              <>
+                <CreditCard size={16} />
+                Pay Now — €{selected?.amount ?? '—'}
+              </>
+            )}
+          </button>
+
+          {/* Stripe logo text */}
+          <p className="text-center text-[10px] text-gray-400 italic">
+            You will be redirected to Stripe's secure checkout page.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── Page Hero ────────────────────────────────────────────────────────────────
 const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
   <div className="bg-[#0e2a47] py-16 md:py-24 text-white text-center">
     <div className="container mx-auto px-4">
@@ -15,10 +148,25 @@ const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) 
   </div>
 );
 
-const ServiceCard = ({ country, businessPrice, options, note }: any) => {
+// ─── Service Card ─────────────────────────────────────────────────────────────
+const ServiceCard = ({
+  country,
+  countryKey,
+  businessPrice,
+  options,
+  note,
+  onPayClick,
+}: {
+  country: string;
+  countryKey: string;
+  businessPrice: string | number;
+  options: string[];
+  note?: string;
+  onPayClick: (countryKey: string, countryLabel: string) => void;
+}) => {
   const { t } = useLanguage();
   return (
-    <div className="bg-white border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow text-start">
+    <div className="bg-white border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow text-start flex flex-col">
       <div className="p-6 border-b border-gray-100">
         <h3 className="text-xl font-bold text-[#0e2a47] mb-1">{country}</h3>
         <p className="text-xs text-[#f27024] font-bold uppercase tracking-widest">{t('costs.visaInvitationLetters')}</p>
@@ -32,7 +180,7 @@ const ServiceCard = ({ country, businessPrice, options, note }: any) => {
           <span className="block text-xs font-bold text-gray-400 uppercase">{t('costs.businessInvitation')}</span>
         </div>
       </div>
-      <div className="p-6 space-y-3 mb-4">
+      <div className="p-6 space-y-3 mb-4 flex-1">
         {options.map((opt: string, idx: number) => (
           <div key={idx} className="flex items-start gap-2 text-sm text-gray-600">
             <CheckCircle2 size={14} className="text-[#f27024] shrink-0 mt-0.5" />
@@ -40,15 +188,25 @@ const ServiceCard = ({ country, businessPrice, options, note }: any) => {
           </div>
         ))}
       </div>
-      <div className="px-6 pb-6">
+      {/* Action buttons */}
+      <div className="px-6 pb-6 space-y-3">
+        {/* Stripe Pay Now */}
+        <button
+          onClick={() => onPayClick(countryKey, country)}
+          className="block w-full text-center bg-[#f27024] text-white py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-opacity-90 transition-colors flex items-center justify-center gap-2 shadow-md shadow-orange-500/20"
+        >
+          <CreditCard size={13} />
+          Pay Now
+        </button>
+        {/* Apply form link */}
         <Link
-          to="/apply-invitation"
-          className="block w-full text-center bg-[#0e2a47] text-white py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-navy-800 transition-colors"
+          to={`/apply-invitation?country=${countryKey}`}
+          className="block w-full text-center bg-transparent border border-[#0e2a47] text-[#0e2a47] py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-[#0e2a47] hover:text-white transition-colors"
         >
           {t('costs.applyNow')}
         </Link>
         {note && (
-          <p className="text-[10px] text-gray-400 mt-4 italic leading-tight text-start">
+          <p className="text-[10px] text-gray-400 mt-2 italic leading-tight text-start">
             {t('costs.note')}: {note}
           </p>
         )}
@@ -57,6 +215,7 @@ const ServiceCard = ({ country, businessPrice, options, note }: any) => {
   );
 };
 
+// ─── Sidebar ──────────────────────────────────────────────────────────────────
 const Sidebar = () => {
   const { t, isRTL } = useLanguage();
   return (
@@ -131,35 +290,46 @@ const Sidebar = () => {
   );
 };
 
+// ─── Main Page ────────────────────────────────────────────────────────────────
 const DetailsAndCosts = () => {
   const { t } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  // Modal state
+  const [modalCountryKey, setModalCountryKey] = useState<string | null>(null);
+  const [modalCountryLabel, setModalCountryLabel] = useState<string>('');
+
+  const openModal = (key: string, label: string) => {
+    setModalCountryKey(key);
+    setModalCountryLabel(label);
+  };
+  const closeModal = () => setModalCountryKey(null);
+
   const countries = [
-    { country: t('country.lithuania'), businessPrice: t('price.business450'), options: [`${t('invitation.visit')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteMediation') },
-    { country: t('country.estonia'), businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350usd')}`, `${t('invitation.business')}: ${t('price.eur550usd')}`, `${t('invitation.family')}: ${t('price.eur300usd')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
-    { country: t('country.albania'), businessPrice: t('price.business450'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
-    { country: t('country.belarus'), businessPrice: t('price.business450'), options: [`${t('invitation.visit')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
-    { country: t('country.uk'), businessPrice: t('price.business500'), options: [`${t('invitation.visit')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
-    { country: t('country.russia'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur500')}`, `${t('invitation.business')}: N/A`, `${t('invitation.family')}: ${t('price.eur450')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
-    { country: t('country.serbia'), businessPrice: t('price.business350'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: N/A`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
-    { country: t('country.kosovo'), businessPrice: t('price.business350'), options: [`${t('invitation.tourist')}: ${t('price.eur350usd')}`, `${t('invitation.business')}: N/A`, `${t('invitation.family')}: ${t('price.eur300usd')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
-    { country: t('country.cyprus'), businessPrice: t('price.business350'), options: [`${t('invitation.tourist')}: ${t('price.eur350usd')}`, `${t('invitation.business')}: ${t('price.eur500usd')}`, `${t('invitation.family')}: ${t('price.eur300usd')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
-    { country: t('country.spain'), businessPrice: t('price.business800'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.policeApproved')}: ${t('price.eur800')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePolice') },
-    { country: t('country.sweden'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.hungary'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.luxembourg'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.netherlands'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.germany'), businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.czech'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.denmark'), businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur550')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.finland'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.france'), businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur550')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.iceland'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.norway'), businessPrice: t('price.business450'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.poland'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.portugal'), businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur550')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
-    { country: t('country.ireland'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') }
+    { countryKey: 'Lithuania',   country: t('country.lithuania'),   businessPrice: t('price.business450'), options: [`${t('invitation.visit')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteMediation') },
+    { countryKey: 'Estonia',     country: t('country.estonia'),     businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350usd')}`, `${t('invitation.business')}: ${t('price.eur550usd')}`, `${t('invitation.family')}: ${t('price.eur300usd')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
+    { countryKey: 'Albania',     country: t('country.albania'),     businessPrice: t('price.business450'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
+    { countryKey: 'Belarus',     country: t('country.belarus'),     businessPrice: t('price.business450'), options: [`${t('invitation.visit')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
+    { countryKey: 'UK',          country: t('country.uk'),          businessPrice: t('price.business500'), options: [`${t('invitation.visit')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
+    { countryKey: 'Russia',      country: t('country.russia'),      businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur500')}`, `${t('invitation.business')}: N/A`, `${t('invitation.family')}: ${t('price.eur450')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
+    { countryKey: 'Serbia',      country: t('country.serbia'),      businessPrice: t('price.business350'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: N/A`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
+    { countryKey: 'Kosovo',      country: t('country.kosovo'),      businessPrice: t('price.business350'), options: [`${t('invitation.tourist')}: ${t('price.eur350usd')}`, `${t('invitation.business')}: N/A`, `${t('invitation.family')}: ${t('price.eur300usd')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
+    { countryKey: 'Cyprus',      country: t('country.cyprus'),      businessPrice: t('price.business350'), options: [`${t('invitation.tourist')}: ${t('price.eur350usd')}`, `${t('invitation.business')}: ${t('price.eur500usd')}`, `${t('invitation.family')}: ${t('price.eur300usd')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
+    { countryKey: 'Spain',       country: t('country.spain'),       businessPrice: t('price.business800'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.policeApproved')}: ${t('price.eur800')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePolice') },
+    { countryKey: 'Sweden',      country: t('country.sweden'),      businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Hungary',     country: t('country.hungary'),     businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Luxembourg',  country: t('country.luxembourg'),  businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Netherlands', country: t('country.netherlands'), businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Germany',     country: t('country.germany'),     businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Czech',       country: t('country.czech'),       businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Denmark',     country: t('country.denmark'),     businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur550')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Finland',     country: t('country.finland'),     businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'France',      country: t('country.france'),      businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur550')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Iceland',     country: t('country.iceland'),     businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Norway',      country: t('country.norway'),      businessPrice: t('price.business450'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Poland',      country: t('country.poland'),      businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Portugal',    country: t('country.portugal'),    businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur550')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
+    { countryKey: 'Ireland',     country: t('country.ireland'),     businessPrice: t('price.business500'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur500')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteTouristType') },
   ];
 
   const faqs = [
@@ -198,7 +368,15 @@ const DetailsAndCosts = () => {
               </div>
               <div className="grid md:grid-cols-2 gap-8 text-center">
                 {countries.map((c, i) => (
-                  <ServiceCard key={i} {...c} />
+                  <ServiceCard
+                    key={i}
+                    countryKey={c.countryKey}
+                    country={c.country}
+                    businessPrice={c.businessPrice}
+                    options={c.options}
+                    note={c.note}
+                    onPayClick={openModal}
+                  />
                 ))}
               </div>
             </div>
@@ -276,6 +454,15 @@ const DetailsAndCosts = () => {
 
       <FooterSection />
       <WhatsAppButton />
+
+      {/* Payment Modal */}
+      {modalCountryKey && (
+        <PaymentModal
+          country={modalCountryLabel}
+          options={getCountryPaymentOptions(modalCountryKey)}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };

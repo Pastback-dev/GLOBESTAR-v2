@@ -17,6 +17,7 @@ import CompanyRegistration from "./pages/CompanyRegistration.tsx";
 import CompanyRegistrationForm from "./pages/CompanyRegistrationForm.tsx";
 import BusinessImmigration from "./pages/BusinessImmigration.tsx";
 import Contact from "./pages/Contact.tsx";
+import PaymentSuccess from "./pages/PaymentSuccess.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { LanguageProvider } from "./contexts/LanguageContext.tsx";
 
@@ -57,6 +58,9 @@ const App = () => (
 
             {/* Contact */}
             <Route path="/contact" element={<Contact />} />
+
+            {/* Payment */}
+            <Route path="/payment-success" element={<PaymentSuccess />} />
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
