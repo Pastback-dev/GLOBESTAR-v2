@@ -14,7 +14,7 @@ export interface PriceOption {
 }
 
 export const COUNTRIES = [
-  'Lithuania', 'Estonia', 'Albania', 'Belarus', 'UK', 'Russia', 'Serbia', 
+  'Test', 'Lithuania', 'Estonia', 'Albania', 'Belarus', 'UK', 'Russia', 'Serbia', 
   'Kosovo', 'Cyprus', 'Spain', 'Sweden', 'Hungary', 'Luxembourg', 'Netherlands', 
   'Germany', 'Czech', 'Denmark', 'Finland', 'France', 'Iceland', 'Norway', 
   'Poland', 'Portugal', 'Ireland'
@@ -23,6 +23,9 @@ export const COUNTRIES = [
 // ─── Price catalogue per country ───────────────────────────────────────────
 export function getCountryPaymentOptions(countryKey: string): PriceOption[] {
   const map: Record<string, PriceOption[]> = {
+    Test: [
+      { type: 'visit',    label: 'Test Real Payment',    amount: 5 },
+    ],
     Lithuania: [
       { type: 'visit',    label: 'Visit Invitation',    amount: 350 },
       { type: 'business', label: 'Business Invitation', amount: 450 },

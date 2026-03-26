@@ -14,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 const PRICE_MAP = {
+  5: 500,
   300: 30000,
   350: 35000,
   450: 45000,
