@@ -145,11 +145,11 @@ const ApplyInvitation = () => {
               <form className="space-y-8" onSubmit={handleSubmit}>
                 {/* Package Selection */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">0. Invitation Package</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">{t('apply.section0Title')}</h3>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Destination Country *
+                        {t('apply.destinationCountry')}
                       </label>
                       <select
                         value={selectedCountry}
@@ -158,13 +158,13 @@ const ApplyInvitation = () => {
                         required
                       >
                         {COUNTRIES.map(c => (
-                          <option key={c} value={c}>{c}</option>
+                          <option key={c} value={c}>{t('country.' + c.toLowerCase())}</option>
                         ))}
                       </select>
                     </div>
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Select Package *
+                        {t('apply.selectPackage')}
                       </label>
                       <select
                         value={selectedOption.type}
@@ -177,7 +177,7 @@ const ApplyInvitation = () => {
                       >
                         {options.map(o => (
                           <option key={o.type} value={o.type}>
-                            {o.label} — €{o.amount}
+                            {t('invitation.' + o.type)} — €{o.amount}
                           </option>
                         ))}
                       </select>
@@ -187,37 +187,41 @@ const ApplyInvitation = () => {
 
                 {/* Personal Information */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">1. Personal Information</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">{t('apply.section1Title')}</h3>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <User size={12} className="text-[#f27024]" /> Your Title *
+                        <User size={12} className="text-[#f27024]" /> {t('apply.yourTitle')}
                       </label>
                       <div className="flex gap-4">
-                        {['Mr.', 'Mrs.', 'Miss.'].map(title => (
-                          <label key={title} className="flex items-center gap-2 cursor-pointer">
+                        {[
+                          { value: 'Mr.', label: t('apply.titleMr') },
+                          { value: 'Mrs.', label: t('apply.titleMrs') },
+                          { value: 'Miss.', label: t('apply.titleMiss') }
+                        ].map(title => (
+                          <label key={title.value} className="flex items-center gap-2 cursor-pointer">
                             <input 
                               type="radio" 
                               name="title"
-                              value={title}
-                              checked={formData.title === title}
+                              value={title.value}
+                              checked={formData.title === title.value}
                               onChange={(e) => setFormData({...formData, title: e.target.value})}
                               className="w-4 h-4 text-[#f27024] focus:ring-[#f27024] border-gray-300"
                             />
-                            <span className="text-xs font-bold text-[#0e2a47] italic">{title}</span>
+                            <span className="text-xs font-bold text-[#0e2a47] italic">{title.label}</span>
                           </label>
                         ))}
                       </div>
                     </div>
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Full Name *
+                        {t('apply.fullName')}
                       </label>
                       <input 
                         name="fullName"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="Full Name"
+                        placeholder={t('apply.fullNamePlaceholder')}
                         value={formData.fullName}
                         onChange={(e) => setFormData({...formData, fullName: e.target.value})}
                         required
@@ -228,7 +232,7 @@ const ApplyInvitation = () => {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Date of Birth *
+                        {t('apply.dob')}
                       </label>
                       <input 
                         name="dob"
@@ -241,13 +245,13 @@ const ApplyInvitation = () => {
                     </div>
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Passport Number *
+                        {t('apply.passportNumber')}
                       </label>
                       <input 
                         name="passportNumber"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="Passport Number"
+                        placeholder={t('apply.passportPlaceholder')}
                         value={formData.passportNumber}
                         onChange={(e) => setFormData({...formData, passportNumber: e.target.value})}
                         required
@@ -258,20 +262,20 @@ const ApplyInvitation = () => {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Issuing Country
+                        {t('apply.issuingCountry')}
                       </label>
                       <input 
                         name="issuingCountry"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="Issuing Country"
+                        placeholder={t('apply.issuingCountryPlaceholder')}
                         value={formData.issuingCountry}
                         onChange={(e) => setFormData({...formData, issuingCountry: e.target.value})}
                       />
                     </div>
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Date of Expire
+                        {t('apply.expiryDate')}
                       </label>
                       <input 
                         name="expiryDate"
@@ -286,17 +290,17 @@ const ApplyInvitation = () => {
 
                 {/* Contact Information */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">2. Contact Information</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">{t('apply.section2Title')}</h3>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <Phone size={12} className="text-[#f27024]" /> Phone *
+                        <Phone size={12} className="text-[#f27024]" /> {t('apply.phone')}
                       </label>
                       <input 
                         name="phone"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="E.g., +1 300 400 5000"
+                        placeholder={t('apply.phonePlaceholder')}
                         value={formData.phone}
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         required
@@ -304,13 +308,13 @@ const ApplyInvitation = () => {
                     </div>
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        <Mail size={12} className="text-[#f27024]" /> Email Address *
+                        <Mail size={12} className="text-[#f27024]" /> {t('apply.email')}
                       </label>
                       <input 
                         name="email"
                         type="email" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="Email Address"
+                        placeholder={t('apply.emailPlaceholder')}
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         required
@@ -319,13 +323,13 @@ const ApplyInvitation = () => {
                   </div>
                   <div>
                     <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                      Home Address
+                      {t('apply.homeAddress')}
                     </label>
                     <input 
                       name="address"
                       type="text" 
                       className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                      placeholder="E.g., 42 Wallaby Way"
+                      placeholder={t('apply.homeAddressPlaceholder')}
                       value={formData.address}
                       onChange={(e) => setFormData({...formData, address: e.target.value})}
                     />
@@ -334,37 +338,40 @@ const ApplyInvitation = () => {
 
                 {/* Professional Information */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">3. Professional Information</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">{t('apply.section3Title')}</h3>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Your Profession
+                        {t('apply.yourProfession')}
                       </label>
                       <div className="flex gap-4">
-                        {['Job', 'Business'].map(prof => (
-                          <label key={prof} className="flex items-center gap-2 cursor-pointer">
+                        {[
+                          { value: 'Job', label: t('apply.profJob') },
+                          { value: 'Business', label: t('apply.profBusiness') }
+                        ].map(prof => (
+                          <label key={prof.value} className="flex items-center gap-2 cursor-pointer">
                             <input 
                               type="radio" 
                               name="profession"
-                              value={prof}
-                              checked={formData.profession === prof}
+                              value={prof.value}
+                              checked={formData.profession === prof.value}
                               onChange={(e) => setFormData({...formData, profession: e.target.value})}
                               className="w-4 h-4 text-[#f27024] focus:ring-[#f27024] border-gray-300"
                             />
-                            <span className="text-xs font-bold text-[#0e2a47] italic">{prof}</span>
+                            <span className="text-xs font-bold text-[#0e2a47] italic">{prof.label}</span>
                           </label>
                         ))}
                       </div>
                     </div>
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Your Designation
+                        {t('apply.yourDesignation')}
                       </label>
                       <input 
                         name="designation"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="Your Designation"
+                        placeholder={t('apply.designationPlaceholder')}
                         value={formData.designation}
                         onChange={(e) => setFormData({...formData, designation: e.target.value})}
                       />
@@ -374,26 +381,26 @@ const ApplyInvitation = () => {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Your Annual Income in Euro
+                        {t('apply.annualIncome')}
                       </label>
                       <input 
                         name="annualIncome"
                         type="number" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="Your Annual Income in Euro"
+                        placeholder={t('apply.annualIncomePlaceholder')}
                         value={formData.annualIncome}
                         onChange={(e) => setFormData({...formData, annualIncome: e.target.value})}
                       />
                     </div>
                     <div>
                       <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                        Employer Name
+                        {t('apply.employerName')}
                       </label>
                       <input 
                         name="employerName"
                         type="text" 
                         className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                        placeholder="Employer Name"
+                        placeholder={t('apply.employerNamePlaceholder')}
                         value={formData.employerName}
                         onChange={(e) => setFormData({...formData, employerName: e.target.value})}
                       />
@@ -401,13 +408,13 @@ const ApplyInvitation = () => {
                   </div>
                   <div>
                     <label className="flex items-center gap-2 text-[10px] font-bold text-[#0e2a47] uppercase tracking-wider mb-3 italic">
-                      Employer Address
+                      {t('apply.employerAddress')}
                     </label>
                     <input 
                       name="employerAddress"
                       type="text" 
                       className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic"
-                      placeholder="E.g., 42 Wallaby Way"
+                      placeholder={t('apply.employerAddressPlaceholder')}
                       value={formData.employerAddress}
                       onChange={(e) => setFormData({...formData, employerAddress: e.target.value})}
                     />
@@ -416,11 +423,11 @@ const ApplyInvitation = () => {
 
                 {/* Additional Details */}
                 <div className="space-y-6">
-                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">4. Other Details</h3>
+                  <h3 className="text-sm font-bold text-[#f27024] uppercase tracking-widest border-b border-gray-100 pb-2 italic">{t('apply.section4Title')}</h3>
                   <textarea 
                     name="otherDetails" 
                     className="w-full bg-section-gray border-0 rounded-lg px-4 py-4 text-sm focus:ring-2 focus:ring-[#f27024] outline-none italic min-h-[120px]"
-                    placeholder="E.g., type your other details if you want."
+                    placeholder={t('apply.otherDetailsPlaceholder')}
                     value={formData.otherDetails}
                     onChange={(e) => setFormData({...formData, otherDetails: e.target.value})}
                   ></textarea>
@@ -428,18 +435,18 @@ const ApplyInvitation = () => {
 
                 {/* Payment Section */}
                 <div className="space-y-6 bg-section-gray p-8 rounded-2xl border border-gray-100">
-                  <h3 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-6 italic">5. Payment Method & Summary</h3>
+                  <h3 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-6 italic">{t('apply.section5Title')}</h3>
                   
                   {/* Summary */}
                   <div className="bg-white p-4 rounded-xl border border-gray-100 mb-6 flex justify-between items-center shadow-sm">
-                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Total to Pay</span>
+                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{t('apply.totalToPay')}</span>
                     <span className="text-2xl font-extrabold text-[#0e2a47]">€{selectedOption.amount}</span>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     {[
-                      { id: 'stripe', label: 'Credit Card (Pay Now)' },
-                      { id: 'bank', label: 'Bank Transfer' }
+                      { id: 'stripe', label: t('apply.paymentStripe') },
+                      { id: 'bank', label: t('apply.paymentBank') }
                     ].map(method => (
                       <button
                         key={method.id}
@@ -459,27 +466,27 @@ const ApplyInvitation = () => {
                   {/* Bank Account Details */}
                   {formData.paymentMethod === 'bank' && (
                     <div className="mt-6 p-6 bg-white rounded-xl border border-gray-200 animate-fade-in">
-                      <h4 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-4 italic">Bank Account Details</h4>
+                      <h4 className="text-sm font-bold text-[#0e2a47] uppercase tracking-widest mb-4 italic">{t('apply.bankDetails')}</h4>
                       <div className="space-y-3 text-sm">
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Account Holder:</span>
+                          <span className="text-gray-500">{t('apply.accHolder')}</span>
                           <span className="font-semibold text-[#0e2a47]">M. Karim Haddouchane</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-500">RIB:</span>
+                          <span className="text-gray-500">{t('apply.rib')}</span>
                           <span className="font-semibold text-[#0e2a47]">230 380 5605342214023500 73</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-500">IBAN:</span>
+                          <span className="text-gray-500">{t('apply.iban')}</span>
                           <span className="font-semibold text-[#0e2a47] break-all">MA64 2303 8056 0534 2214 0235 0073</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-500">SWIFT Code:</span>
+                          <span className="text-gray-500">{t('apply.swift')}</span>
                           <span className="font-semibold text-[#0e2a47]">CIHMMAMC</span>
                         </div>
                       </div>
                       <p className="mt-4 text-xs text-gray-500 italic">
-                        Please include your full name and application reference in the payment description.
+                        {t('apply.bankNote')}
                       </p>
                     </div>
                   )}
@@ -490,7 +497,7 @@ const ApplyInvitation = () => {
                     <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-[#f27024] focus:ring-[#f27024]" required />
                   </div>
                   <p className="text-[10px] text-gray-500 leading-relaxed italic">
-                    I agree that all information provided is accurate and matches my travel documents. I understand that payments are non-refundable.
+                    {t('apply.agreement')}
                   </p>
                 </div>
 
@@ -499,7 +506,7 @@ const ApplyInvitation = () => {
                   disabled={isSubmitting}
                   className="w-full bg-[#f27024] text-white py-5 rounded-lg font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-xl shadow-orange-500/20 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Processing...' : 'Proceed Your Payment'}
+                  {isSubmitting ? t('apply.processing') : t('apply.proceedPayment')}
                 </button>
               </form>
             </div>
@@ -508,28 +515,28 @@ const ApplyInvitation = () => {
           {/* Guidelines Sidebar */}
           <div className="lg:col-span-1 order-1 lg:order-2 space-y-8">
             <div className="bg-[#0e2a47] p-8 rounded-2xl text-white">
-              <h3 className="text-xl font-bold mb-6 uppercase italic leading-tight">Notice</h3>
+              <h3 className="text-xl font-bold mb-6 uppercase italic leading-tight">{t('apply.notice')}</h3>
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <AlertCircle size={24} className="text-[#f27024] shrink-0" />
                   <p className="text-xs text-white/70 italic leading-relaxed">
-                    Once payment is confirmed, we will send your invitation letter to your email within 3 business days.
+                    {t('apply.noticeText')}
                   </p>
                 </div>
                 <div className="p-4 bg-white/5 rounded-lg border border-white/10 italic">
-                  <p className="text-[10px] text-white/50 mb-2 uppercase tracking-widest">Hard Copy Requests</p>
-                  <p className="text-xs">If you require a hard copy, an additional charge of up to $65 may apply depending on your country.</p>
+                  <p className="text-[10px] text-white/50 mb-2 uppercase tracking-widest">{t('apply.hardCopyTitle')}</p>
+                  <p className="text-xs">{t('apply.hardCopyText')}</p>
                 </div>
               </div>
             </div>
 
             <div className="bg-section-gray p-8 rounded-2xl border border-gray-100">
-              <h3 className="text-lg font-bold text-[#0e2a47] mb-6 uppercase italic">Quick Steps</h3>
+              <h3 className="text-lg font-bold text-[#0e2a47] mb-6 uppercase italic">{t('apply.quickSteps')}</h3>
               <div className="space-y-6">
                 {[
-                  { step: '1', text: 'Fill In The Invitation Form' },
-                  { step: '2', text: 'Proceed Payment' },
-                  { step: '3', text: 'Receive your Invitation within 3 Days' }
+                  { step: '1', text: t('apply.step1') },
+                  { step: '2', text: t('apply.step2') },
+                  { step: '3', text: t('apply.step3') }
                 ].map((s, i) => (
                   <div key={i} className="flex gap-4 items-center">
                     <span className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center font-bold text-[#f27024] shrink-0 italic">{s.step}</span>
