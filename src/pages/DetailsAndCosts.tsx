@@ -1,142 +1,10 @@
 import { TopBar, Navbar } from '@/components/Header';
 import FooterSection from '@/components/FooterSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { Search, Phone, Mail, CheckCircle2, ChevronDown, ChevronUp, X, CreditCard, Loader2, ShieldCheck } from 'lucide-react';
+import { Search, Phone, Mail, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { getCountryPaymentOptions, startCheckout, type PriceOption } from '@/lib/stripe';
-
-// ─── Payment Modal ────────────────────────────────────────────────────────────
-interface PaymentModalProps {
-  country: string;
-  options: PriceOption[];
-  onClose: () => void;
-}
-
-const PaymentModal = ({ country, options, onClose }: PaymentModalProps) => {
-  const [selected, setSelected] = useState<PriceOption | null>(options[0] ?? null);
-  const [loading, setLoading] = useState(false);
-
-  const handlePay = async () => {
-    if (!selected) return;
-    setLoading(true);
-    try {
-      await startCheckout(country, selected);
-    } catch (err: any) {
-      alert('Payment error: ' + (err.message || 'Please try again.'));
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      aria-modal="true"
-      role="dialog"
-    >
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={onClose}
-      />
-
-      {/* Modal panel */}
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-fade-in">
-        {/* Header */}
-        <div className="bg-[#0e2a47] px-6 py-5 flex items-center justify-between">
-          <div>
-            <p className="text-[10px] font-bold text-[#f27024] uppercase tracking-widest mb-0.5">Secure Payment</p>
-            <h2 className="text-white font-bold text-lg">{country} Invitation</h2>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-            aria-label="Close"
-          >
-            <X size={16} className="text-white" />
-          </button>
-        </div>
-
-        <div className="p-6 space-y-5">
-          {/* Invitation type selector */}
-          <div>
-            <p className="text-[10px] font-bold text-[#0e2a47] uppercase tracking-widest mb-3">
-              Select Invitation Type
-            </p>
-            <div className="space-y-2">
-              {options.map((opt) => (
-                <button
-                  key={opt.type}
-                  onClick={() => setSelected(opt)}
-                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl border-2 transition-all text-left ${
-                    selected?.type === opt.type
-                      ? 'border-[#f27024] bg-orange-50 shadow-sm'
-                      : 'border-gray-100 bg-gray-50 hover:border-gray-200'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                        selected?.type === opt.type
-                          ? 'border-[#f27024] bg-[#f27024]'
-                          : 'border-gray-300'
-                      }`}
-                    >
-                      {selected?.type === opt.type && (
-                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                      )}
-                    </div>
-                    <span className="text-sm font-semibold text-[#0e2a47]">{opt.label}</span>
-                  </div>
-                  <span className="text-base font-extrabold text-[#f27024]">€{opt.amount}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Total */}
-          {selected && (
-            <div className="flex items-center justify-between px-4 py-3 bg-section-gray rounded-xl">
-              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Total</span>
-              <span className="text-2xl font-extrabold text-[#0e2a47]">€{selected.amount}</span>
-            </div>
-          )}
-
-          {/* Trust badges */}
-          <div className="flex items-center gap-2 text-xs text-gray-400">
-            <ShieldCheck size={14} className="text-green-500 shrink-0" />
-            <span>Secure payment powered by Stripe. Your data is encrypted.</span>
-          </div>
-
-          {/* CTA */}
-          <button
-            onClick={handlePay}
-            disabled={!selected || loading}
-            className="w-full bg-[#f27024] text-white py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-opacity-90 transition-all shadow-lg shadow-orange-500/20 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? (
-              <>
-                <Loader2 size={16} className="animate-spin" />
-                Redirecting to Stripe…
-              </>
-            ) : (
-              <>
-                <CreditCard size={16} />
-                Pay Now — €{selected?.amount ?? '—'}
-              </>
-            )}
-          </button>
-
-          {/* Stripe logo text */}
-          <p className="text-center text-[10px] text-gray-400 italic">
-            You will be redirected to Stripe's secure checkout page.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 // ─── Page Hero ────────────────────────────────────────────────────────────────
 const PageHero = ({ title, breadcrumb }: { title: string; breadcrumb: string }) => (
@@ -155,14 +23,12 @@ const ServiceCard = ({
   businessPrice,
   options,
   note,
-  onPayClick,
 }: {
   country: string;
   countryKey: string;
   businessPrice: string | number;
   options: string[];
   note?: string;
-  onPayClick: (countryKey: string, countryLabel: string) => void;
 }) => {
   const { t } = useLanguage();
   return (
@@ -190,14 +56,7 @@ const ServiceCard = ({
       </div>
       {/* Action buttons */}
       <div className="px-6 pb-6 space-y-3">
-        {/* Stripe Pay Now */}
-        <button
-          onClick={() => onPayClick(countryKey, country)}
-          className="block w-full text-center bg-[#f27024] text-white py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-opacity-90 transition-colors flex items-center justify-center gap-2 shadow-md shadow-orange-500/20"
-        >
-          <CreditCard size={13} />
-          Pay Now
-        </button>
+
         {/* Apply form link */}
         <Link
           to={`/apply-invitation?country=${countryKey}`}
@@ -295,15 +154,7 @@ const DetailsAndCosts = () => {
   const { t } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  // Modal state
-  const [modalCountryKey, setModalCountryKey] = useState<string | null>(null);
-  const [modalCountryLabel, setModalCountryLabel] = useState<string>('');
 
-  const openModal = (key: string, label: string) => {
-    setModalCountryKey(key);
-    setModalCountryLabel(label);
-  };
-  const closeModal = () => setModalCountryKey(null);
 
   const countries = [
     { countryKey: 'Lithuania',   country: t('country.lithuania'),   businessPrice: t('price.business450'), options: [`${t('invitation.visit')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteMediation') },
@@ -375,7 +226,6 @@ const DetailsAndCosts = () => {
                     businessPrice={c.businessPrice}
                     options={c.options}
                     note={c.note}
-                    onPayClick={openModal}
                   />
                 ))}
               </div>
@@ -455,14 +305,7 @@ const DetailsAndCosts = () => {
       <FooterSection />
       <WhatsAppButton />
 
-      {/* Payment Modal */}
-      {modalCountryKey && (
-        <PaymentModal
-          country={modalCountryLabel}
-          options={getCountryPaymentOptions(modalCountryKey)}
-          onClose={closeModal}
-        />
-      )}
+
     </div>
   );
 };
