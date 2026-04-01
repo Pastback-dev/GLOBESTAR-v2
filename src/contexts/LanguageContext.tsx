@@ -431,7 +431,6 @@ const translations = {
     'invitation.police': 'Police Approved Invitation',
     'invitation.perPerson': 'Per Person',
     'invitation.policeApproved': 'Police Approved Invitation',
-    'country.test': 'Test Country',
 
     // Available Visas
     'visas.heroTitle': 'Available Visas',
@@ -535,6 +534,10 @@ const translations = {
     'immigration.visaProcessing': 'Visa Processing',
     'immigration.regIn': 'Registration in',
     'immigration.regLabel': 'Company Registration',
+    'paused.title': 'Service Temporarily Paused',
+    'paused.message': 'We are currently updating our services to provide you with a better experience. We will be back online shortly.',
+    'paused.backSoon': 'We will be back soon!',
+    'paused.contactUs': 'If you have an urgent inquiry, please contact us via WhatsApp.',
   },
   ar: {
     // Header
@@ -957,7 +960,6 @@ const translations = {
     'invitation.police': 'دعوة معتمدة من الشرطة',
     'invitation.perPerson': 'للشخص الواحد',
     'invitation.policeApproved': 'دعوة معتمدة من الشرطة',
-    'country.test': 'بلد تجريبي',
 
     // Available Visas
     'visas.heroTitle': 'التأشيرات المتاحة',

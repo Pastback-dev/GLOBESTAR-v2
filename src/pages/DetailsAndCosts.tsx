@@ -306,7 +306,6 @@ const DetailsAndCosts = () => {
   const closeModal = () => setModalCountryKey(null);
 
   const countries = [
-    { countryKey: 'Test',        country: 'Test Payment',           businessPrice: 5, options: ['Test Real Payment: €5'], note: 'Use this for testing real payments with a small amount.' },
     { countryKey: 'Lithuania',   country: t('country.lithuania'),   businessPrice: t('price.business450'), options: [`${t('invitation.visit')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.noteMediation') },
     { countryKey: 'Estonia',     country: t('country.estonia'),     businessPrice: t('price.business550'), options: [`${t('invitation.tourist')}: ${t('price.eur350usd')}`, `${t('invitation.business')}: ${t('price.eur550usd')}`, `${t('invitation.family')}: ${t('price.eur300usd')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
     { countryKey: 'Albania',     country: t('country.albania'),     businessPrice: t('price.business450'), options: [`${t('invitation.tourist')}: ${t('price.eur350')}`, `${t('invitation.business')}: ${t('price.eur450')}`, `${t('invitation.family')}: ${t('price.eur300')} ${t('invitation.perPerson')}`], note: t('costs.notePerPerson') },
