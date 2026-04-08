@@ -409,6 +409,8 @@ const translations = {
     'price.business500': '500',
     'price.business550': '550',
     'price.business800': '800',
+    'price.business150': '150',
+    'price.eur150': '€ 150',
     'country.estonia': 'Estonia',
     'country.serbia': 'Serbia',
     'country.kosovo': 'Kosovo',
@@ -1063,6 +1065,8 @@ const translations = {
     'immigration.visaProcessing': 'معالجة التأشيرات',
     'immigration.regIn': 'تسجيل في',
     'immigration.regLabel': 'تسجيل الشركات',
+    'price.business150': '150',
+    'price.eur150': '150 €',
   }
 };
 

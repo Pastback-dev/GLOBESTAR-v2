@@ -66,9 +66,9 @@ export function getCountryPaymentOptions(countryKey: string): PriceOption[] {
       { type: 'family',   label: 'Family Invitation',   amount: 300 },
     ],
     Spain: [
-      { type: 'tourist',  label: 'Tourist Invitation',  amount: 350 },
-      { type: 'police',   label: 'Police‑Approved Invitation', amount: 800 },
-      { type: 'family',   label: 'Family Invitation',   amount: 300 },
+      { type: 'tourist',  label: 'Tourist Invitation',  amount: 150 },
+      { type: 'business', label: 'Business Invitation', amount: 150 },
+      { type: 'family',   label: 'Family Invitation',   amount: 150 },
     ],
     Sweden:      schengen500(),
     Hungary:     schengen500(),

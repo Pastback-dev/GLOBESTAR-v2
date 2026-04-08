@@ -8,6 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 // Price map in cents (EUR)
 const PRICE_MAP: Record<number, number> = {
   5: 500,
+  150: 15000,
   300: 30000,
   350: 35000,
   450: 45000,
