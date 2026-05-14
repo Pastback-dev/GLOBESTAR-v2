@@ -18,6 +18,7 @@ import CompanyRegistrationForm from "./pages/CompanyRegistrationForm.tsx";
 import BusinessImmigration from "./pages/BusinessImmigration.tsx";
 import Contact from "./pages/Contact.tsx";
 import PaymentSuccess from "./pages/PaymentSuccess.tsx";
+import Maintenance from "./pages/Maintenance.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { LanguageProvider } from "./contexts/LanguageContext.tsx";
 
@@ -34,6 +35,9 @@ const App = () => (
           <Routes>
             {/* Home */}
             <Route path="/" element={<Index />} />
+
+            {/* Maintenance */}
+            <Route path="/maintenance" element={<Maintenance />} />
 
             {/* About */}
             <Route path="/our-team" element={<OurTeam />} />
