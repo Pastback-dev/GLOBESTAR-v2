@@ -1,9 +1,11 @@
 import { loadStripe } from '@stripe/stripe-js';
 
-// Public key — safe to expose on the frontend
-export const stripePromise = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY as string
-);
+const publishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+
+// Safely initialize Stripe only if the publishable key is present to prevent startup crashes
+export const stripePromise = publishableKey 
+  ? loadStripe(publishableKey) 
+  : Promise.resolve(null);
 
 export type InvitationType = 'visit' | 'business' | 'family' | 'tourist' | 'police';
 
