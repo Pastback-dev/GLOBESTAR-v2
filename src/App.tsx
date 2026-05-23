@@ -3,13 +3,28 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import PausedPage from "./pages/PausedPage.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 import { LanguageProvider } from "./contexts/LanguageContext.tsx";
 
-const queryClient = new QueryClient();
+// Pages
+import Index from "./pages/Index.tsx";
+import OurTeam from "./pages/OurTeam.tsx";
+import BankAccount from "./pages/BankAccount.tsx";
+import TypesOfInvitation from "./pages/TypesOfInvitation.tsx";
+import DetailsAndCosts from "./pages/DetailsAndCosts.tsx";
+import ApplyInvitation from "./pages/ApplyInvitation.tsx";
+import AvailableVisas from "./pages/AvailableVisas.tsx";
+import VisitingVisa from "./pages/VisitingVisa.tsx";
+import StudyingVisa from "./pages/StudyingVisa.tsx";
+import CompanyRegistration from "./pages/CompanyRegistration.tsx";
+import CompanyRegistrationForm from "./pages/CompanyRegistrationForm.tsx";
+import BusinessImmigration from "./pages/BusinessImmigration.tsx";
+import Contact from "./pages/Contact.tsx";
+import PaymentSuccess from "./pages/PaymentSuccess.tsx";
+import WorkingVisa from "./pages/WorkingVisa.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
-// Set this to true to show the paused page, false to show the full site
-const IS_PAUSED = true;
+const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -18,16 +33,25 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          {IS_PAUSED ? (
-            <Routes>
-              <Route path="*" element={<PausedPage />} />
-            </Routes>
-          ) : (
-            <Routes>
-              {/* Existing routes would go here when not paused */}
-              <Route path="*" element={<PausedPage />} />
-            </Routes>
-          )}
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/our-team" element={<OurTeam />} />
+            <Route path="/bank-account" element={<BankAccount />} />
+            <Route path="/types-of-invitation" element={<TypesOfInvitation />} />
+            <Route path="/details-and-costs" element={<DetailsAndCosts />} />
+            <Route path="/apply-invitation" element={<ApplyInvitation />} />
+            <Route path="/available-visas" element={<AvailableVisas />} />
+            <Route path="/visiting-visa" element={<VisitingVisa />} />
+            <Route path="/studying-visa" element={<StudyingVisa />} />
+            <Route path="/company-registration" element={<CompanyRegistration />} />
+            <Route path="/company-registration-form" element={<CompanyRegistrationForm />} />
+            <Route path="/business-immigration" element={<BusinessImmigration />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/working-visa" element={<WorkingVisa />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>
