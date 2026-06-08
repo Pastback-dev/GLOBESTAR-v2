@@ -23,12 +23,8 @@ import Contact from "./pages/Contact.tsx";
 import PaymentSuccess from "./pages/PaymentSuccess.tsx";
 import WorkingVisa from "./pages/WorkingVisa.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import PausedPage from "./pages/PausedPage.tsx";
 
 const queryClient = new QueryClient();
-
-// Set this to true to show the paused page, false to show the regular site
-const IS_PAUSED = true;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -38,30 +34,24 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          {IS_PAUSED ? (
-            <Routes>
-              <Route path="*" element={<PausedPage />} />
-            </Routes>
-          ) : (
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/our-team" element={<OurTeam />} />
-              <Route path="/bank-account" element={<BankAccount />} />
-              <Route path="/types-of-invitation" element={<TypesOfInvitation />} />
-              <Route path="/details-and-costs" element={<DetailsAndCosts />} />
-              <Route path="/apply-invitation" element={<ApplyInvitation />} />
-              <Route path="/available-visas" element={<AvailableVisas />} />
-              <Route path="/visiting-visa" element={<VisitingVisa />} />
-              <Route path="/studying-visa" element={<StudyingVisa />} />
-              <Route path="/company-registration" element={<CompanyRegistration />} />
-              <Route path="/company-registration-form" element={<CompanyRegistrationForm />} />
-              <Route path="/business-immigration" element={<BusinessImmigration />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/payment-success" element={<PaymentSuccess />} />
-              <Route path="/working-visa" element={<WorkingVisa />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          )}
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/our-team" element={<OurTeam />} />
+            <Route path="/bank-account" element={<BankAccount />} />
+            <Route path="/types-of-invitation" element={<TypesOfInvitation />} />
+            <Route path="/details-and-costs" element={<DetailsAndCosts />} />
+            <Route path="/apply-invitation" element={<ApplyInvitation />} />
+            <Route path="/available-visas" element={<AvailableVisas />} />
+            <Route path="/visiting-visa" element={<VisitingVisa />} />
+            <Route path="/studying-visa" element={<StudyingVisa />} />
+            <Route path="/company-registration" element={<CompanyRegistration />} />
+            <Route path="/company-registration-form" element={<CompanyRegistrationForm />} />
+            <Route path="/business-immigration" element={<BusinessImmigration />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/working-visa" element={<WorkingVisa />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>
